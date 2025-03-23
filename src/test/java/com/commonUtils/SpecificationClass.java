@@ -41,8 +41,9 @@ public class SpecificationClass {
 		
 		public RequestSpecification requestHeadersWithToken()
 		{
+			System.out.println("Token....."+context.get("LMStoken"));
 			reqSpec = new RequestSpecBuilder()
-					.addHeader("Authorization","Bearer "+TextContext.scenarioContext.getContext("authtoken") ).setBaseUri(baseURL)
+					.addHeader("Authorization","Bearer "+context.get("LMStoken") ).setBaseUri(baseURL)
 					 .addFilter(RequestLoggingFilter.logRequestTo(log))
 					 .addFilter(ResponseLoggingFilter.logResponseTo(log))
 					.setContentType(ContentType.JSON).build();
@@ -57,7 +58,7 @@ public class SpecificationClass {
 
 		public RequestSpecification requestHeadersWithTokenForJson()
 		{
-			System.out.println(context.get("token"));
+			System.out.println("Token......."+context.get("LMStoken"));
 			reqSpec = new RequestSpecBuilder()
 					.addHeader("Authorization","Bearer "+context.get("LMStoken") ).setBaseUri(baseURL).setContentType(ContentType.JSON).build();
 			return reqSpec;

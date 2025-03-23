@@ -20,20 +20,16 @@ public class LoginRequest extends SpecificationClass{
 
 	Response response;
 	ScenarioContext context;
-	
-	/****** for config file ****************/
-	RequestSpecification req;
+
 	LoginPayload loginPayload = new LoginPayload();
 	String token;
-	int responseCode;
-	
 	
 	public LoginRequest(ScenarioContext context) throws FileNotFoundException
 	{
 		super(context);
 		this.context = context;
 	}
-	//for config file
+	// Valid Login Scenario: Data from Config File
 	public void PostLoginRequest()
 	{
 		
@@ -42,13 +38,9 @@ public class LoginRequest extends SpecificationClass{
 					.body(logPojo).log().all()
 					.when()
 					.post(APIResources.valueOf("APILoginPost").getResources());
+		
 					 token = response.jsonPath().getString("token"); 
-					 System.out.println("TOken.." +token);
-					 TextContext.scenarioContext.setContext("authtoken", token);
-					
-		   responseCode = response.getStatusCode();
-		 System.out.println("getContext " +TextContext.scenarioContext.getContext("authtoken"));
-		  
+					 context.set("LMStoken", token);   
 	}
 
 	public void setLoginRequest(String requestType) throws Exception 
@@ -57,12 +49,12 @@ public class LoginRequest extends SpecificationClass{
 		context.set("LoginPojo", login);
 	}
 	
-	// for json file
+	// Login Scenario: Json File
 	public void postLoginRequestFromJson()
 	{
 		LoginPojo login = context.get("LoginPojo", LoginPojo.class);		
 		System.out.println(login.toString());
-		response = RestAssured.given().spec(requestHeadersWithTokenForJson())
+		response = RestAssured.given().spec(requestHeadersWithoutToken())
 				.body(login).log().all()
 				.post(APIResources.valueOf("APILoginPost").getResources());    
 		String token = response.jsonPath().getString("token"); 
