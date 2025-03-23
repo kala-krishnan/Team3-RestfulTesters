@@ -30,7 +30,8 @@ public class TestDataLoader {
 
 					// Dynamically set fields
 					setFieldDynamically(pojo, "statusCode", field.getValue(), int.class);
-					setFieldDynamically(pojo, "statusMessage", field.getValue(), String.class);
+					setFieldDynamically(pojo, "statusText", field.getValue(), String.class);
+					setFieldDynamically(pojo, "contentType", field.getValue(), String.class);
 					setFieldDynamically(pojo, "type", field.getValue(), String.class);
 
 					return pojo;

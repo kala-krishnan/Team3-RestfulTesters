@@ -11,14 +11,14 @@
             }
         },
 		{
-		          "LoginInvalid": {
-					"scenario":"Check if Admin able to generate token with invalid credential",
-		              "userLoginEmailId": "",
-		              "password": "Apiphase@2",
-					"statusCode":400,
-					"statusText": "OK",
-					"authType": "No Auth"
-		          }
+            "LoginInvalid": {
+                "scenario":"Check if Admin able to generate token with invalid credential",
+                "userLoginEmailId": "",
+                "password": "Apiphase@2",
+                "statusCode":400,
+                "statusText": "OK",
+                "authType": "No Auth"
+                }
 		      },
         {
             "CreateProgramValid": {
@@ -31,83 +31,149 @@
 				"authType": "Bearer Token"
             }
         },
+        {
+            "AddBatchValid": {
+				"scenario":"Add Batch valid",    
+                "batchDescription": "TestBatches",
+                "batchName": "APIBatchRest1",
+                "batchNoOfClasses": 10,
+                "batchStatus": "Active",
+                "programId": 16449,
+				"statusCode":201,
+				"statusText": "Created",
+				"contentType": "application/json"
+            }
+        },
+	{
+	           "AddBatchExistingName": {
+				   "scenario":"Add Batch with existing Batch Name",    
+	               "batchDescription": "TestBatches",
+	               "batchName": "APIBatchRest1",
+	               "batchNoOfClasses": 10,
+	               "batchStatus": "Active",
+	               "programId": 16449,
+					"statusCode":400,
+					"statusText": "Bad Request",
+					"contentType": "application/json"
+	           }
+		       },
+        {
+            "GetAllBatchValid": {
+				"scenario":"Search All Batch",    
+				"statusCode":200,
+				"statusText": "OK",
+				"contentType": "application/json"
+            }
+        },
+        {
+            "GetByBatchIDValid": {
+				"scenario":"Search Batch by ID",    
+				"statusCode":200,
+				"statusText": "OK",
+				"contentType": "application/json"
+            }
+        },
+        {
+            "GetByBatchNameValid": {
+				"scenario":"Search Batch by Name",    
+				"statusCode":200,
+				"statusText": "OK",
+				"contentType": "application/json"
+            }
+        },
+        {
+            "GetBatchByPrgmIDValid": {
+				"scenario":"Search Batch by Program ID",    
+				"statusCode":200,
+				"statusText": "OK",
+				"contentType": "application/json"
+            }
+        },
+        {
+            "PutBatchValid": {
+				"scenario":"Update Batch Valid",    
+				"statusCode":201,
+				"statusText": "Created",
+				"contentType": "application/json"
+            }
+        },
 		{
 			"CreateUserValid":{
-			"scenario":"Add User with Bearer Token",
-			"statusCode":201,
-			"statusText": "Created",
-			"authType": "Bearer Token",
-			"userComments": "teamhacktonuser5",
-			"userEduPg": "mtech3",
-			"userEduUg": "be3",
-			"userFirstName": "teamfive",
-			"userLastName": "hackathonfive",
-			"userLinkedinUrl": "www.linkedin.com4/url",
-			"userLocation": "texas",
-			"userMiddleName": "middle",
-			"userPhoneNumber": "+91 9440200000",
-			"userRoleMaps": [
-			{
-			"roleId": "R02",
-			"userRoleStatus": "Active"
-			}
-			],
-			"userTimeZone": "CST",
-			"userVisaStatus": "H1B",
-			"userLogin": {
-			"loginStatus" : "Active",
-			"userLoginEmail": "great5@gmail.com",
-			 "status": "Active"
-			}
+                "scenario":"Add User with Bearer Token",
+                "statusCode":201,
+                "statusText": "Created",
+                "authType": "Bearer Token",
+                "userComments": "teamhacktonuser5",
+                "userEduPg": "mtech3",
+                "userEduUg": "be3",
+                "userFirstName": "teamfive",
+                "userLastName": "hackathonfive",
+                "userLinkedinUrl": "www.linkedin.com4/url",
+                "userLocation": "texas",
+                "userMiddleName": "middle",
+                "userPhoneNumber": "+91 9440200000",
+                "userRoleMaps": [
+                {
+                "roleId": "R02",
+                "userRoleStatus": "Active"
+                }
+                ],
+                "userTimeZone": "CST",
+                "userVisaStatus": "H1B",
+                "userLogin": {
+                "loginStatus" : "Active",
+                "userLoginEmail": "great5@gmail.com",
+                "status": "Active"
+                }
 			}
 		},
 		{
-					"CreateUserInValidPhNumber":{
-					"scenario":"create a new user with valid endpoint and invalid - exisiting phone number",
-					"statusCode":400,
-					"statusText": "Failed",
-					"authType": "Bearer Token",
-					"userComments": "teamhacktonuser4",
-					"userEduPg": "mtech3",
-					"userEduUg": "be3",
-					"userFirstName": "teamfour",
-					"userLastName": "hackathon",
-					"userLinkedinUrl": "www.linkedin.com4/url",
-					"userLocation": "texas",
-					"userMiddleName": "middle",
-					"userPhoneNumber": "+91 9410200000",
-					"userRoleMaps": [
-					{
-					"roleId": "R02",
-					"userRoleStatus": "Active"
-					}
-					],
-					"userTimeZone": "CST",
-					"userVisaStatus": "H1B",
-					"userLogin": {
-					"loginStatus" : "Active",
-					"userLoginEmail": "great4@gmail.com",
-					 "status": "Active"
-					}
-					}
-				},
-				{
-					"GetAllUserWithFilters":{
-				    "scenario": "Get all User with Facets and Filter ",
-				    "authType": "Bearer Token",
-				    "statusCode": 200,
-				    "statusText": "OK"
-					}
-				},
-				{
-				    "GetUserByRoleID": {
-				        "scenario": "Get user by roleid",
-				        "authType": "Bearer Token",
-				        "statusCode": 200,
-						"roleId":"R04",
-				        "statusText": "OK"
-				    }
-				}
+            "CreateUserInValidPhNumber":{
+                "scenario":"create a new user with valid endpoint and invalid - exisiting phone number",
+                "statusCode":400,
+                "statusText": "Failed",
+                "authType": "Bearer Token",
+                "userComments": "teamhacktonuser4",
+                "userEduPg": "mtech3",
+                "userEduUg": "be3",
+                "userFirstName": "teamfour",
+                "userLastName": "hackathon",
+                "userLinkedinUrl": "www.linkedin.com4/url",
+                "userLocation": "texas",
+                "userMiddleName": "middle",
+                "userPhoneNumber": "+91 9410200000",
+                "userRoleMaps": [
+                {
+                "roleId": "R02",
+                "userRoleStatus": "Active"
+                }
+                ],
+                "userTimeZone": "CST",
+                "userVisaStatus": "H1B",
+                "userLogin": {
+                "loginStatus" : "Active",
+                "userLoginEmail": "great4@gmail.com",
+                    "status": "Active"
+                }
+                }
+            },
+            {
+            "GetAllUserWithFilters":{
+                "scenario": "Get all User with Facets and Filter ",
+                "authType": "Bearer Token",
+                "statusCode": 200,
+                "statusText": "OK"
+                }
+            },
+            {
+            "GetUserByRoleID": {
+                    "scenario": "Get user by roleid",
+                    "authType": "Bearer Token",
+                    "statusCode": 200,
+                    "roleId":"R04",
+                    "statusText": "OK"
+                }
+            }
 				
     ]
 }
