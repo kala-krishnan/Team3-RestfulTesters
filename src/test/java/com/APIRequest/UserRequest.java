@@ -67,7 +67,7 @@ public class UserRequest extends SpecificationClass{
 	
 	public JsonNode setGetUserRequest(String requestType) throws Exception 
 	{
-	JsonNode getTestData = TestDataLoader.loadTestDatafor_Post_Put(requestType);
+	JsonNode getTestData = TestDataLoader.loadTestDatafor_Get(requestType);
 	return getTestData;
 	}
 	
@@ -81,7 +81,7 @@ public class UserRequest extends SpecificationClass{
 	
 	public JsonNode setGetUserRequestBody(String requestType,String parameterValue) throws Exception
 	{
-	JsonNode getTestData = TestDataLoader.loadTestDatafor_Post_Put(requestType);
+	JsonNode getTestData = TestDataLoader.loadTestDatafor_Get(requestType);
 	paramForGetEndpoint = getTestData.get(parameterValue).asText();
 	return getTestData;
 	}

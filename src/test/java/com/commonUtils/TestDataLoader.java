@@ -68,7 +68,7 @@ public class TestDataLoader {
 		return str.substring(0, 1).toUpperCase() + str.substring(1);
 	}
 
-	public static JsonNode loadTestDatafor_Post_Put(String requestType) throws Exception {
+	public static JsonNode loadTestDatafor_Get(String requestType) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		// Load JSON file into a tree structure
