@@ -30,9 +30,13 @@ public class BatchRequest extends SpecificationClass{
 		BatchPojo batchStatusLine=(BatchPojo) context.get("BatchPojo");
 		return batchStatusLine.getStatusText();
 	}
-	public int getIdBatch() {
+	public String getIdBatch() {
 		BatchPojo batchid=(BatchPojo) context.get("BatchPojo");
 		return batchid.getId();
+	}
+	public String getNameBatch() {
+		BatchPojo batchName=(BatchPojo) context.get("BatchPojo");
+		return batchName.getName();
 	}
 	
 	public void setNewBatchRequest(String requestType) throws Exception 
@@ -77,9 +81,23 @@ public class BatchRequest extends SpecificationClass{
 	
 	public void GetBatchByIDRequest(String Scenario)
 	{
-		String EndPoint = APIResources.valueOf("APIGetBatchByID").getResources()+getIdBatch();
+		String id = getIdBatch();
+		String EndPoint = APIResources.valueOf("APIGetBatchByID").getResources()+id;
 		if (Scenario.equals("GetByBatchIDInValidEP")) 
-			EndPoint = APIResources.valueOf("APIGetBatchByID").getResources() + "Invalid"+getIdBatch();
+			EndPoint = APIResources.valueOf("APIGetBatchByID").getResources() + "Invalid"+id;
+
+		response = RestAssured.given().spec(requestHeadersWithToken())
+				.log().all()
+				.get(EndPoint);       
+		context.set("batchResponse", response); 
+	}
+	
+	public void GetBatchByNameRequest(String Scenario)
+	{
+		String name = getNameBatch();
+		String EndPoint = APIResources.valueOf("APIGetBatchByName").getResources()+name;
+		if (Scenario.equals("GetByBatchNameInValidEP")) 
+			EndPoint = APIResources.valueOf("APIGetBatchByName").getResources() + "Invalid"+name;
 
 		response = RestAssured.given().spec(requestHeadersWithToken())
 				.log().all()
