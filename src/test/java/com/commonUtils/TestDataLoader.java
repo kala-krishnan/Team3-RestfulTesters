@@ -32,6 +32,9 @@ public class TestDataLoader {
 					setFieldDynamically(pojo, "statusCode", field.getValue(), int.class);
 					setFieldDynamically(pojo, "statusText", field.getValue(), String.class);
 					setFieldDynamically(pojo, "message", field.getValue(), String.class);
+					setFieldDynamically(pojo, "id", field.getValue(), String.class);
+					setFieldDynamically(pojo, "name", field.getValue(), String.class);
+
 					return pojo;
 				}
 			}
@@ -90,3 +93,96 @@ public class TestDataLoader {
 	}
 }
 
+
+
+/*package com.commonUtils;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pojoclass.LoginPojo;
+
+import java.io.File;
+import java.util.Iterator;
+import java.util.Map;
+import com.fasterxml.jackson.databind.JsonNode;
+import java.lang.reflect.Method;
+
+public class TestDataLoader {
+    static String testDataFile = ConfigReader.getProperty("testDataFilePath");
+
+    public static <T> T loadTestData(String requestType, Class<T> clazz) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        // Load the entire JSON file into a JsonNode
+        JsonNode rootNode = objectMapper.readTree(new File(testDataFile));
+
+        JsonNode requests = rootNode.get("requests");
+
+        for (JsonNode requestNode : requests) {
+            Iterator<Map.Entry<String, JsonNode>> fields = requestNode.fields();
+
+            while (fields.hasNext()) {
+                Map.Entry<String, JsonNode> field = fields.next();
+
+                if (field.getKey().equalsIgnoreCase(requestType)) {
+                    // Deserialize into the provided POJO class
+                    T pojo = objectMapper.treeToValue(field.getValue(), clazz);
+
+                    // Dynamically set the statusCode if present
+                    if (field.getValue().has("statusCode")) {
+                        setStatusCodeDynamically(pojo, field.getValue().get("statusCode").asInt());
+                    }
+
+                    return pojo;
+                }
+            }
+        }
+        throw new RuntimeException("Request type not found: " + requestType);
+    }
+
+    // Dynamically sets the statusCode if the POJO has a setStatusCode method
+    private static <T> void setStatusCodeDynamically(T pojo, int statusCode) {
+        try {
+            Method setStatusCodeMethod = pojo.getClass().getMethod("setStatusCode", int.class);
+            if (setStatusCodeMethod != null) {
+                setStatusCodeMethod.invoke(pojo, statusCode);
+            }
+        } catch (NoSuchMethodException e) {
+            // No statusCode setter method, skip
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to set statusCode on POJO", e);
+        }
+    }
+}
+
+
+/*
+public class TestDataLoader {
+	static String testDataFile = ConfigReader.getProperty("testDataFilePath");
+
+    // Generic method to load test data and return the appropriate POJO
+    public static <T> T loadTestData(String requestType, Class<T> clazz) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        // Load the entire JSON file into a JsonNode
+        JsonNode rootNode = objectMapper.readTree(new File(testDataFile));
+
+        // Iterate over the requests array
+        JsonNode requests = rootNode.get("requests");
+
+        for (JsonNode requestNode : requests) {
+            Iterator<Map.Entry<String, JsonNode>> fields = requestNode.fields();
+
+            while (fields.hasNext()) {
+                Map.Entry<String, JsonNode> field = fields.next();
+
+                // Match the request type
+                if (field.getKey().equalsIgnoreCase(requestType)) {
+                    // Deserialize the matching request into the specified POJO class
+                    return objectMapper.treeToValue(field.getValue(), clazz);
+                }
+            }
+        }
+        throw new RuntimeException("Request type not found: " + requestType);
+    }
+}
+ */
