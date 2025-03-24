@@ -6,11 +6,11 @@ Background: Authorization SetUp
 
   @AddBatch   
   Scenario Outline: Verify create batch functionality
-    Given Admin creates Request with "<Data>" in batch request body 
-    When Admin sends POST HTTPS Request batch with "<Endpoint>"
+    Given Admin creates Request with "<Scenario>" in batch request body 
+    When Admin sends POST HTTPS Request "<Scenario>" batch with "<Endpoint>"
     Then Admin receives "<Status>" for batch request
     Examples: 
-      | Data     				          | Endpoint  | Status  |
+      | Scenario     				      | Endpoint  | Status  |
       | AddBatchValid 				    |  Valid  	|   201   |
       | AddBatchExistingName	    |  Valid 	  |   400   |
 			| AddBatchEmptyMandatory	  |  Valid 	  |   400   |
@@ -20,30 +20,30 @@ Background: Authorization SetUp
 			| AddBatchStatusInactive    |  Valid		|   400   |			
 				
 						
-#	@GetAllBatch   
-  #Scenario Outline: Verify search all batch functionality
-    #Given Admin creates GET Request for batch
-    #When Admin sends GET HTTPS Request with batch "<Endpoint>"
-    #Then Admin receives "<Status>" with batch GetAll response body
-    #Examples: 
-      #| Data     			       | Endpoint | Status  |
-      #| GetAllBatchValid 	   |  Valid 	|  200    |
-      #| GetAllBatchInValidEP  | InValid 	|  404    |
+	@GetAllBatch   
+  Scenario Outline: Verify search all batch functionality
+    Given Admin creates GET Request for batch "<Scenario>"
+    When Admin sends GET HTTPS Request with batch "<Scenario>"
+    Then Admin receives "<Status>" with batch GetAll response body
+    Examples: 
+      | Scenario     			   | Status  |
+      | GetAllBatchValid 	   |  200    |
+      | GetAllBatchInValidEP |  404    |
     
     
-#	@GetBatchByID   
-  #Scenario Outline: Verify search by Batch ID functionality
-    #Given Admin creates GET Request with Batch ID
-    #When Admin sends GET HTTPS Request with batch id "<Endpoint>"
-    #Then Admin receives "<Status>" with batch Get by ID response body
-    #Examples: 
-      #| Data     			       | Endpoint | Status  |
-      #| GetByBatchIDValid    |  Valid 	|  200    |
-      #| GetByBatchIDInactive |  Valid 	|  200    |
-      #| GetByBatchIDInvalid  |  Valid 	|  404    |
-      #| GetByBatchIDInValidEP| InValid 	|  404    |      
-      #
-        #
+	@GetBatchByID   
+  Scenario Outline: Verify search by Batch ID functionality
+    Given Admin creates GET Request with Batch ID "<Scenario>"
+    When Admin sends GET HTTPS Request with batch id "<Scenario>"
+    Then Admin receives "<Status>" with batch Get by ID response body
+    Examples: 
+      | Scenario     	       | Status  |
+      | GetByBatchIDValid    |  200    |
+      | GetByBatchIDInactive |  200    |
+      | GetByBatchIDInvalid  |  404    |
+      | GetByBatchIDInValidEP|  404    |      
+      
+        
 #	@GetBatchByName   
   #Scenario Outline: Verify search by Batch Name functionality
     #Given Admin creates GET Request with Batch Name
