@@ -19,7 +19,7 @@ import java.io.FileNotFoundException;
 public class LoginRequest extends SpecificationClass{
 
 	Response response;
-	ScenarioContext context;
+	public static ScenarioContext context;
 
 	LoginPayload loginPayload = new LoginPayload();
 	String token;

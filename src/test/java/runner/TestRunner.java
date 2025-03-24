@@ -9,7 +9,8 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(features= {"src/test/resources/Feature"},
 //tags = "@userModule or @userlogin",
-tags = "@userModule",
+tags = "@GetAllProgram",
+//tags = "@Batch and @LMS",
 glue={"com.stepdefinitions"},
 plugin = {
         "pretty",

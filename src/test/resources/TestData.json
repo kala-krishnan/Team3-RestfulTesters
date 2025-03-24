@@ -2,105 +2,134 @@
     "requests": [
         {
             "LoginValid": {
-				"scenario":"Check if Admin able to generate token with valid credential",
+                "scenario": "Check if Admin able to generate token with valid credential",
                 "userLoginEmailId": "sdetorganizer@gmail.com",
                 "password": "Apiphase@2",
-				"statusCode":200,
-				"statusText": "OK",
-				"authType": "No Auth"
+                "statusCode": 200,
+                "statusText": "OK",
+                "authType": "No Auth"
+            }
+        },
+        {
+            "LoginInvalid": {
+                "scenario": "Check if Admin able to generate token with invalid credential",
+                "userLoginEmailId": "",
+                "password": "Apiphase@2",
+                "statusCode": 400,
+                "statusText": "OK",
+                "authType": "No Auth"
+            }
+        },
+        {
+            "CreateProgramValid": {
+                "scenario": "Add Program with Bearer Token",
+                "programName": "teamhackthonthreefivea",
+                "programDescription": "hackathon test three",
+                "programStatus": "active",
+                "statusCode": 201,
+                "statusText": "Created",
+                "authType": "Bearer Token"
+            }
+        },
+        {
+            "InvalidExistingprogramname": {
+                "scenario": "Add Program with Bearer Token",
+                "programName": "teamhackthonthreenewontwo",
+                "programDescription": "hackathon test three",
+                "programStatus": "active",
+                "statusCode": 400,
+                "statusText": "Program Name Already Exists",
+                "authType": "Bearer Token"
+            }
+        },
+        {
+            "GetAllValidProgram": {
+                "scenario": "Get all User with Facets and Filter",
+                "authType": "Bearer Token",
+                "statusCode": 200,
+                "statusText": "OK"
             }
         },
 		{
-            "LoginInvalid": {
-                "scenario":"Check if Admin able to generate token with invalid credential",
-                "userLoginEmailId": "",
-                "password": "Apiphase@2",
-                "statusCode":400,
-                "statusText": "OK",
-                "authType": "No Auth"
-                }
-		      },
+		         "GetProgramByProgramID": {
+		             "scenario": "Get user by role ID",
+		             "authType": "Bearer Token",
+		             "statusCode": 200,
+		             "programId": "R04",
+		             "statusText": "OK"
+		         }
+		     },
+		
         {
-            "CreateProgramValid": {
-				"scenario":"Add Program with Bearer Token",
-                "programName": "teamhackthonthree",
-                "programDescription": "hackathon test three",
-                "programStatus": "active",
-				"statusCode":201,
-				"statusText": "Created",
-				"authType": "Bearer Token"
+            "AddBatchValid": {
+                "scenario": "Add Batch valid",
+                "batchDescription": "TestBatches",
+                "batchName": "APIBatchRest1ONETWO",
+                "batchNoOfClasses": 10,
+                "batchStatus": "Active",
+                "programId": 16449,
+                "statusCode": 201,
+                "statusText": "Created",
+                "contentType": "application/json"
             }
         },
         {
-            "AddBatchValid": {
-				"scenario":"Add Batch valid",    
+            "AddBatchExistingName": {
+                "scenario": "Add Batch with existing Batch Name",
                 "batchDescription": "TestBatches",
                 "batchName": "APIBatchRest1",
                 "batchNoOfClasses": 10,
                 "batchStatus": "Active",
                 "programId": 16449,
-				"statusCode":201,
-				"statusText": "Created",
-				"contentType": "application/json"
+                "statusCode": 400,
+                "statusText": "Bad Request",
+                "contentType": "application/json"
             }
         },
-	{
-	           "AddBatchExistingName": {
-				   "scenario":"Add Batch with existing Batch Name",    
-	               "batchDescription": "TestBatches",
-	               "batchName": "APIBatchRest1",
-	               "batchNoOfClasses": 10,
-	               "batchStatus": "Active",
-	               "programId": 16449,
-					"statusCode":400,
-					"statusText": "Bad Request",
-					"contentType": "application/json"
-	           }
-		       },
         {
             "GetAllBatchValid": {
-				"scenario":"Search All Batch",    
-				"statusCode":200,
-				"statusText": "OK",
-				"contentType": "application/json"
+                "scenario": "Search All Batch",
+                "statusCode": 200,
+                "statusText": "OK",
+                "contentType": "application/json"
             }
         },
         {
             "GetByBatchIDValid": {
-				"scenario":"Search Batch by ID",    
-				"statusCode":200,
-				"statusText": "OK",
-				"contentType": "application/json"
+                "scenario": "Search Batch by ID",
+                "statusCode": 200,
+                "statusText": "OK",
+                "contentType": "application/json"
             }
         },
         {
             "GetByBatchNameValid": {
-				"scenario":"Search Batch by Name",    
-				"statusCode":200,
-				"statusText": "OK",
-				"contentType": "application/json"
+                "scenario": "Search Batch by Name",
+                "statusCode": 200,
+                "statusText": "OK",
+                "contentType": "application/json"
             }
         },
         {
             "GetBatchByPrgmIDValid": {
-				"scenario":"Search Batch by Program ID",    
-				"statusCode":200,
-				"statusText": "OK",
-				"contentType": "application/json"
+                "scenario": "Search Batch by Program ID",
+                "statusCode": 200,
+                "statusText": "OK",
+                "contentType": "application/json"
             }
         },
         {
             "PutBatchValid": {
-				"scenario":"Update Batch Valid",    
-				"statusCode":201,
-				"statusText": "Created",
-				"contentType": "application/json"
+                "scenario": "Update Batch Valid",
+                "statusCode": 201,
+                "statusText": "Created",
+                "contentType": "application/json"
             }
         },
-		{
-			"CreateUserValid":{
-                "scenario":"Add User with Bearer Token",
-                "statusCode":201,
+        {
+            "CreateUserValid": {
+                "scenario": "Add User with Bearer Token",
+                "statusCode": 201,
                 "statusText": "Created",
                 "authType": "Bearer Token",
                 "userComments": "teamhacktonuser5",
@@ -113,24 +142,24 @@
                 "userMiddleName": "middle",
                 "userPhoneNumber": "+91 9440200000",
                 "userRoleMaps": [
-                {
-                "roleId": "R02",
-                "userRoleStatus": "Active"
-                }
+                    {
+                        "roleId": "R02",
+                        "userRoleStatus": "Active"
+                    }
                 ],
                 "userTimeZone": "CST",
                 "userVisaStatus": "H1B",
                 "userLogin": {
-                "loginStatus" : "Active",
-                "userLoginEmail": "great5@gmail.com",
-                "status": "Active"
+                    "loginStatus": "Active",
+                    "userLoginEmail": "great5@gmail.com",
+                    "status": "Active"
                 }
-			}
-		},
-		{
-            "CreateUserInValidPhNumber":{
-                "scenario":"create a new user with valid endpoint and invalid - exisiting phone number",
-                "statusCode":400,
+            }
+        },
+        {
+            "CreateUserInValidPhNumber": {
+                "scenario": "Create a new user with valid endpoint and invalid - existing phone number",
+                "statusCode": 400,
                 "statusText": "Failed",
                 "authType": "Bearer Token",
                 "userComments": "teamhacktonuser4",
@@ -143,37 +172,36 @@
                 "userMiddleName": "middle",
                 "userPhoneNumber": "+91 9410200000",
                 "userRoleMaps": [
-                {
-                "roleId": "R02",
-                "userRoleStatus": "Active"
-                }
+                    {
+                        "roleId": "R02",
+                        "userRoleStatus": "Active"
+                    }
                 ],
                 "userTimeZone": "CST",
                 "userVisaStatus": "H1B",
                 "userLogin": {
-                "loginStatus" : "Active",
-                "userLoginEmail": "great4@gmail.com",
+                    "loginStatus": "Active",
+                    "userLoginEmail": "great4@gmail.com",
                     "status": "Active"
                 }
-                }
-            },
-            {
-            "GetAllUserWithFilters":{
-                "scenario": "Get all User with Facets and Filter ",
+            }
+        },
+        {
+            "GetAllUserWithFilters": {
+                "scenario": "Get all User with Facets and Filter",
                 "authType": "Bearer Token",
                 "statusCode": 200,
                 "statusText": "OK"
-                }
-            },
-            {
-            "GetUserByRoleID": {
-                    "scenario": "Get user by roleid",
-                    "authType": "Bearer Token",
-                    "statusCode": 200,
-                    "roleId":"R04",
-                    "statusText": "OK"
-                }
             }
-				
+        },
+        {
+            "GetUserByRoleID": {
+                "scenario": "Get user by role ID",
+                "authType": "Bearer Token",
+                "statusCode": 200,
+                "roleId": "R04",
+                "statusText": "OK"
+            }
+        }
     ]
 }
