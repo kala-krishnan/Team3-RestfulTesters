@@ -58,7 +58,7 @@ public void admin_receives_for_batch_request(String Code) {
 	ResponseValidation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
 	ResponseValidation.validateResponseTime(batchResponse);	
 	if(!Code.equals("404"))
-	ResponseValidation.validateContentType(batchResponse, batch.getBatchContentType());
+	ResponseValidation.validateContentType(batchResponse);
 	
 	}
 

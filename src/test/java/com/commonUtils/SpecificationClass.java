@@ -18,17 +18,17 @@ public class SpecificationClass {
 	RequestSpecification reqSpec;
 	String baseURL = ConfigReader.getProperty("baseURL");
 	ScenarioContext context;
-	
+	String FilePath = ConfigReader.getProperty("LogFilePath");
 	 public SpecificationClass(ScenarioContext context) throws FileNotFoundException {
 	        this.context = context;
-	        log =new PrintStream(new FileOutputStream("RestAssuredLog.txt"));
+	        log =new PrintStream(new FileOutputStream(FilePath));
 	    }
 	 
 		ResponseSpecification responseSpec;
 		PrintStream log;
 		public SpecificationClass() throws FileNotFoundException
 		{
-			log =new PrintStream(new FileOutputStream("RestAssuredLog.txt"));
+			log =new PrintStream(new FileOutputStream(FilePath));
 		}
 		public RequestSpecification requestHeadersWithoutToken()
 		{
@@ -64,21 +64,4 @@ public class SpecificationClass {
 			return reqSpec;
 		}
 		
-	 /*
-	public RequestSpecification requestHeadersWithoutToken()
-	{
-		reqSpec = new RequestSpecBuilder().setBaseUri(baseURL).setContentType(ContentType.JSON).build();
-		return reqSpec;
-	}
-	
-	public RequestSpecification requestHeadersWithToken()
-	{
-		System.out.println(context.get("token"));
-		reqSpec = new RequestSpecBuilder()
-				.addHeader("Authorization","Bearer "+context.get("token") ).setBaseUri(baseURL).setContentType(ContentType.JSON).build();
-		return reqSpec;
-	}
-	*/
-	
-
 }

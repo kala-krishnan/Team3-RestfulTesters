@@ -16,17 +16,17 @@ public class ConfigReader {
 	 			properties = new Properties();
 	 			properties.load(fileinputstream);
 	 		} catch (FileNotFoundException e) {
-	 			LoggerLoad.error("FileNotFoundException "+ e.getMessage());
+	 			//LoggerLoad.error("FileNotFoundException "+ e.getMessage());
 	 			e.printStackTrace();
 	 			} catch (IOException e1) {
-	 				LoggerLoad.error("IOException "+ e1.getMessage());
+	 			//	LoggerLoad.error("IOException "+ e1.getMessage());
 	 			e1.printStackTrace();
 	 		}	 	 
 	 		
 	 		
 	 	}
 	 public static String getProperty(String key) {
-			 LoggerLoad.info( key + "  Data fetched from the Config.property file" );
+			// LoggerLoad.info( key + "  Data fetched from the Config.property file" );
 		 	return properties.getProperty(key);
 		 }
 }
