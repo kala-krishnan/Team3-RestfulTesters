@@ -11,6 +11,11 @@ public class CommonResponseValidation {
 	        Assert.assertEquals(response.getStatusCode(), expectedStatusCode, "Status code mismatch!");
 	    }
 
+	 public void validateStatusLine(Response response, String expectedMessage) {
+	        String actualMessage = response.getStatusLine();
+	        Assert.assertEquals(actualMessage, expectedMessage, "Status Line mismatch!");
+	    } 
+
 	    public void validateStatusMessage(Response response, String expectedMessage) {
 	        String actualMessage = response.jsonPath().getString("message");
 	        Assert.assertEquals(actualMessage, expectedMessage, "Status message mismatch!");

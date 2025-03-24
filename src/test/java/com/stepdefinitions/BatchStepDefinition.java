@@ -6,6 +6,7 @@ import org.testng.asserts.SoftAssert;
 
 import com.APIRequest.BatchRequest;
 import com.APIRequest.LoginRequest;
+import com.APIResponse.CommonResponseValidation;
 import com.context.ScenarioContext;
 
 import io.cucumber.java.en.Given;
@@ -16,13 +17,14 @@ import io.restassured.response.Response;
 public class BatchStepDefinition {
 
 	LoginRequest loginRequest;
-	BatchRequest batchRequest;
+	BatchRequest batch;
 	private Response batchResponse;
 	SoftAssert softAssert;
+	CommonResponseValidation ResponseValidation = new CommonResponseValidation();
 	private ScenarioContext context = new ScenarioContext();
 	
 	public BatchStepDefinition() throws FileNotFoundException {
-		batchRequest = new BatchRequest(context);
+		batch = new BatchRequest(context);
 		loginRequest = new LoginRequest(context);
 		
 	}
@@ -37,28 +39,27 @@ public void admin_sets_authorization_to_bearer_token() throws Exception {
 
 @Given("Admin creates Request with {string} in batch request body")
 public void admin_creates_request_with_in_batch_request_body(String requestType) throws Exception {
-	batchRequest.setNewBatchRequest(requestType);
+	batch.setNewBatchRequest(requestType);
 	
 }
 
 @When("Admin sends POST HTTPS Request batch with {string}")
-public void admin_sends_post_https_request_batch_with(String string) {
-	batchRequest.PostNewBatchRequest();
+public void admin_sends_post_https_request_batch_with(String Endpoint) {
+	if(Endpoint.equals("Invalid")) 
+		batch.PostNewBatchInvalidEpRequest();
+	else batch.PostNewBatchRequest();
 }
 
 @Then("Admin receives {string} for batch request")
-public void admin_receives_for_batch_request(String string) {
-	
-	
+public void admin_receives_for_batch_request(String Code) {
 	batchResponse = context.get("batchResponse", Response.class);
-	int actualStatusCode = batchResponse.getStatusCode();
-	int expectedStatusCode =batchRequest.getBatchStatusCode();
-	softAssert =new SoftAssert();
-	
-	//Status code Validation
-	softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
-	softAssert.assertAll();
 
+	ResponseValidation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
+	ResponseValidation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
+	ResponseValidation.validateResponseTime(batchResponse);	
+	if(!Code.equals("404"))
+	ResponseValidation.validateContentType(batchResponse, batch.getBatchContentType());
+	
 	}
 
 //********************************** GET All BATCH ******************************************
