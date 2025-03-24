@@ -20,9 +20,9 @@ public enum APIResources {
 	APIGetAllBatch ("/batches"),
 	APIGetBatchByID("/batches/batchId/"),
 	APIGetBatchByName("/batches/batchName/"),
-	APIGetBatchByPrgmID("/batches/program/{programId}"),
-	APIUpdateBatchByID("/batches/{batchId}"),
-	APIDeleteBatchByID("/batches/{id}"),
+	APIGetBatchByPrgmID("/batches/program/"),
+	APIUpdateBatchByID("/batches/"),
+	APIDeleteBatchByID("/batches/"),
 	
 	//User Endpoints
 	
