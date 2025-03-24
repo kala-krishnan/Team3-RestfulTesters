@@ -10,15 +10,16 @@ Background: Authorization SetUp
     When Admin sends POST HTTPS Request batch with "<Endpoint>"
     Then Admin receives "<Status>" for batch request
     Examples: 
-      | Data     				       | Endpoint | Status  |
-      | AddBatchValid 				 |  Valid 	|   201   |
-      | AddBatchExistingName	 |  Valid 	|   400   |
-#			| BatchEmptyMandatory	   |  Valid 	|   400   |
-#			| BatchInvalidEp    	   | InValid  |   400   |
-#			| BatchEmptyNonMandatory |  Valid		|   201   |
-#			| BatchNameStrtWithNo    |  Valid		|   400   |
-#			| BatchStatusInactive    |  Valid		|   400   |			
-#			
+      | Data     				          | Endpoint  | Status  |
+      | AddBatchValid 				    |  Valid  	|   201   |
+      | AddBatchExistingName	    |  Valid 	  |   400   |
+			| AddBatchEmptyMandatory	  |  Valid 	  |   400   |
+			| AddBatchInvalidEp    	    | Invalid   |   404   |
+			| AddBatchEmptyNonMandatory |  Valid		|   201   |
+			| AddBatchNameStrtWithNo    |  Valid		|   400   |
+			| AddBatchStatusInactive    |  Valid		|   400   |			
+				
+						
 #	@GetAllBatch   
   #Scenario Outline: Verify search all batch functionality
     #Given Admin creates GET Request for batch
@@ -27,7 +28,7 @@ Background: Authorization SetUp
     #Examples: 
       #| Data     			       | Endpoint | Status  |
       #| GetAllBatchValid 	   |  Valid 	|  200    |
-      #| GetAllBatchInValidEP | InValid 	|  404    |
+      #| GetAllBatchInValidEP  | InValid 	|  404    |
     
     
 #	@GetBatchByID   

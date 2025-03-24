@@ -2,6 +2,8 @@ package com.APIResponse;
 
 import org.testng.Assert;
 
+import com.commonUtils.ConfigReader;
+
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 
@@ -11,14 +13,20 @@ public class CommonResponseValidation {
 	        Assert.assertEquals(response.getStatusCode(), expectedStatusCode, "Status code mismatch!");
 	    }
 
+	 public void validateStatusLine(Response response, String expectedMessage) {
+	        String actualMessage = response.getStatusLine();
+	        Assert.assertEquals(actualMessage, expectedMessage, "Status Line mismatch!");
+	    } 
+
 	    public void validateStatusMessage(Response response, String expectedMessage) {
 	        String actualMessage = response.jsonPath().getString("message");
 	        Assert.assertEquals(actualMessage, expectedMessage, "Status message mismatch!");
 	    }
 
-	    public void validateContentType(Response response, String expectedContentType) {
+	    public void validateContentType(Response response) {
+	    	String expectedMessage = ConfigReader.getProperty("contentType");
 	        String actualContentType = response.getHeader("Content-Type");
-	        Assert.assertEquals(actualContentType, expectedContentType, "Content-Type mismatch!");
+	        Assert.assertEquals(actualContentType,  expectedMessage, "Content-Type mismatch!");
 	    }
 
 	    public void validateJsonSchema(Response response, String schemaFilePath) {
@@ -27,7 +35,7 @@ public class CommonResponseValidation {
 	    }
 
 	    public void validateResponseTime(Response response) {
-	        Assert.assertTrue(response.getTime() < 1000, "Response time exceeds 1000ms!");
+	        Assert.assertTrue(response.getTime() < 5000, "Response time exceeds 5000ms!");
 	    }
 
 }

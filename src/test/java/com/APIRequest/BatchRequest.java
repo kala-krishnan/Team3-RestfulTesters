@@ -14,7 +14,6 @@ import io.restassured.response.Response;
 
 public class BatchRequest extends SpecificationClass{
 	
-	
 	Response response;
 	ScenarioContext context;
 	
@@ -27,6 +26,14 @@ public class BatchRequest extends SpecificationClass{
 		BatchPojo batchStatusCode=(BatchPojo) context.get("BatchPojo");
 		return batchStatusCode.getStatusCode();
 	}
+	public String getBatchStatusLine() {
+		BatchPojo batchStatusLine=(BatchPojo) context.get("BatchPojo");
+		return batchStatusLine.getStatusText();
+	}
+	public String getBatchContentType() {
+		BatchPojo batchContentType=(BatchPojo) context.get("BatchPojo");
+		return batchContentType.getContentType();
+	}
 	
 	public void setNewBatchRequest(String requestType) throws Exception 
 	{
@@ -35,20 +42,31 @@ public class BatchRequest extends SpecificationClass{
 		context.set("BatchPojo", batch);
 	}
 	
+	
 	public void PostNewBatchRequest()
 	{
 		BatchPojo batch = context.get("BatchPojo", BatchPojo.class);
-		System.out.println(batch.toString());
 		response = RestAssured.given().spec(requestHeadersWithToken())
 				.body(batch).log().all()
 				.post(APIResources.valueOf("APIAddBatch").getResources());       
 		context.set("batchResponse", response); 
-//		System.out.println(response.prettyPrint());
-//		System.out.println("Status Code: " + response.getStatusCode());
-//		System.out.println("Response Headers: " + response.getHeaders());
-//		System.out.println("Response Body: " + response.getBody().asString());
+		if (response.getStatusCode()==201)
+		{
+			context.set("batchId", response.jsonPath().get("batchId"));
+			context.set("batchName", response.jsonPath().getString("batchName"));
+		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ "+context.get("batchName"));
+		System.out.println("##################################################### "+context.get("batchId"));
+		}
  
 	}
-
+	
+	public void PostNewBatchInvalidEpRequest()
+	{
+		BatchPojo batch = context.get("BatchPojo", BatchPojo.class);	
+		response = RestAssured.given().spec(requestHeadersWithToken())
+				.body(batch).log().all()
+				.post(APIResources.valueOf("APIAddBatch").getResources()+"Invaild");       
+		context.set("batchResponse", response); 
+	}
 
 }
