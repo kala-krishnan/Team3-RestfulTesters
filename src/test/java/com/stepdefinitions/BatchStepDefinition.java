@@ -25,14 +25,14 @@ public class BatchStepDefinition {
 	
 	public BatchStepDefinition() throws FileNotFoundException {
 		batch = new BatchRequest(context);
-		loginRequest = new LoginRequest(context);
-		
+		loginRequest = new LoginRequest(context);	
 	}
-	
 	
 @Given("Admin sets Authorization to Bearer Token")
 public void admin_sets_authorization_to_bearer_token() throws Exception {
-	loginRequest.PostLoginRequest();
+	System.out.println(context.get("LMStoken"));
+	if(context.get("LMStoken")==(null))
+		loginRequest.PostLoginRequest();
 }
 	
 //********************************** CREATE BATCH ******************************************
@@ -43,11 +43,9 @@ public void admin_creates_request_with_in_batch_request_body(String requestType)
 	
 }
 
-@When("Admin sends POST HTTPS Request batch with {string}")
-public void admin_sends_post_https_request_batch_with(String Endpoint) {
-	if(Endpoint.equals("Invalid")) 
-		batch.PostNewBatchInvalidEpRequest();
-	else batch.PostNewBatchRequest();
+@When("Admin sends POST HTTPS Request {string} batch with {string}")
+public void admin_sends_post_https_request_batch_with(String Scenario, String Endpoint) {
+	batch.PostNewBatchRequest(Scenario);
 }
 
 @Then("Admin receives {string} for batch request")
@@ -60,46 +58,52 @@ public void admin_receives_for_batch_request(String Code) {
 	if(!Code.equals("404"))
 	ResponseValidation.validateContentType(batchResponse);
 	
-	}
+}
 
 //********************************** GET All BATCH ******************************************
 
-@Given("Admin creates GET Request for batch")
-public void admin_creates_get_request_for_batch() {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+@Given("Admin creates GET Request for batch {string}")
+public void admin_creates_get_request_for_batch(String requestType) throws Exception {
+	batch.setNewBatchRequest(requestType);
 }
 
 @When("Admin sends GET HTTPS Request with batch {string}")
-public void admin_sends_get_https_request_with_batch(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+public void admin_sends_get_https_request_with_batch(String Scenario) {
+	batch.GetAllBatchRequest(Scenario);
 }
 
 @Then("Admin receives {string} with batch GetAll response body")
-public void admin_receives_with_batch_get_all_response_body(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+public void admin_receives_with_batch_get_all_response_body(String Code) {
+	batchResponse = context.get("batchResponse", Response.class);
+	
+	ResponseValidation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
+	ResponseValidation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
+	ResponseValidation.validateResponseTime(batchResponse);	
+	if(!Code.equals("404"))
+	ResponseValidation.validateContentType(batchResponse);
 }
 
 //********************************** GET BATCH BY ID ******************************************
 
-@Given("Admin creates GET Request with Batch ID")
-public void admin_creates_get_request_with_batch_id() {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+@Given("Admin creates GET Request with Batch ID {string}")
+public void admin_creates_get_request_with_batch_id(String requestType) throws Exception {
+	batch.setNewBatchRequest(requestType);
 }
 
 @When("Admin sends GET HTTPS Request with batch id {string}")
-public void admin_sends_get_https_request_with_batch_id(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+public void admin_sends_get_https_request_with_batch_id(String Scenario) {
+	batch.GetBatchByIDRequest(Scenario);
 }
 
 @Then("Admin receives {string} with batch Get by ID response body")
-public void admin_receives_with_batch_get_by_id_response_body(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+public void admin_receives_with_batch_get_by_id_response_body(String Code) {
+	batchResponse = context.get("batchResponse", Response.class);
+	
+	ResponseValidation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
+	ResponseValidation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
+	ResponseValidation.validateResponseTime(batchResponse);	
+	if(!Code.equals("404"))
+	ResponseValidation.validateContentType(batchResponse);
 }
 
 //********************************** GET BATCH BY NAME ******************************************
