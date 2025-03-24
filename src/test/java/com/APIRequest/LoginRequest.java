@@ -49,7 +49,7 @@ public class LoginRequest extends SpecificationClass{
 		context.set("LoginPojo", login);
 	}
 	
-	// Login Scenario: Json File
+	// Login Scenario Invalid: Json File
 	public void postLoginRequestFromJson()
 	{
 		LoginPojo login = context.get("LoginPojo", LoginPojo.class);		
@@ -57,9 +57,7 @@ public class LoginRequest extends SpecificationClass{
 		response = RestAssured.given().spec(requestHeadersWithoutToken())
 				.body(login).log().all()
 				.post(APIResources.valueOf("APILoginPost").getResources());    
-		String token = response.jsonPath().getString("token"); 
-		context.set("LMStoken", token); 
-		context.set("loginResponse", response);
+
 	}
 
 	public int getStatusCode() {
