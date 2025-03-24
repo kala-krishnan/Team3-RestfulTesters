@@ -5,9 +5,9 @@ package com.context;
 
 		public static ScenarioContext scenarioContext = new ScenarioContext();
 
-		public String setToken(){	
+		public static String setToken(){	
 			
-			String retrievedToken =scenarioContext.getContext("authtoken");
+			String retrievedToken =scenarioContext.getContext("LMStoken");
 			return retrievedToken;
 		}
 //	    public TextContext() {
