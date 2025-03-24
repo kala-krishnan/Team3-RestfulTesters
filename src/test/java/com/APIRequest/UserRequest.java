@@ -30,6 +30,7 @@ public class UserRequest extends SpecificationClass{
 	String requestType;
 	UserModuleResponseValidation resValidation;
 	int responseCode;
+	String Endpoints;
 	public UserRequest(ScenarioContext context) throws FileNotFoundException
 	{
 		super(context);
@@ -115,31 +116,28 @@ public class UserRequest extends SpecificationClass{
 //		resquest=given().spec(requestHeadersWithToken());
 //	}
 	
-	public void getAllUsers()
+	public void getAllUsers(String reqType)
 	{
-		if(this.requestType.equals("GetAllUsers"))
+		Endpoints = APIResources.valueOf("APIGetAllUser").getResources();
+		
+		if(reqType.equals("GetAllUserInvalidEndpoint"))
 		{
+			Endpoints = APIResources.valueOf("APIGetAllUser").getResources()+"sss";
+		}
 		response = resquest
-				   .get(APIResources.valueOf("APIGetAllUser").getResources())
+				   .get(Endpoints)
 				   .then().spec(responseSpecBuilder())
 				   .extract().response();
-		}
-//		else if(this.requestType.equals("GetAllUsersInvalidEndpoint"))
-//		{
-//			response = resquest
-//					   .get("/usersss")
-//					   .then().spec(responseSpecBuilder())
-//					   .extract().response();
-//			System.out.println("response code inside invalid******* " +response.getStatusCode());
-//			System.out.println("response code inside invalid******* " +response.getStatusLine());
-//		}
+		
 			/*
 			 * Response Validation
 			 */
 		String getAllUserSchemaPath = System.getProperty("user.dir")+"//src///test//resources//Schemas//getAllUserSchema.json";
 		resValidation.validateStatusCode(response, getTestData.get("statusCode").asInt());
 		resValidation.validateResponseTime(response);
+		if( getTestData.get("statusCode").asInt()==200) {
 		resValidation.validateContentType(response);
+		}
 		resValidation.validateResponseIsArray(response);
 		resValidation.validateStatusLine(response,  getTestData.get("statusText").toString());
 		resValidation.validateJsonSchema(response, getAllUserSchemaPath);
@@ -148,11 +146,16 @@ public class UserRequest extends SpecificationClass{
 				   System.out.println("responseCode "+responseCode);
 		
 	}
-	public void getAllActiveUsers()
+	public void getAllActiveUsers(String reqType)
 	{
+		Endpoints = APIResources.valueOf("APIGetActiveUser").getResources();
+		if(reqType.equals("GetAllActiveUsersInvalidEndpoint"))
+		{
+			Endpoints = APIResources.valueOf("APIGetActiveUser").getResources()+"sss";
+		}
 		
 		response = resquest
-				   .get(APIResources.valueOf("APIGetActiveUser").getResources())
+				   .get(Endpoints)
 				   .then().spec(responseSpecBuilder())
 				   .extract().response();
 			/*
@@ -161,7 +164,9 @@ public class UserRequest extends SpecificationClass{
 		String getAllUserSchemaPath = System.getProperty("user.dir")+"//src///test//resources//Schemas//getAllActiveUserSchema.json";
 		resValidation.validateStatusCode(response, getTestData.get("statusCode").asInt());
 		resValidation.validateResponseTime(response);
-		resValidation.validateContentType(response);
+		if( getTestData.get("statusCode").asInt()==200) {
+			resValidation.validateContentType(response);
+			}
 		resValidation.validateResponseIsArray(response);
 		resValidation.validateStatusLine(response, getTestData.get("statusText").toString());
 		//resValidation.validateJsonSchema(response, getAllUserSchemaPath);
@@ -170,8 +175,13 @@ public class UserRequest extends SpecificationClass{
 				   System.out.println("responseCode "+responseCode);
 		
 	}
-	public void getAllFetchEMailUsers()
+	public void getAllFetchEMailUsers(String reqType)
 	{
+		Endpoints = APIResources.valueOf("APIGetAllUserEmail").getResources();
+		if(reqType.equals("GetActiveEmailUsersInvalidEndpoint"))
+		{
+			Endpoints = APIResources.valueOf("APIGetAllUserEmail").getResources()+"sss";
+		}
 		
 		response = resquest
 				   .get(APIResources.valueOf("APIGetAllUserEmail").getResources())
@@ -184,7 +194,9 @@ public class UserRequest extends SpecificationClass{
 		String getAllUserSchemaPath = System.getProperty("user.dir")+"//src///test//resources//Schemas//getAllFetchEmailUser.json";
 		resValidation.validateStatusCode(response, getTestData.get("statusCode").asInt());
 		resValidation.validateResponseTime(response);
-		resValidation.validateContentType(response);
+		if( getTestData.get("statusCode").asInt()==200) {
+			resValidation.validateContentType(response);
+			}
 		resValidation.validateResponseIsArray(response);
 		resValidation.validateStatusLine(response,getTestData.get("statusText").toString());
 		resValidation.validateJsonSchema(response, getAllUserSchemaPath);
@@ -194,9 +206,13 @@ public class UserRequest extends SpecificationClass{
 		
 	}
 	
-	public void getAllRoles()
+	public void getAllRoles(String reqType)
 	{
-		
+		Endpoints = APIResources.valueOf("APIGetAllRoles").getResources();
+		if(reqType.equals("GetAllRolesInvalidEndpoint"))
+		{
+			Endpoints = APIResources.valueOf("APIGetAllRoles").getResources()+"sss";
+		}
 		response = resquest
 				   .get(APIResources.valueOf("APIGetAllRoles").getResources())
 				   .then().spec(responseSpecBuilder())
@@ -208,7 +224,9 @@ public class UserRequest extends SpecificationClass{
 		String getAllUserSchemaPath = System.getProperty("user.dir")+"//src///test//resources//Schemas//getAllRolesSchemas.json";
 		resValidation.validateStatusCode(response, getTestData.get("statusCode").asInt());
 		resValidation.validateResponseTime(response);
-		resValidation.validateContentType(response);
+		if( getTestData.get("statusCode").asInt()==200) {
+			resValidation.validateContentType(response);
+			}
 		resValidation.validateResponseIsArray(response);
 		resValidation.validateStatusLine(response, getTestData.get("statusText").toString());
 		resValidation.validateJsonSchema(response, getAllUserSchemaPath);
@@ -217,9 +235,13 @@ public class UserRequest extends SpecificationClass{
 				   System.out.println("responseCode "+responseCode);
 		
 	}
-	public void getAllUserwithRoles()
+	public void getAllUserwithRoles(String reqType)
 	{
-		
+		Endpoints = APIResources.valueOf("APIGetAllUserRoles").getResources();
+		if(reqType.equals("GetAllUserwithRolesInvalidEndpoint"))
+		{
+			Endpoints = APIResources.valueOf("APIGetAllUserRoles").getResources()+"sss";
+		}
 		response = resquest
 				   .get(APIResources.valueOf("APIGetAllUserRoles").getResources())
 				   .then().spec(responseSpecBuilder())
@@ -231,7 +253,9 @@ public class UserRequest extends SpecificationClass{
 		String getAllUserSchemaPath = System.getProperty("user.dir")+"//src///test//resources//Schemas//getallUserwithRolesSchema.json";
 		resValidation.validateStatusCode(response, getTestData.get("statusCode").asInt());
 		resValidation.validateResponseTime(response);
-		resValidation.validateContentType(response);
+		if( getTestData.get("statusCode").asInt()==200) {
+			resValidation.validateContentType(response);
+			}
 		resValidation.validateResponseIsArray(response);
 		resValidation.validateStatusLine(response, getTestData.get("statusText").toString());
 		resValidation.validateJsonSchema(response, getAllUserSchemaPath);
@@ -241,9 +265,13 @@ public class UserRequest extends SpecificationClass{
 		
 	}
 	
-	public void GetAllUserStatusCount()
+	public void GetAllUserStatusCount(String reqType)
 	{
-		
+		Endpoints = APIResources.valueOf("APIGetUserByStatus").getResources();
+		if(reqType.equals("GetAllUserStatusCountInvalidEndpoint"))
+		{
+			Endpoints = APIResources.valueOf("APIGetUserByStatus").getResources()+"sss";
+		}
 		response = resquest
 				   .get(APIResources.valueOf("APIGetUserByStatus").getResources())
 				   .then().spec(responseSpecBuilder())
@@ -255,7 +283,9 @@ public class UserRequest extends SpecificationClass{
 		String getAllUserSchemaPath = System.getProperty("user.dir")+"//src///test//resources//Schemas//getAllUserStatusCount.json";
 		resValidation.validateStatusCode(response, getTestData.get("statusCode").asInt());
 		resValidation.validateResponseTime(response);
-		resValidation.validateContentType(response);
+		if( getTestData.get("statusCode").asInt()==200) {
+			resValidation.validateContentType(response);
+			}
 		resValidation.validateResponseIsArray(response);
 		resValidation.validateStatusLine(response, getTestData.get("statusText").toString());
 		resValidation.validateJsonSchema(response, getAllUserSchemaPath);
@@ -264,7 +294,6 @@ public class UserRequest extends SpecificationClass{
 				   System.out.println("responseCode "+responseCode);
 		
 	}
-	
 	public int responseCode()
 	{
 		return responseCode;	
