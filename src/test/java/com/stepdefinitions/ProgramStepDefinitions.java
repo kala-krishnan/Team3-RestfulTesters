@@ -1,17 +1,11 @@
 package com.stepdefinitions;
 
-import static org.testng.Assert.assertEquals;
-
 import java.io.FileNotFoundException;
-
 import org.testng.asserts.SoftAssert;
-
 import com.APIRequest.LoginRequest;
 import com.APIRequest.ProgramRequest;
-import com.APIResponse.ProgramResponseValidation;
-import com.context.ScenarioContext;
+import com.APIResponse.CommonResponseValidation;
 import com.fasterxml.jackson.databind.JsonNode;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -19,31 +13,23 @@ import io.restassured.response.Response;
 
 public class ProgramStepDefinitions {
 
-	// private ScenarioContext context = new ScenarioContext();
+	//private ScenarioContext context = new ScenarioContext();
 	private Response programResponse;
 	LoginRequest logRequest;
 	ProgramRequest programRequest;
 	SoftAssert softAssert;
 	JsonNode getTestData_Get;
 	Response getProgramFilterResponse;
-    private ProgramResponseValidation responseValidator = new ProgramResponseValidation();
-
-
-
+	CommonResponseValidation ResponseValidation = new CommonResponseValidation();
 
 	public ProgramStepDefinitions() throws FileNotFoundException {
 		// context = new ScenarioContext();
 		logRequest = new LoginRequest(LoginRequest.context);
 		programRequest = new ProgramRequest(LoginRequest.context);
 	}
-//	/*********************************background*********************************/
-//
-//	@Given("Set Auth to bearer token")
-//	public void set_auth_to_bearer_token() throws Exception {
-//		logRequest.setLoginRequest("LoginValid");
-//		logRequest.postLoginRequestFromJson();
-//	}
-//
+
+	// ********************************** CREATE PROGRAM//
+	// ******************************************
 
 	@Given("Admin creates POST Request with request body {string} for LMS Program Module")
 	public void admin_creates_post_request_with_request_body_for_lms_program_module(String requestType)
@@ -52,79 +38,66 @@ public class ProgramStepDefinitions {
 
 	}
 
-	@When("Admin calls Post Https method  with valid endpoint for Program Module")
-	public void admin_calls_post_https_method_with_valid_endpoint_for_program_module() {
-		programRequest.PostNewProgramRequest();
-
+	@When("Admin calls Post Https request  {string} for Program Module with {string}")
+	public void admin_calls_post_https_request_for_program_module_with(String requestType, String Endpoint) {
+		programRequest.PostNewProgramRequest(requestType);
 	}
 
-	@Then("Admin receive created  status for LMS User Module for Program Module")
-	public void admin_receive_created_status_for_lms_user_module_for_program_module() {
-
+	@Then("Admin receive created  status  {string} for Program Module")
+	public void admin_receive_created_status_for_program_module(String StatusCode) {
 		programResponse = LoginRequest.context.get("programResponse", Response.class);
-		int actualStatusCode = programResponse.getStatusCode();
-		int expectedStatusCode = programRequest.getProgramStatusCode();
-		softAssert = new SoftAssert();
-		softAssert.assertEquals(actualStatusCode, expectedStatusCode,
-				"Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
-		softAssert.assertAll();
+		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
+		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
+		ResponseValidation.validateResponseTime(programResponse);
+		if (!StatusCode.equals("404"))
+			ResponseValidation.validateContentType(programResponse);
 	}
 
-	@Given("Admin creates POST Request for the LMS Program Module with request body")
-	public void admin_creates_post_request_for_the_lms_program_module_with_request_body() {
-
-	}
-
-	@When("Admin sends HTTPS Request for Program Module with request Body and endpoint using invalid method status {string}")
-	public void admin_sends_https_request_for_program_module_with_request_body_and_endpoint_using_invalid_method_status(
-			String requestType) throws Exception {
-		programRequest.setNewProgramRequest(requestType);
-		programRequest.PostNewProgramRequestInvalidMethod();
-
-	}
-
-	@Then("Admin receives {int} Method Not Allowed for Program Module")
-	public void admin_receives_method_not_allowed_for_program_module(Integer expectedStatusCode) {
-		// Retrieve the response from the context or programRequest
-		int actualStatusCode = programResponse.getStatusCode();
-		softAssert = new SoftAssert();
-		softAssert.assertEquals(actualStatusCode, expectedStatusCode,
-				"Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
-		softAssert.assertAll();
-	}
-
-/***********************get all Programs request  
- * @throws Exception *********************************/
+//	//********************************** GETALL PROGRAM ******************************************
 
 	@Given("Admin creates GETAll request {string} for Program Module")
 	public void admin_creates_get_all_request_for_program_module(String requestType) throws Exception {
-		
-		 getTestData_Get= programRequest.setGetProgramRequest(requestType);
-
+		programRequest.setNewProgramRequest(requestType);
 	}
 
-	@When("Admin sends HTTPS Request with endpoint GETAll for Program Module")
-	public void admin_sends_https_request_with_endpoint_get_all_for_program_module() {
-		getProgramFilterResponse=programRequest.sendGetProgramReqWithOutBody();
-
-		
+	@When("Admin sends HTTPS Request with endpoint GETAll for Program Module {string}")
+	public void admin_sends_https_request_with_endpoint_get_all_for_program_module(String requestType) {
+		programRequest.sendGetProgramReqWithOutBody(requestType);
 	}
 
-	@Then("Admin receives statuscode for Program Module get all")
-	public void admin_receives_statuscode_for_program_module_get_all() {
-	    int expectedStatusCode = getTestData_Get.get("statusCode").asInt();
+	@Then("Admin receives statuscode  {string} for Program Module get all")
+	public void admin_receives_statuscode_for_program_module_get_all(String StatusCode) {
+		programResponse = LoginRequest.context.get("programResponse", Response.class);
+		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
+		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
+		ResponseValidation.validateResponseTime(programResponse);
 
-        // Validate Status Code
-        responseValidator.validateStatusCode(getProgramFilterResponse, expectedStatusCode);
+		if (!StatusCode.equals("404"))
+			ResponseValidation.validateContentType(programResponse);
+	}
 
-        // Validate Headers
-        responseValidator.validateHeaders(getProgramFilterResponse);
+//	
+//	//........ GetProgramId......
 
-        // Validate Response Body
-        responseValidator.validateResponseBody(getProgramFilterResponse);
+	@Given("Admin creates GET Request by {string} for LMS Program module")
+	public void admin_creates_get_request_by_for_lms_program_module(String requestType) throws Exception {
+		programRequest.setNewProgramRequest(requestType);
+	}
 
-        // Assert all validations
-        responseValidator.assertAll();
-		
+	@When("Admin sends GET Request by  {string} ProgramId for LMS Program Module")
+	public void admin_sends_get_request_by_program_id_for_lms_program_module(String requestType) throws Exception {
+		programRequest.sendGetProgrambyIdReqWithOutBody(requestType);
+		;
+	}
+
+	@Then("Admin gets the program details of that programid with status  {string}")
+	public void admin_gets_the_program_details_of_that_programid_with_status(String StatusCode) {
+		programResponse = LoginRequest.context.get("programResponse", Response.class);
+		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
+		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
+		ResponseValidation.validateResponseTime(programResponse);
+
+		if (!StatusCode.equals("404"))
+			ResponseValidation.validateContentType(programResponse);
 	}
 }

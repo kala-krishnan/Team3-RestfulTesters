@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class ProgramPojo {
 
     // Fields for program data
+	  ///@JsonProperty("programId")  // Only include if this should be serialized
+	    private Integer programId; 
     private String programName;
     private String programDescription;
     private String programStatus;
@@ -25,13 +27,19 @@ public class ProgramPojo {
     }
 
     // Parameterized constructor (optional)
-    public ProgramPojo(String programName, String programDescription, String programStatus) {
+    public ProgramPojo(String programName, String programDescription, String programStatus,Integer programId) {
+        this.programId = programId;
+
         this.programName = programName;
         this.programDescription = programDescription;
         this.programStatus = programStatus;
     }
 
     // Getters and Setters
+    public Integer getProgramId() {
+        return programId;
+    }
+
     public String getProgramName() {
         return programName;
     }
@@ -91,6 +99,7 @@ public class ProgramPojo {
     @Override
     public String toString() {
         return "ProgramPojo{" +
+        		"programId=" + programId +
                 "programName='" + programName + '\'' +
                 ", programDescription='" + programDescription + '\'' +
                 ", programStatus='" + programStatus + '\'' +

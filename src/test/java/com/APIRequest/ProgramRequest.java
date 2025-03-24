@@ -7,6 +7,7 @@ import com.commonUtils.SpecificationClass;
 import com.commonUtils.TestDataLoader;
 import com.context.ScenarioContext;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.pojoclass.BatchPojo;
 import com.pojoclass.ProgramPojo;
 
 import io.restassured.RestAssured;
@@ -28,6 +29,23 @@ public class ProgramRequest extends SpecificationClass {
 		return programStatusCode.getStatusCode();
 	}
 
+	public String getProgramStatusLine() {
+		ProgramPojo programStatusLine = (ProgramPojo) context.get("ProgramPojo");
+		return programStatusLine.getStatusText();
+	}
+
+	public int getProgramId() {
+		Integer id = context.get("programId", Integer.class);
+		if (id != null) {
+			return id;
+		}
+		ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
+		if (program == null) {
+			throw new IllegalStateException("Neither programId nor ProgramPojo found in context");
+		}
+		return program.getProgramId();
+	}
+
 	/**************** POST Request ********************/
 
 	public void setNewProgramRequest(String requestType) throws Exception {
@@ -36,16 +54,22 @@ public class ProgramRequest extends SpecificationClass {
 		context.set("ProgramPojo", program);
 	}
 
-	public void PostNewProgramRequest() {
+	public void PostNewProgramRequest(String Scenario) {
+
+		String EndPoint = APIResources.valueOf("APIAddProgram").getResources();
+		if (Scenario.equals("CreateProgramInvalidEp"))
+			EndPoint = APIResources.valueOf("CreateProgramInvalidEp").getResources() + "Invalid";
+
 		ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
 		System.out.println(program.toString());
-		response = RestAssured.given().spec(requestHeadersWithTokenForJson()).body(program).log().all()
-				.post(APIResources.valueOf("APIAddProgram").getResources());
+		response = RestAssured.given().spec(requestHeadersWithTokenForJson()).body(program).log().all().post(EndPoint);
 		context.set("programResponse", response);
-		System.out.println(response.prettyPrint());
-		System.out.println("Status Code: " + response.getStatusCode());
-		System.out.println("Response Headers: " + response.getHeaders());
-		System.out.println("Response Body: " + response.getBody().asString());
+		if (response.getStatusCode() == 201 && Scenario.equals("CreateProgramValid")) {
+			LoginRequest.context.set("programId", response.jsonPath().get("programId"));
+			LoginRequest.context.set("programName", response.jsonPath().getString("programName"));
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ " + context.get("programName"));
+			System.out.println("##################################################### " + context.get("programId"));
+		}
 
 	}
 
@@ -62,17 +86,44 @@ public class ProgramRequest extends SpecificationClass {
 
 	}
 
-	/****************** GET without parameter Request *************************/
+	/****************** GET ALL Request *************************/
 
 	public JsonNode setGetProgramRequest(String requestType) throws Exception {
 		JsonNode getTestData = TestDataLoader.loadTestDatafor_Get(requestType);
 		return getTestData;
 	}
 
-	public Response sendGetProgramReqWithOutBody() {
-		Response response = RestAssured.given().spec(requestHeadersWithTokenForJson())
-				.get(APIResources.valueOf("APIGetAllProgram").getResources());
+	public Response sendGetProgramReqWithOutBody(String Scenario) {
+		String EndPoint = APIResources.valueOf("APIGetAllProgram").getResources();
+		if (Scenario.equals("GetAllProgramInValidEP"))
+			EndPoint = APIResources.valueOf("APIGetAllProgram").getResources() + "Invalid";
+
+		Response response = RestAssured.given().spec(requestHeadersWithTokenForJson()).get(EndPoint);
+		ProgramPojo program = new ProgramPojo();
+		program.setStatusCode(response.getStatusCode());
+		program.setStatusText(response.getStatusLine());
+		context.set("ProgramPojo", program); // Store in context
+		context.set("programResponse", response);
 		return response;
+	}
+
+	/****************** GET by ProgramId Request ****************/
+
+	public void sendGetProgrambyIdReqWithOutBody(String Scenario) {
+		int programId = getProgramId();
+		String EndPoint = APIResources.valueOf("APIGetProgramByID").getResources();
+		if (Scenario.equals("GetByProgramIDInValidEP")) {
+			EndPoint = EndPoint + "Invalid";
+		}
+
+		response = RestAssured.given().spec(requestHeadersWithTokenForJson()).pathParam("programId", programId).log()
+				.all().get(EndPoint);
+		context.set("programResponse", response);
+		// Store status in ProgramPojo for validation
+		ProgramPojo program = new ProgramPojo();
+		program.setStatusCode(response.getStatusCode());
+		program.setStatusText(response.getStatusLine());
+		context.set("ProgramPojo", program);
 	}
 
 }
