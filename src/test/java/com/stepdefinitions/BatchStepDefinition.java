@@ -19,7 +19,6 @@ public class BatchStepDefinition {
 	LoginRequest loginRequest;
 	BatchRequest batch;
 	private Response batchResponse;
-	SoftAssert softAssert;
 	CommonResponseValidation ResponseValidation = new CommonResponseValidation();
 	private ScenarioContext context = new ScenarioContext();
 	
@@ -108,22 +107,25 @@ public void admin_receives_with_batch_get_by_id_response_body(String Code) {
 
 //********************************** GET BATCH BY NAME ******************************************
 
-@Given("Admin creates GET Request with Batch Name")
-public void admin_creates_get_request_with_batch_name() {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+@Given("Admin creates GET Request with Batch Name {string}")
+public void admin_creates_get_request_with_batch_name(String requestType) throws Exception {
+	batch.setNewBatchRequest(requestType);
 }
 
 @When("Admin sends GET HTTPS Request with batch Name {string}")
-public void admin_sends_get_https_request_with_batch_name(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+public void admin_sends_get_https_request_with_batch_name(String Scenario) {
+	batch.GetBatchByNameRequest(Scenario);
 }
 
 @Then("Admin receives {string} with batch Get by Name response body")
-public void admin_receives_with_batch_get_by_name_response_body(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+public void admin_receives_with_batch_get_by_name_response_body(String Code) {
+batchResponse = context.get("batchResponse", Response.class);
+	
+	ResponseValidation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
+	ResponseValidation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
+	ResponseValidation.validateResponseTime(batchResponse);	
+	if(!Code.equals("404"))
+	ResponseValidation.validateContentType(batchResponse);
 }
 
 //********************************** GET BATCH BY PROGRAM ID ***************************************
