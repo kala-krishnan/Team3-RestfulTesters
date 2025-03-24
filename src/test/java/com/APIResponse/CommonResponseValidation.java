@@ -24,7 +24,7 @@ public class CommonResponseValidation {
 	    }
 
 	    public void validateContentType(Response response) {
-	    	String expectedMessage = ConfigReader.getProperty("testDataFilePath");
+	    	String expectedMessage = ConfigReader.getProperty("contentType");
 	        String actualContentType = response.getHeader("Content-Type");
 	        Assert.assertEquals(actualContentType,  expectedMessage, "Content-Type mismatch!");
 	    }
