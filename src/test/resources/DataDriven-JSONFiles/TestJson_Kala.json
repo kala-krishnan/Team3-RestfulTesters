@@ -1,0 +1,89 @@
+{
+    "requests": [
+        {
+            "LoginValid": {
+				"scenario":"Check if Admin able to generate token with valid credential",
+                "userLoginEmailId": "sdetorganizer@gmail.com",
+                "password": "Apiphase@2",
+				"statusCode":200,
+				"statusText": "OK"
+				
+            }
+        },
+		{
+		          "LoginInvalid": {
+					"scenario":"Check if Admin able to generate token with invalid credential",
+		              "userLoginEmailId": "",
+		              "password": "Apiphase@2",
+					"statusCode":400,
+					"statusText": "OK",
+					"authType": "No Auth"
+		          }
+		      },
+		      
+		      {
+					"GetAllUsers":{
+				    "scenario": "Get all Users",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				 {
+					"GetAllUsersInvalidEndpoint":{
+				    "scenario": "Get all Users with inValid",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllActiveUsers":{
+				    "scenario": "Get all active Users",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetActiveEmailUsers":{
+				    "scenario": "Get all Active Users Email id",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllRoles":{
+				    "scenario": "Get all roles",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllUserwithRoles":{
+				    "scenario": "Get all users with roles",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllUserStatusCount":{
+				    "scenario": "Get all User Status Count",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetUserByUserId":{
+				    "scenario": "Get User Details by UserId",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				}
+]
+}
