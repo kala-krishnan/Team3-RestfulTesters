@@ -96,17 +96,17 @@ public class ProgramPojo {
         this.scenario = scenario;
     }
 
-    @Override
-    public String toString() {
-        return "ProgramPojo{" +
-        		"programId=" + programId +
-                "programName='" + programName + '\'' +
-                ", programDescription='" + programDescription + '\'' +
-                ", programStatus='" + programStatus + '\'' +
-                ", statusCode=" + statusCode +
-                ", statusText='" + statusText + '\'' +
-                ", authType='" + authType + '\'' +
-                ", scenario='" + scenario + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "ProgramPojo{" +
+//        		"programId=" + programId +
+//                "programName='" + programName + '\'' +
+//                ", programDescription='" + programDescription + '\'' +
+//                ", programStatus='" + programStatus + '\'' +
+//                ", statusCode=" + statusCode +
+//                ", statusText='" + statusText + '\'' +
+//                ", authType='" + authType + '\'' +
+//                ", scenario='" + scenario + '\'' +
+//                '}';
+//    }
 }

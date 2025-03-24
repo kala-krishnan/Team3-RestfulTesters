@@ -87,7 +87,7 @@ public class ProgramStepDefinitions {
 	@When("Admin sends GET Request by  {string} ProgramId for LMS Program Module")
 	public void admin_sends_get_request_by_program_id_for_lms_program_module(String requestType) throws Exception {
 		programRequest.sendGetProgrambyIdReqWithOutBody(requestType);
-		;
+		
 	}
 
 	@Then("Admin gets the program details of that programid with status  {string}")
