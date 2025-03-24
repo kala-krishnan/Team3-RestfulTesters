@@ -30,43 +30,61 @@ public class BatchRequest extends SpecificationClass{
 		BatchPojo batchStatusLine=(BatchPojo) context.get("BatchPojo");
 		return batchStatusLine.getStatusText();
 	}
-	public String getBatchContentType() {
-		BatchPojo batchContentType=(BatchPojo) context.get("BatchPojo");
-		return batchContentType.getContentType();
+	public int getIdBatch() {
+		BatchPojo batchid=(BatchPojo) context.get("BatchPojo");
+		return batchid.getId();
 	}
 	
 	public void setNewBatchRequest(String requestType) throws Exception 
 	{
 		BatchPojo batch = TestDataLoader.loadTestDatafor_Post_Put(requestType, BatchPojo.class);
-		System.out.println("user statuscode"+batch.getStatusCode());
 		context.set("BatchPojo", batch);
 	}
 	
 	
-	public void PostNewBatchRequest()
+	public void PostNewBatchRequest(String Scenario)
 	{
+		String EndPoint = APIResources.valueOf("APIAddBatch").getResources();
+		if (Scenario.equals("AddBatchInvalidEp")) 
+			EndPoint = APIResources.valueOf("APIAddBatch").getResources() + "Invalid";
+		
 		BatchPojo batch = context.get("BatchPojo", BatchPojo.class);
 		response = RestAssured.given().spec(requestHeadersWithToken())
 				.body(batch).log().all()
-				.post(APIResources.valueOf("APIAddBatch").getResources());       
+				.post(EndPoint);       
 		context.set("batchResponse", response); 
-		if (response.getStatusCode()==201)
+		if (response.getStatusCode()==201 && Scenario.equals("AddBatchValid"))
 		{
 			context.set("batchId", response.jsonPath().get("batchId"));
 			context.set("batchName", response.jsonPath().getString("batchName"));
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ "+context.get("batchName"));
-		System.out.println("##################################################### "+context.get("batchId"));
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ "+context.get("batchName"));
+			System.out.println("##################################################### "+context.get("batchId"));
 		}
- 
+
 	}
 	
-	public void PostNewBatchInvalidEpRequest()
+	public void GetAllBatchRequest(String Scenario)
 	{
-		BatchPojo batch = context.get("BatchPojo", BatchPojo.class);	
+		String EndPoint = APIResources.valueOf("APIGetAllBatch").getResources();
+		if (Scenario.equals("GetAllBatchInValidEP")) 
+			EndPoint = APIResources.valueOf("APIGetAllBatch").getResources() + "Invalid";
+
 		response = RestAssured.given().spec(requestHeadersWithToken())
-				.body(batch).log().all()
-				.post(APIResources.valueOf("APIAddBatch").getResources()+"Invaild");       
+				.log().all()
+				.get(EndPoint);       
 		context.set("batchResponse", response); 
 	}
+	
+	public void GetBatchByIDRequest(String Scenario)
+	{
+		String EndPoint = APIResources.valueOf("APIGetBatchByID").getResources()+getIdBatch();
+		if (Scenario.equals("GetByBatchIDInValidEP")) 
+			EndPoint = APIResources.valueOf("APIGetBatchByID").getResources() + "Invalid"+getIdBatch();
 
+		response = RestAssured.given().spec(requestHeadersWithToken())
+				.log().all()
+				.get(EndPoint);       
+		context.set("batchResponse", response); 
+	}
+	
 }
