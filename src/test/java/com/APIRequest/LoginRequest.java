@@ -19,15 +19,14 @@ import java.io.FileNotFoundException;
 public class LoginRequest extends SpecificationClass{
 
 	Response response;
-	ScenarioContext context;
+	ScenarioContext context =ScenarioContext.getInstance();
 
 	LoginPayload loginPayload = new LoginPayload();
 	String token;
 	
-	public LoginRequest(ScenarioContext context) throws FileNotFoundException
+	public LoginRequest() throws FileNotFoundException
 	{
-		super(context);
-		this.context = context;
+		
 	}
 	// Valid Login Scenario: Data from Config File
 	public void PostLoginRequest()
@@ -38,7 +37,7 @@ public class LoginRequest extends SpecificationClass{
 					.body(logPojo).log().all()
 					.when()
 					.post(APIResources.valueOf("APILoginPost").getResources());
-		
+		context.set("loginResponse", response); 
 					 token = response.jsonPath().getString("token"); 
 					 context.set("LMStoken", token);   
 	}
@@ -50,20 +49,26 @@ public class LoginRequest extends SpecificationClass{
 	}
 	
 	// Login Scenario Invalid: Json File
-	public void postLoginRequestFromJson()
+	public void postLoginRequestFromJson(String Scenario)
 	{
+		String EndPoint = APIResources.valueOf("APILoginPost").getResources();	
+		if (Scenario.equals("LoginInvalidEndpoint")) 
+			EndPoint = APIResources.valueOf("APILoginPost").getResources() + "Invalid";
+		
 		LoginPojo login = context.get("LoginPojo", LoginPojo.class);		
-		System.out.println(login.toString());
 		response = RestAssured.given().spec(requestHeadersWithoutToken())
 				.body(login).log().all()
-				.post(APIResources.valueOf("APILoginPost").getResources());    
-
+				.post(EndPoint);
+		context.set("loginResponse", response);
+		
 	}
 
 	public int getStatusCode() {
 		LoginPojo login = context.get("LoginPojo", LoginPojo.class);
-
 		return login.getStatusCode();
 	}
-
+	public String getStatusLine() {
+		LoginPojo login = context.get("LoginPojo", LoginPojo.class);
+		return login.getStatusText();
+	}
 }

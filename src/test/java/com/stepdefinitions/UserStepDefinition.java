@@ -18,8 +18,8 @@ import io.cucumber.java.en.*;
 import io.restassured.response.Response;
 
 public class UserStepDefinition {
-	private ScenarioContext context = new ScenarioContext();
-	private Response userResponse;
+	ScenarioContext context = ScenarioContext.getInstance();
+	Response userResponse;
 	LoginRequest logRequest;
 	UserRequest userRequest;
 	SoftAssert softAssert ;
@@ -28,8 +28,8 @@ public class UserStepDefinition {
 	String userSchema = ConfigReader.getProperty("userSchema");
 	
 	public UserStepDefinition() throws FileNotFoundException {
-		logRequest = new LoginRequest(context);
-		userRequest = new UserRequest(context);
+		logRequest = new LoginRequest();
+		userRequest = new UserRequest();
 		
 	}
 
@@ -37,15 +37,16 @@ public class UserStepDefinition {
 	
 @Given("Set Auth to bearer token")
 public void set_auth_to_bearer_token() throws Exception {
-	logRequest.setLoginRequest("LoginValid");
-	logRequest.postLoginRequestFromJson();
+	System.out.println(context.get("LMStoken"));
+	if(context.get("LMStoken")==(null))
+		logRequest.PostLoginRequest();
 }
 
 /*********************************post request  *********************************/
 
 @Given("Admin creates POST Request with request body {string} for LMS User Module")
 public void admin_creates_post_request_with_request_body_for_lms_user_module(String requestType) throws Exception {
-	userRequest.setGetUserRequest_Vidhya(requestType);
+	userRequest.newUserRequest(requestType);
 }
 
 @When("Admin calls Post Https method  with valid endpoint for LMS User Module")
@@ -109,7 +110,7 @@ public void admin_creates_get_request_and_for_lms_user_module(String requestType
 
 @When("Admin sends GET Request with endpoint and {string} for LMS User Module")
 public void admin_sends_get_request_with_endpoint_and_for_lms_user_module(String endpointValue) {
-	getUserFilterResponse=userRequest.sendGetUserReqWithBody();
+	getUserFilterResponse=userRequest.sendGetUserReqWithBody(endpointValue);
 }
 
 
