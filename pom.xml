@@ -14,7 +14,7 @@
     <configuration>
 		
 		<suiteXmlFiles>
-		<suiteXMLFile>testng.xml</suiteXMLFile>		
+		<suiteXMLFile>src/test/resources/testng.xml</suiteXMLFile>		
 		</suiteXmlFiles>
 	</configuration>
 </plugin>

@@ -104,7 +104,7 @@
         {
             "GetByBatchIDValid": {
 				"scenario":"Search Batch by ID",   
-				"id": 11959,  
+				"id": 9488,  
 				"statusCode":200,
 				"statusText": "HTTP/1.1 200 OK"
 				
@@ -361,8 +361,7 @@
 				"statusCode":401,
 				"statusText": "HTTP/1.1 401 Unauthorized"
 		    }
-		}
-
+		},
          {
 					"GetAllUsers":{
 				    "scenario": "Get all Users",

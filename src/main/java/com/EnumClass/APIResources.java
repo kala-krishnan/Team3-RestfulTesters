@@ -37,7 +37,7 @@ public enum APIResources {
 	APIGetUserByID("/users/"),
 	APIGetUserBatchID("/users/user/"),
 	APIGetAllUserRoles("/users/roles"),
-	APIGetUserByRole("/users/roles/"),
+	APIGetUserByRoleID("/users/roles/"),
 	APIGetByProgramID("/users/programs/"),
 	APIGetByBatchID("/users/programBatch/"),
 	APIGetUserByUserID("/users/details/"),

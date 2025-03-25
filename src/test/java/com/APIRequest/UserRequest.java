@@ -10,6 +10,7 @@ import com.EnumClass.APIResources;
 import com.commonUtils.SpecificationClass;
 import com.commonUtils.TestDataLoader;
 import com.context.ScenarioContext;
+import com.context.TextContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.payload.LoginPayload;
@@ -23,7 +24,7 @@ import io.restassured.specification.RequestSpecification;
 
 public class UserRequest extends SpecificationClass{
 	Response response;
-	ScenarioContext context;
+	ScenarioContext context =ScenarioContext.getInstance();
 	String paramForGetEndpoint;
 	JsonNode getTestData;
 	RequestSpecification resquest;
@@ -31,10 +32,9 @@ public class UserRequest extends SpecificationClass{
 	UserModuleResponseValidation resValidation;
 	int responseCode;
 	String Endpoints;
-	public UserRequest(ScenarioContext context) throws FileNotFoundException
+	public UserRequest() throws FileNotFoundException
 	{
-		super(context);
-		this.context = context;
+		//super(ScenarioContext.getInstance());
 		resValidation = new UserModuleResponseValidation();
 	}	
 	
@@ -56,10 +56,13 @@ public class UserRequest extends SpecificationClass{
 	{
 		UserPojo user = context.get("UserPojo", UserPojo.class);
 		System.out.println(user.toString());
-		response = RestAssured.given().spec(requestHeadersWithTokenForJson())
+		response = RestAssured.given().spec(requestHeadersWithToken())
 				.body(user).log().all()
 				.post(APIResources.valueOf("APICreateUserWithRole").getResources());       
 		context.set("userResponse", response); 
+		String userID  = response.jsonPath().getString("userId");
+		TextContext.setUserId(userID); // Setting userid for chaining 
+		
 		System.out.println(response.prettyPrint());
 		System.out.println("Status Code: " + response.getStatusCode());
 		System.out.println("Response Headers: " + response.getHeaders());
@@ -67,6 +70,14 @@ public class UserRequest extends SpecificationClass{
 		
 		//String userID = response.jsonPath().getString("userId"); 
 		//context.set("userId", userID); 
+		
+		// getting the programid for chaining
+		int storedProgramID = TextContext.getProgramId();
+		System.out.println("Printing chaining program ID in user module" + storedProgramID );
+		
+		// getting the batchid for chaining
+		int storedBatchID = TextContext.getBatchId();
+		System.out.println("Printing chaining batch ID in user module" + storedBatchID );
 	}
 
 	
@@ -79,12 +90,13 @@ public class UserRequest extends SpecificationClass{
 	}
 	
 	public Response sendGetUserReqWithOutBody() {
-		Response response = RestAssured.given().spec(requestHeadersWithTokenForJson())				
+		Response response = RestAssured.given().spec(requestHeadersWithToken())				
 				.get(APIResources.valueOf("APIGetUserWithFilter").getResources());				
 		return response;
 	}
 	
 	/****************** GET with parameter Request  *************************/
+	/************* requestType is set in Enum class-APIResource.java and feature File ***/ 
 	
 	public JsonNode setGetUserRequestBody(String requestType,String parameterValue) throws Exception
 	{
@@ -93,9 +105,11 @@ public class UserRequest extends SpecificationClass{
 	return getTestData;
 	}
 	
-	public Response sendGetUserReqWithBody() {
-		Response response = RestAssured.given().spec(requestHeadersWithTokenForJson())				
-				.get(APIResources.valueOf("APIGetUserByRole").getResources()+ paramForGetEndpoint);				
+	public Response sendGetUserReqWithBody(String endpointValue) {
+		String endpoint = "API"+endpointValue;
+		System.out.println(endpoint);
+		Response response = RestAssured.given().spec(requestHeadersWithToken())				
+				.get(APIResources.valueOf(endpoint).getResources()+ paramForGetEndpoint);				
 		return response;
 	}
 	

@@ -1,0 +1,142 @@
+{
+    "requests": [
+        {
+            "LoginValid": {
+                "scenario": "Check if Admin able to generate token with valid credential",
+                "userLoginEmailId": "sdetorganizer@gmail.com",
+                "password": "Apiphase@2",
+                "statusCode": 200,
+                "statusText": "OK",
+                "authType": "No Auth"
+            }
+        },
+        {
+            "LoginInvalid": {
+                "scenario": "Check if Admin able to generate token with invalid credential",
+                "userLoginEmailId": "",
+                "password": "Apiphase@2",
+                "statusCode": 400,
+                "statusText": "OK",
+                "authType": "No Auth"
+            }
+        },
+        
+        {
+            "CreateUserValid": {
+                "scenario": "Add User with Bearer Token",
+                "statusCode": 201,
+                "statusText": "Created",
+                "authType": "Bearer Token",
+                "userComments": "teamhacktonuser8",
+                "userEduPg": "mtech8",
+                "userEduUg": "be8",
+                "userFirstName": "teamfiveeight",
+                "userLastName": "hackathonfiveeight",
+                "userLinkedinUrl": "www.linkedin.com4/url",
+                "userLocation": "texas",
+                "userMiddleName": "middle",
+                "userPhoneNumber": "+91 9442800000",
+                "userRoleMaps": [
+                    {
+                        "roleId": "R02",
+                        "userRoleStatus": "Active"
+                    }
+                ],
+                "userTimeZone": "CST",
+                "userVisaStatus": "H1B",
+                "userLogin": {
+                    "loginStatus": "Active",
+                    "userLoginEmail": "great8chaining@gmail.com",
+                    "status": "Active"
+                }
+            }
+        },
+        {
+            "CreateUserInValidPhNumber": {
+                "scenario": "create a new user with valid endpoint and invalid - exisiting phone number",
+                "statusCode": 400,
+                "statusText": "Failed",
+                "authType": "Bearer Token",
+                "userComments": "teamhacktonuser5",
+                "userEduPg": "mtech3",
+                "userEduUg": "be3",
+                "userFirstName": "teamfou",
+                "userLastName": "hackatho",
+                "userLinkedinUrl": "www.linkedin.com4/url",
+                "userLocation": "texas",
+                "userMiddleName": "middle",
+                "userPhoneNumber": "+91 9419200000",
+                "userRoleMaps": [
+                    {
+                        "roleId": "R02",
+                        "userRoleStatus": "Active"
+                    }
+                ],
+                "userTimeZone": "CST",
+                "userVisaStatus": "H1B",
+                "userLogin": {
+                    "loginStatus": "Active",
+                    "userLoginEmail": "great41@gmail.com",
+                    "status": "Active"
+                }
+            }
+        },
+        {
+            "GetAllUserWithFilters": {
+                "scenario": "Get all User with Facets and Filter ",
+                "authType": "Bearer Token",
+                "statusCode": 200,
+                "statusText": "OK"
+            }
+        },
+        {
+            "GetUserByRoleID": {
+                "scenario": "Get user by roleid",
+                "authType": "Bearer Token",
+                "statusCode": 200,
+                "roleId": "R04",
+                "statusText": "OK"
+            }
+        },
+        {
+            "GetUserByID": {
+                "scenario": "Get user by id",
+                "authType": "Bearer Token",
+                "statusCode": 200,
+                "id": "U212",
+                "statusText": "OK"
+            }
+        },
+        {
+            "GetByBatchIDValid": {
+                "scenario": "Search Batch by ID",
+                "id": 9488,
+                "statusCode": 200,
+                "statusText": "HTTP/1.1 200 OK"
+            }
+        },
+        {
+            "CreateProgramValid": {
+                "scenario": "Add Program with Bearer Token",
+				"programName": "teamfourone",
+			    "programDescription": "hackathone four",
+		        "programStatus": "active",
+                "statusCode": 201,
+                "authType": "Bearer Token",
+                "statusText": "HTTP/1.1 201 Created"
+            }
+        },
+		{
+		        "AddBatchValid": {
+					"scenario":"Add Batch valid",    
+		            "batchDescription": "TestBatches check chaining",
+		            "batchName": "APIBatchRestcheck",
+		            "batchNoOfClasses": 10,
+		            "batchStatus": "Active",
+		            "programId": 16449,
+					"statusCode":201,
+					"statusText": "HTTP/1.1 201 Created"
+		        }
+			}
+    ]
+}

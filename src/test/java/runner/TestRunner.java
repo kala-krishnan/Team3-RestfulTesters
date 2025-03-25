@@ -8,8 +8,8 @@ import io.cucumber.testng.CucumberOptions;
 
 
 @CucumberOptions(features= {"src/test/resources/Feature"},
-//tags = "@userModule or @userlogin",
-tags = "@userModule",
+//tags = "@userModule or @userlogin or @LMS1 or @ProgramModule",
+tags = "@LMS1",
 glue={"com.stepdefinitions"},
 plugin = {
         "pretty",

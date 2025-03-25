@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class BatchPojo {
 	
-	private String batchDescription, batchName, batchNoOfClasses, batchStatus, programId;
+	private String batchDescription, batchName, batchNoOfClasses, batchStatus;
+	int programId;
 
     public String getBatchDescription() {
 		return batchDescription;
@@ -30,10 +31,11 @@ public class BatchPojo {
 	public void setBatchStatus(String batchStatus) {
 		this.batchStatus = batchStatus;
 	}
-	public String getProgramId() {
+	public int getProgramId() {
 		return programId;
 	}
-	public void setProgramId(String programId) {
+	// programid is integer
+	public void setProgramId(int programId) {
 		this.programId = programId;
 	}
 	
