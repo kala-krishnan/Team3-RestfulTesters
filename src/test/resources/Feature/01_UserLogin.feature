@@ -1,18 +1,20 @@
-@userlogin
+@Login @LMS
 
 Feature: LMS API Login
 
-#Scenario: check user can able to Login into LMSAPI by using valid endpoint and request body
-#Given Admin creates request with valid credentials 
-#When Admin calls Post Https method  with valid endpoint
-#Then Admin receives 201 created with auto generated token
+  @LoginValid   
+  Scenario Outline: Verify Login invalid functionality
+    Given Admin creates Login Valid Request
+    When Admin sends Post HTTPS Login Request
+    Then Admin receives status with token
 
+  @LoginInvalid   
+  Scenario Outline: Verify Login invalid functionality
+    Given Admin creates Login "<Scenario>" Request
+    When Admin sends "<Scenario>" HTTPS Login Request
+    Then Admin receives status "<Code>" for Login request
+    Examples: 
+      | Scenario     		       |   Code     |
+      |  LoginInvalidCreds     |   400      |
+      |  LoginInvalidEndpoint  |   401      |
 
-Scenario Outline:check user can able to Login into LMSAPI by using valid endpoint and request body
-Given Admin creates request with valid credentials "<requestType>" for LMS
-When Admin calls Post Https method  with valid endpoint for LMS
-Then Admin receives created with auto generated token
-Examples:
-|requestType|
-|LoginValid|
-|LoginInvalid|
