@@ -13,12 +13,12 @@ import io.restassured.response.Response;
 
 public class ProgramStepDefinitions {
 
-	//private ScenarioContext context = new ScenarioContext();
+	// private ScenarioContext context = new ScenarioContext();
 	private Response programResponse;
 	LoginRequest logRequest;
 	ProgramRequest programRequest;
 	SoftAssert softAssert;
-	JsonNode getTestData_Get;
+	// JsonNode getTestData_Get;
 	Response getProgramFilterResponse;
 	CommonResponseValidation ResponseValidation = new CommonResponseValidation();
 
@@ -27,6 +27,13 @@ public class ProgramStepDefinitions {
 		logRequest = new LoginRequest(LoginRequest.context);
 		programRequest = new ProgramRequest(LoginRequest.context);
 	}
+
+	// ********************************** BackGground***********************//
+//	@Given("Admin sets Authorization to Bearer Token")
+//	public void admin_sets_authorization_to_bearer_token() {
+//		logRequest.PostLoginRequest();
+//
+//	}
 
 	// ********************************** CREATE PROGRAM//
 	// ******************************************
@@ -87,7 +94,7 @@ public class ProgramStepDefinitions {
 	@When("Admin sends GET Request by  {string} ProgramId for LMS Program Module")
 	public void admin_sends_get_request_by_program_id_for_lms_program_module(String requestType) throws Exception {
 		programRequest.sendGetProgrambyIdReqWithOutBody(requestType);
-		
+
 	}
 
 	@Then("Admin gets the program details of that programid with status  {string}")
@@ -100,4 +107,89 @@ public class ProgramStepDefinitions {
 		if (!StatusCode.equals("404"))
 			ResponseValidation.validateContentType(programResponse);
 	}
+
+//	@Given("Admin creates PUT Request with {string} in Program Module with request body")
+//	public void admin_creates_put_request_with_in_program_module_with_request_body(String string) {
+//	    // Write code here that turns the phrase above into concrete actions
+//	    throw new io.cucumber.java.PendingException();
+//	}
+//	@When("Admin sends PUT HTTPS Request update Program Module with {string}")
+//	public void admin_sends_put_https_request_update_program_module_with(String string) {
+//	    // Write code here that turns the phrase above into concrete actions
+//	    throw new io.cucumber.java.PendingException();
+//	}
+//	@Then("Admin receives {string} for Update Program Module request")
+//	public void admin_receives_for_update_program_module_request(String string) {
+//	    // Write code here that turns the phrase above into concrete actions
+//	    throw new io.cucumber.java.PendingException();
+//	}
+
+	// ........ GetAll Program With Users......
+//	
+//	@Given("Admin creates GETAllProgramswithUsers request {string} for Program Module")
+//	public void admin_creates_get_all_programswith_users_request_for_program_module(String requestType) {
+//	    System.out.println("Creating request: " + requestType);
+//
+//	}
+//	@When("Admin sends HTTPS Request with endpoint GETAllProgramswithUsers for Program Module {string}")
+//	public void admin_sends_https_request_with_endpoint_get_all_programswith_users_for_program_module(String requestType) {
+//		programRequest.sendGetProgramReqWithUser(requestType);
+//	}
+//	@Then("Admin receives statuscode  {string} for  GETAllProgramswithUsers in Program Module")
+//	public void admin_receives_statuscode_for_get_all_programswith_users_in_program_module(String StatusCode) {
+//		programResponse = LoginRequest.context.get("programResponse", Response.class);
+//		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
+//		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
+//		ResponseValidation.validateResponseTime(programResponse);
+//
+//		if (!StatusCode.equals("404"))
+//			ResponseValidation.validateContentType(programResponse);
+//	
+//	}
+
+	// ........UPDATE PROGRAM BY PROGRAMID ......
+
+	@Given("Admin creates PUT Request with {string} in Program Module with request body")
+	public void admin_creates_put_request_with_in_program_module_with_request_body(String requestType) {
+
+	}
+
+	@When("Admin sends PUT HTTPS Request update Program Module with {string}")
+	public void admin_sends_put_https_request_update_program_module_with(String requestType) {
+		programRequest.PutProgramByIdRequest(requestType);
+
+	}
+
+	@Then("Admin receives {string} for Update Program Module request")
+	public void admin_receives_for_update_program_module_request(String StatusCode) {
+		programResponse = LoginRequest.context.get("programResponse", Response.class);
+		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
+		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
+		ResponseValidation.validateResponseTime(programResponse);
+		if (!StatusCode.equals("404"))
+			ResponseValidation.validateContentType(programResponse);
+	}
+
+	// ........UPDATE PROGRAM BY PROGRAMNAME ......
+
+	@Given("Admin creates PUT Request with {string} in Program Module by program name with request body")
+	public void admin_creates_put_request_with_in_program_module_by_program_name_with_request_body(String requestType) {
+
+	}
+
+	@When("Admin sends PUT HTTPS Request update Program Module with {string} by program name")
+	public void admin_sends_put_https_request_update_program_module_with_by_program_name(String requestType) {
+		programRequest.PutProgramByIdRequest(requestType);
+	}
+
+	@Then("Admin receives {string} for Update Program Module request by program name")
+	public void admin_receives_for_update_program_module_request_by_program_name(String StatusCode) {
+		programResponse = LoginRequest.context.get("programResponse", Response.class);
+		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
+		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
+		ResponseValidation.validateResponseTime(programResponse);
+		if (!StatusCode.equals("404"))
+			ResponseValidation.validateContentType(programResponse);
+	}
+
 }
