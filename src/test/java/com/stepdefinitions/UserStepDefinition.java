@@ -3,6 +3,7 @@ package com.stepdefinitions;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -12,6 +13,7 @@ import com.APIRequest.UserRequest;
 import com.commonUtils.ConfigReader;
 import com.commonUtils.TestDataLoader;
 import com.context.ScenarioContext;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import io.cucumber.java.en.*;
@@ -77,7 +79,7 @@ public void user_set_authentication_token_for_authorisation() {
 	
 }
 
-/***********************get all request  *********************************/
+/***********************get all request using Filters *********************************/
 
 @Given("Admin creates GET Request {string} for LMS User Module")
 public void admin_creates_get_request_for_lms_user_module(String requestType) throws Exception  {
@@ -126,10 +128,10 @@ public void admin_gets_the_users_details() {
 	softAssert.assertAll();
 }
 
-//**********************************************Get All Request start***********************************************************
+/**********************************************Get All Request start***********************************************************
 /*
-* Get All Users
-*/
+ * Get All Users
+ */
 @Given("User creates Get Request to get user Details with request body {string} for LMS User Module")
 public void user_creates_get_request_to_get_user_details_with_request_body_for_lms_user_module(String requestType) throws Exception {
 	
@@ -138,7 +140,7 @@ public void user_creates_get_request_to_get_user_details_with_request_body_for_l
 
 
 @When("User calls GET Https method for the requesttype {string} to get all users with endpoint for LMS User Module")
-public void user_calls_get_https_method_for_the_requesttype_to_get_all_users_with_endpoint_for_lms_user_module(String reqType) {
+public void user_calls_get_https_method_for_the_requesttype_to_get_all_users_with_endpoint_for_lms_user_module(String reqType) throws IOException {
 	userRequest.getAllUsers(reqType);
 }
 
@@ -149,8 +151,8 @@ public void user_received_proper_status_code_with_all_user_details(String string
 }
 
 /*
-* Get All Active Users
-*/
+ * Get All Active Users
+ */
 
 @When("User calls GET Https method for the requesttype {string} to get all active users with endpoint for LMS User Module")
 public void user_calls_get_https_method_for_the_requesttype_to_get_all_active_users_with_endpoint_for_lms_user_module(String reqType) {
@@ -165,8 +167,8 @@ public void user_received_proper_status_code_with_all_active_user_details(String
 	Assert.assertEquals(userRequest.responseCode(), getTestData_Get.get("statusCode").asInt());
 }
 /*
-* Get All Users Email Id
-*/
+ * Get All Users Email Id
+ */
 
 
 @When("User calls GET Https method for the requesttype {string} to fetch email id of all users with endpoint for LMS User Module")
@@ -179,8 +181,8 @@ public void user_received_proper_status_code_with_all_user_email_ids(String stri
 }
 
 /*
-* Get All roles 
-*/
+ * Get All roles 
+ */
 @Given("User creates Get Request to get roles details with request body {string} for LMS User Module")
 public void user_creates_get_request_to_get_roles_details_with_request_body_for_lms_user_module(String requestType) throws Exception {
 	getTestData_Get=userRequest.setGetUserRequest(requestType);
@@ -198,8 +200,8 @@ public void user_received_proper_status_code_with_all_roles(String string) {
 
 
 /*
-* Get All users with roles
-*/
+ * Get All users with roles
+ */
 @Given("User creates Get Request to get all users with roles details with request body {string} for LMS User Module")
 public void user_creates_get_request_to_get_all_users_with_roles_details_with_request_body_for_lms_user_module(String requestType) throws Exception {
 	getTestData_Get=userRequest.setGetUserRequest(requestType);
@@ -217,8 +219,8 @@ public void user_received_proper_status_code_with_all_users_with_roles(String st
 
 
 /*
-* Get status count
-*/
+ * Get status count
+ */
 @Given("User creates Get Request to get users with status count with request body {string} for LMS User Module")
 public void user_creates_get_request_to_get_users_with_status_count_with_request_body_for_lms_user_module(String requestType) throws Exception {
 	getTestData_Get=userRequest.setGetUserRequest(requestType);
@@ -238,67 +240,49 @@ public void user_received_proper_status_code_with_user_with_status_count(String 
 
 //**********************************************GetBy Id starts***********************************************************
 /*
-* Get User by User id
-*/
+ * Get User by User id
+ */
 @Given("User creates Get Request to fetch Users by UserId with request body {string} for LMS User Module")
 public void user_creates_get_request_to_fetch_users_by_user_id_with_request_body_for_lms_user_module(String requestType) throws Exception {
 	getTestData_Get=userRequest.setGetUserRequest(requestType);
 }
 
 @When("User calls GET Https method for the requesttype {string} to fetch Users by UserId with endpoint for LMS User Module")
-public void user_calls_get_https_method_for_the_requesttype_to_fetch_users_by_user_id_with_endpoint_for_lms_user_module(String string) {
-  // Write code here that turns the phrase above into concrete actions
-  throw new io.cucumber.java.PendingException();
+public void user_calls_get_https_method_for_the_requesttype_to_fetch_users_by_user_id_with_endpoint_for_lms_user_module(String reqType) {
+	userRequest.GetUserByUserId(reqType);
 }
+
+
 
 @Then("User received proper status code {string} with Users by UserId")
 public void user_received_proper_status_code_with_users_by_user_id(String string) {
-  // Write code here that turns the phrase above into concrete actions
-  throw new io.cucumber.java.PendingException();
+	Assert.assertEquals(userRequest.responseCode(), getTestData_Get.get("statusCode").asInt());
 }
 
 //**********************************************GetBy Id Ends***********************************************************
 
 //**********************************************PUT Request starts***********************************************************
-/*
-* Put User by User id
-*/
-@Given("User creates PUT Request to update User by UserId with request body {string} for LMS User Module")
-public void user_creates_put_request_to_update_user_by_user_id_with_request_body_for_lms_user_module(String string) {
-  // Write code here that turns the phrase above into concrete actions
-  throw new io.cucumber.java.PendingException();
-}
 
-@When("User calls PUT Https method for the requesttype {string} to update User by UserId with endpoint for LMS User Module")
-public void user_calls_put_https_method_for_the_requesttype_to_update_user_by_user_id_with_endpoint_for_lms_user_module(String string) {
-  // Write code here that turns the phrase above into concrete actions
-  throw new io.cucumber.java.PendingException();
-}
-
-@Then("User received proper status code {string} with updated user details as response")
-public void user_received_proper_status_code_with_updated_user_details_as_response(String string) {
-  // Write code here that turns the phrase above into concrete actions
-  throw new io.cucumber.java.PendingException();
-}
 /*
-* Put role by User id
-*/
+ * Put role by User id
+ */
 @Given("User creates PUT Request to update role Id by user Id with request body {string} for LMS User Module")
-public void user_creates_put_request_to_update_role_id_by_user_id_with_request_body_for_lms_user_module(String string) {
-  // Write code here that turns the phrase above into concrete actions
-  throw new io.cucumber.java.PendingException();
+public void user_creates_put_request_to_update_role_id_by_user_id_with_request_body_for_lms_user_module(String string) throws Exception {
+	userRequest.updateUserRequest(string);
+
 }
 
 @When("User calls PUT Https method for the requesttype {string} to update role Id by user Id with endpoint for LMS User Module")
-public void user_calls_put_https_method_for_the_requesttype_to_update_role_id_by_user_id_with_endpoint_for_lms_user_module(String string) {
-  // Write code here that turns the phrase above into concrete actions
-  throw new io.cucumber.java.PendingException();
+public void user_calls_put_https_method_for_the_requesttype_to_update_role_id_by_user_id_with_endpoint_for_lms_user_module(String reqType) throws JsonProcessingException {
+	userRequest.updateRoleByUserId(reqType);
 }
 
 @Then("User received proper status code {string} with updated role details for the user as response")
 public void user_received_proper_status_code_with_updated_role_details_for_the_user_as_response(String string) {
-  // Write code here that turns the phrase above into concrete actions
-  throw new io.cucumber.java.PendingException();
+	Assert.assertEquals(userRequest.responseCode(), string);
 }
 //**********************************************PUT Request Ends***********************************************************
+
+
 }
+
