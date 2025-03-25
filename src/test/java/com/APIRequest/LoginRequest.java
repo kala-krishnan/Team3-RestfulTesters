@@ -19,15 +19,14 @@ import java.io.FileNotFoundException;
 public class LoginRequest extends SpecificationClass{
 
 	Response response;
-	ScenarioContext context;
+	ScenarioContext context =ScenarioContext.getInstance();
 
 	LoginPayload loginPayload = new LoginPayload();
 	String token;
 	
-	public LoginRequest(ScenarioContext context) throws FileNotFoundException
+	public LoginRequest() throws FileNotFoundException
 	{
-		super(context);
-		this.context = context;
+		
 	}
 	// Valid Login Scenario: Data from Config File
 	public void PostLoginRequest()

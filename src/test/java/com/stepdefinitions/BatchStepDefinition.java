@@ -20,11 +20,11 @@ public class BatchStepDefinition {
 	BatchRequest batch;
 	private Response batchResponse;
 	CommonResponseValidation ResponseValidation = new CommonResponseValidation();
-	private ScenarioContext context = new ScenarioContext();
+	private ScenarioContext context =ScenarioContext.getInstance();
 	
 	public BatchStepDefinition() throws FileNotFoundException {
-		batch = new BatchRequest(context);
-		loginRequest = new LoginRequest(context);	
+		batch = new BatchRequest();
+		loginRequest = new LoginRequest();	
 	}
 	
 @Given("Admin sets Authorization to Bearer Token")
