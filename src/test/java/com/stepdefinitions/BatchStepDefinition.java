@@ -128,45 +128,51 @@ public void admin_receives_with_batch_get_by_name_response_body(String string) {
 
 //********************************** GET BATCH BY PROGRAM ID ***************************************
 
-@Given("Admin creates GET Request with Program ID")
-public void admin_creates_get_request_with_program_id() {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+@Given("Admin creates GET batch Request with Program ID {string}")
+public void admin_creates_get_batch_request_with_program_id(String requestType) throws Exception {
+	batch.setNewBatchRequest(requestType);
 }
 
 @When("Admin sends GET HTTPS Request with Program id {string}")
-public void admin_sends_get_https_request_with_program_id(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+public void admin_sends_get_https_request_with_program_id(String Scenario) {
+	batch.GetBatchByPrgmIDRequest(Scenario);
 }
 
 @Then("Admin receives {string} with batch Get by Program ID response body")
-public void admin_receives_with_batch_get_by_program_id_response_body(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+public void admin_receives_with_batch_get_by_program_id_response_body(String Code) {
+batchResponse = context.get("batchResponse", Response.class);
+	
+	ResponseValidation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
+	ResponseValidation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
+	ResponseValidation.validateResponseTime(batchResponse);	
+	if(!Code.equals("404"))
+	ResponseValidation.validateContentType(batchResponse);
 }
 
 //********************************** UPDATE BATCH ************************************************
 
 @Given("Admin creates PUT Request with {string} in batch request body")
-public void admin_creates_put_request_with_in_batch_request_body(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+public void admin_creates_put_request_with_in_batch_request_body(String requestType) throws Exception {
+	batch.setNewBatchRequest(requestType);
 }
 
 @When("Admin sends PUT HTTPS Request update batch with {string}")
-public void admin_sends_put_https_request_update_batch_with(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+public void admin_sends_put_https_request_update_batch_with(String Scenario) {
+	batch.PutBatchRequest(Scenario);
 }
 
 @Then("Admin receives {string} for Update batch request")
-public void admin_receives_for_update_batch_request(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+public void admin_receives_for_update_batch_request(String Code) {
+batchResponse = context.get("batchResponse", Response.class);
+	
+	ResponseValidation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
+	ResponseValidation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
+	ResponseValidation.validateResponseTime(batchResponse);	
+	if(!Code.equals("404"))
+	ResponseValidation.validateContentType(batchResponse);
 }
 
-
+//********************************** DELETE BATCH *********************************************
 
 	
 }
