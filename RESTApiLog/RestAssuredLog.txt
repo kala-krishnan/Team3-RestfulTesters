@@ -1,26 +1,49 @@
-Request method:	GET
-Request URI:	https://lms-hackthon-feb25-803334c87fbe.herokuapp.com/lms/batches/batchId/Invalid11959
+Request method:	POST
+Request URI:	https://lms-hackthon-feb25-803334c87fbe.herokuapp.com/lms/users/roleStatus
 Proxy:			<none>
 Request params:	<none>
 Query params:	<none>
 Form params:	<none>
 Path params:	<none>
-Headers:		Authorization=Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0b3JnYW5pemVyQGdtYWlsLmNvbSIsImlhdCI6MTc0MjgzMjkwMiwiZXhwIjoxNzQyODYxNzAyfQ.9cwIVjRDgJtnF2w4hAs-AsKGtgXnFxMcCJRXwPFS4vp9v7ZTHIJyma6ZcPFQAbsptAmjkwArnUcNSF3yAWhwEg
+Headers:		Authorization=Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0b3JnYW5pemVyQGdtYWlsLmNvbSIsImlhdCI6MTc0MjkwMTM1OCwiZXhwIjoxNzQyOTMwMTU4fQ.DuUr3O6y0P-ocF2K9PXlsJlvvYyjiz-ycCLUSx8fmLLoRSEUzUI1uUT1fs3eY5cMcNIKGuOV763O8pp326Jn9g
 				Accept=*/*
 				Content-Type=application/json
 Cookies:		<none>
 Multiparts:		<none>
-Body:			<none>
-HTTP/1.1 404 Not Found
+Body:
+{
+    "userComments": "teamhacktonuser8",
+    "userEduPg": "mtech8",
+    "userEduUg": "be8",
+    "userFirstName": "teamfiveeight",
+    "userLastName": "hackathonfiveeight",
+    "userLinkedinUrl": "www.linkedin.com4/url",
+    "userLocation": "texas",
+    "userMiddleName": "middle",
+    "userPhoneNumber": "+91 9442800000",
+    "userRoleMaps": [
+        {
+            "roleId": "R02",
+            "userRoleStatus": "Active"
+        }
+    ],
+    "userTimeZone": "CST",
+    "userVisaStatus": "H1B",
+    "userLogin": {
+        "loginStatus": "Active",
+        "userLoginEmail": "great8chaining@gmail.com",
+        "status": "Active"
+    }
+}
+HTTP/1.1 400 Bad Request
 Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-Content-Length: 16
-Content-Type: text/plain;charset=UTF-8
-Date: Mon, 24 Mar 2025 16:15:03 GMT
+Content-Type: application/json
+Date: Tue, 25 Mar 2025 11:16:02 GMT
 Expires: 0
 Nel: {"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}
 Pragma: no-cache
-Report-To: {"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=5aMhIqnSbyf0qJiC2o3Lr8kkzktj311zm%2Ft2Gkf4eeQ%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1742832903"}],"max_age":3600}
-Reporting-Endpoints: heroku-nel="https://nel.heroku.com/reports?s=5aMhIqnSbyf0qJiC2o3Lr8kkzktj311zm%2Ft2Gkf4eeQ%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1742832903"
+Report-To: {"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=XIcewzSKyRe5ewmd%2FjOPrr6042JmZ%2B0NqdIidpbqAmo%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1742901362"}],"max_age":3600}
+Reporting-Endpoints: heroku-nel="https://nel.heroku.com/reports?s=XIcewzSKyRe5ewmd%2FjOPrr6042JmZ%2B0NqdIidpbqAmo%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1742901362"
 Server: Heroku
 Strict-Transport-Security: max-age=31536000 ; includeSubDomains
 Vary: Origin
@@ -30,16 +53,9 @@ Via: 1.1 heroku-router
 X-Content-Type-Options: nosniff
 X-Frame-Options: DENY
 X-Xss-Protection: 0
+Content-Length: 104
 
-Invalid endpoint
-NSF3yAWhwEg",
-    "type": "Bearer",
-    "userId": "U175",
-    "email": "sdetorganizer@gmail.com",
-    "roles": [
-        "ROLE_ADMIN",
-        "ROLE_STAFF"
-    ],
-    "status": "Active",
-    "passwordExpired": false
+{
+    "message": "Failed to create new User as phone number +91 9442800000 already exists !!",
+    "success": false
 }

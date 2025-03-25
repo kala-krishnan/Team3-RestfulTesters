@@ -17,7 +17,7 @@ import java.util.List;
 
 public class LoginStepDefinitons {
 
-	private ScenarioContext context = new ScenarioContext();
+	ScenarioContext context = ScenarioContext.getInstance();
 	private Response loginResponse;
 	LoginRequest logRequest;
 	SoftAssert softAssert ;
@@ -25,14 +25,9 @@ public class LoginStepDefinitons {
 
 	public LoginStepDefinitons() throws FileNotFoundException {
 
-		logRequest = new LoginRequest(context);
+		logRequest = new LoginRequest();
 	}
 
-
-	public LoginStepDefinitons(ScenarioContext context) throws FileNotFoundException {
-		this.context = context;
-		logRequest = new LoginRequest(context);  
-	}
 	/****************from config file *******************/
 	@Given("Admin creates request with valid credentials")
 	public void admin_creates_request_with_valid_credentials() {

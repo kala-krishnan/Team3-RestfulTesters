@@ -17,11 +17,11 @@ public class NoAuthStepDefinition {
 	BatchRequest batch;
 	private Response Response;
 	CommonResponseValidation ResponseValidation = new CommonResponseValidation();
-	private ScenarioContext context = new ScenarioContext();
+	ScenarioContext context = ScenarioContext.getInstance();
 	
 	public NoAuthStepDefinition() throws FileNotFoundException {
-		batch = new BatchRequest(context);
-		loginRequest = new LoginRequest(context);	
+		batch = new BatchRequest();
+		loginRequest = new LoginRequest();	
 	}
 	
 	@Given("Admin creates {string} Request in batch for NoAuth")

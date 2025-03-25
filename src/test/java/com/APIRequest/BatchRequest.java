@@ -6,6 +6,7 @@ import com.EnumClass.APIResources;
 import com.commonUtils.SpecificationClass;
 import com.commonUtils.TestDataLoader;
 import com.context.ScenarioContext;
+import com.context.TextContext;
 import com.pojoclass.BatchPojo;
 
 import io.restassured.RestAssured;
@@ -15,12 +16,11 @@ import io.restassured.specification.RequestSpecification;
 public class BatchRequest extends SpecificationClass{
 	
 	Response response;
-	ScenarioContext context;
+	ScenarioContext context = ScenarioContext.getInstance();
 	RequestSpecification reqSpec;
-	public BatchRequest(ScenarioContext context) throws FileNotFoundException
+	public BatchRequest() throws FileNotFoundException
 	{
-		super(context);
-		this.context = context;
+		
 	}
 	public int getBatchStatusCode() {
 		BatchPojo batchStatusCode=(BatchPojo) context.get("BatchPojo");
@@ -53,6 +53,12 @@ public class BatchRequest extends SpecificationClass{
 			EndPoint = APIResources.valueOf("APIAddBatch").getResources() + "Invalid";
 		
 		BatchPojo batch = context.get("BatchPojo", BatchPojo.class);
+		
+		// getting the programid for chaining - change the variable name if u want
+		int storedProgramID = TextContext.getProgramId();
+		System.out.println("Printing chaining program ID and storing for chaining in batch body" + storedProgramID );
+		batch.setProgramId(storedProgramID);
+		
 		response = RestAssured.given().spec(requestHeadersWithToken())
 				.body(batch).log().all()
 				.post(EndPoint);       
@@ -61,8 +67,21 @@ public class BatchRequest extends SpecificationClass{
 		{
 			context.set("batchId", response.jsonPath().get("batchId"));
 			context.set("batchName", response.jsonPath().getString("batchName"));
+			
+			// Setting BatchId for chaining 
+			int BatchID = response.jsonPath().get("batchId");
+			TextContext.setBatchId(BatchID); 
+			
 			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ "+context.get("batchName"));
 			System.out.println("##################################################### "+context.get("batchId"));
+			
+			// getting the batchid for chaining
+			int storedBatchID = TextContext.getBatchId();
+			System.out.println("Printing chaining batch ID " + storedBatchID );
+			
+			// getting the usesrid for chaining - not execute before batch .so is null
+			//String storeduserID = TextContext.getUserId();
+			//System.out.println("Printing chaining user ID in batch module " + storeduserID );
 		}
 	}
 	
