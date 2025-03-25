@@ -361,7 +361,31 @@
 				"statusCode":401,
 				"statusText": "HTTP/1.1 401 Unauthorized"
 		    }
-		}
+		},
+		{
+		    "DeleteBatchValid": {
+				"scenario":"Delete Batch by ID",   
+				"id": 11881,  
+				"statusCode":200,
+				"statusText": "HTTP/1.1 200 OK"	
+		    }
+		},
+		{
+		    "DeleteBatchInvalidEP": {
+				"scenario":"Delete Batch by Invalid Endpoint",   
+				"id": 10473,  
+				"statusCode":404,
+				"statusText": "HTTP/1.1 404 Not Found"
+		    }
+		},
+		{
+		    "DeleteBatchInvalidID": {
+				"scenario":"Delete Batch by Invalid ID",   
+				"id": 1195900000,  
+				"statusCode":404,
+				"statusText": "HTTP/1.1 404 Not Found"
+		    }
+		},
 
          {
 					"GetAllUsers":{

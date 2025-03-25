@@ -176,5 +176,24 @@ batchResponse = context.get("batchResponse", Response.class);
 
 //********************************** DELETE BATCH *********************************************
 
+@Given("Admin creates Delete Request for batch {string}")
+public void admin_creates_delete_request_for_batch(String requestType) throws Exception {
+	batch.setNewBatchRequest(requestType);
+}
+
+@When("Admin sends DELETE HTTPS Request batch {string}")
+public void admin_sends_delete_https_request_batch(String Scenario) {
+	batch.DeleteBatchRequest(Scenario);
+}
+
+@Then("Admin receives batch Delete {string}")
+public void admin_receives_batch_delete(String Code) {
+	batchResponse = context.get("batchResponse", Response.class);
+	ResponseValidation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
+	ResponseValidation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
+	ResponseValidation.validateResponseTime(batchResponse);	
+	if(!Code.equals("404"))
+	ResponseValidation.validateContentType(batchResponse);
+}
 	
 }

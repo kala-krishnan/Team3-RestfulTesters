@@ -200,7 +200,7 @@ public class BatchRequest extends SpecificationClass{
 	{
 		String id = getIdBatch();
 		String EndPoint = APIResources.valueOf("APIDeleteBatchByID").getResources()+id;
-		if (Scenario.equals("DeleteBatchInvalidEp")) 
+		if (Scenario.equals("DeleteBatchInvalidEP")) 
 			EndPoint = APIResources.valueOf("APIDeleteBatchByID").getResources() + "Invalid"+id;
 		
 		BatchPojo batch = context.get("BatchPojo", BatchPojo.class);
