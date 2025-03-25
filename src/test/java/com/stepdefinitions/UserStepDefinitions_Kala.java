@@ -1,6 +1,7 @@
 //package com.stepdefinitions;
 //
 //import java.io.FileNotFoundException;
+//import java.io.IOException;
 //
 //import org.testng.Assert;
 //
@@ -8,6 +9,7 @@
 //import com.APIRequest.UserAPIRequest_Kala;
 //import com.context.ScenarioContext;
 //import com.context.TextContext;
+//import com.fasterxml.jackson.core.JsonProcessingException;
 //import com.fasterxml.jackson.databind.JsonNode;
 //
 //import io.cucumber.java.en.Given;
@@ -18,24 +20,24 @@
 //	LoginRequest logReq;
 //	UserAPIRequest_Kala userReq;
 //	JsonNode TestData_Get;
-//	private ScenarioContext context = new ScenarioContext();
+//	private ScenarioContext context = ScenarioContext.getInstance();;
 //	
 //	public UserStepDefinitions_Kala() throws FileNotFoundException
 //	{
-//		logReq = new LoginRequest(context);
-//		userReq = new UserAPIRequest_Kala(context);
+//		logReq = new LoginRequest();
+//		userReq = new UserAPIRequest_Kala();
 //	}
 //	
-//
-//@Given("User Set Authentication Token for Authorisation")
-//public void user_set_authentication_token_for_authorisation() {
-//	if(context.get("LMStoken")==null)
-//	{
-//		logReq.PostLoginRequest();
-//	}
-//	System.out.println("context.get(LMStoken)" +context.get("LMStoken"));
-//	
-//}
+////
+////@Given("User Set Authentication Token for Authorisation")
+////public void user_set_authentication_token_for_authorisation() {
+////	if(context.get("LMStoken")==null)
+////	{
+////		logReq.PostLoginRequest();
+////	}
+////	System.out.println("context.get(LMStoken)" +context.get("LMStoken"));
+////	
+////}
 //
 ////**********************************************Get All Request start***********************************************************
 ///*
@@ -46,40 +48,49 @@
 //	
 //	TestData_Get=userReq.setGetUserRequest(requestType);
 //}
-//@When("User calls GET Https method to get all users with valid endpoint for LMS User Module")
-//public void user_calls_get_https_method_to_get_all_users_with_valid_endpoint_for_lms_user_module() {
-//	userReq.getAllUsers();
+//
+//
+//@When("User calls GET Https method for the requesttype {string} to get all users with endpoint for LMS User Module")
+//public void user_calls_get_https_method_for_the_requesttype_to_get_all_users_with_endpoint_for_lms_user_module(String reqType) throws IOException {
+//	userReq.getAllUsers(reqType);
 //}
 //
-//@Then("User received proper status code with all User Details")
-//public void user_received_proper_status_code_with_all_user_details() {
+//@Then("User received proper status code {string} with all User Details")
+//public void user_received_proper_status_code_with_all_user_details(String string) {
 //	Assert.assertEquals(userReq.responseCode(), TestData_Get.get("statusCode").asInt());
+//	
 //}
+//
 ///*
 // * Get All Active Users
 // */
-//@When("User calls GET Https method to get all active users with valid endpoint for LMS User Module")
-//public void user_calls_get_https_method_to_get_all_active_users_with_valid_endpoint_for_lms_user_module() {
-//	userReq.getAllActiveUsers();
+//
+//@When("User calls GET Https method for the requesttype {string} to get all active users with endpoint for LMS User Module")
+//public void user_calls_get_https_method_for_the_requesttype_to_get_all_active_users_with_endpoint_for_lms_user_module(String reqType) {
+//	userReq.getAllActiveUsers(reqType);
 //}
 //
 //
-//@Then("User received proper status code with all active User Details")
-//public void user_received_proper_status_code_with_all_active_user_details() {
+//
+//
+//@Then("User received proper status code {string} with all active User Details")
+//public void user_received_proper_status_code_with_all_active_user_details(String string) {
 //	Assert.assertEquals(userReq.responseCode(), TestData_Get.get("statusCode").asInt());
 //}
 ///*
 // * Get All Users Email Id
 // */
-//@When("User calls GET Https method to fetch email id of all users with valid endpoint for LMS User Module")
-//public void user_calls_get_https_method_to_fetch_email_id_of_all_users_with_valid_endpoint_for_lms_user_module() {
-//   userReq.getAllFetchEMailUsers();
-//}
 //
-//@Then("User received proper status code with all User Email Ids")
-//public void user_received_proper_status_code_with_all_user_email_ids() {
+//
+//@When("User calls GET Https method for the requesttype {string} to fetch email id of all users with endpoint for LMS User Module")
+//public void user_calls_get_https_method_for_the_requesttype_to_fetch_email_id_of_all_users_with_endpoint_for_lms_user_module(String reqType) {
+//	 userReq.getAllFetchEMailUsers(reqType);
+//}
+//@Then("User received proper status code {string} with all User Email Ids")
+//public void user_received_proper_status_code_with_all_user_email_ids(String string) {
 //	Assert.assertEquals(userReq.responseCode(), TestData_Get.get("statusCode").asInt());
 //}
+//
 ///*
 // * Get All roles 
 // */
@@ -88,15 +99,17 @@
 //	TestData_Get=userReq.setGetUserRequest(requestType);
 //}
 //
-//@When("User calls GET Https method to fetch all roles with valid endpoint for LMS User Module")
-//public void user_calls_get_https_method_to_fetch_all_roles_with_valid_endpoint_for_lms_user_module() {
-//userReq.getAllRoles();
-//}
 //
-//@Then("User received proper status code with all roles")
-//public void user_received_proper_status_code_with_all_roles() {
+//@When("User calls GET Https method for the requesttype {string} to fetch all roles with endpoint for LMS User Module")
+//public void user_calls_get_https_method_for_the_requesttype_to_fetch_all_roles_with_endpoint_for_lms_user_module(String reqType) {
+//	userReq.getAllRoles(reqType);
+//}
+//@Then("User received proper status code {string} with all roles")
+//public void user_received_proper_status_code_with_all_roles(String string) {
 //	Assert.assertEquals(userReq.responseCode(), TestData_Get.get("statusCode").asInt());
 //}
+//
+//
 ///*
 // * Get All users with roles
 // */
@@ -105,15 +118,16 @@
 //	TestData_Get=userReq.setGetUserRequest(requestType);
 //}
 //
-//@When("User calls GET Https method to fetch all users with roles with valid endpoint for LMS User Module")
-//public void user_calls_get_https_method_to_fetch_all_users_with_roles_with_valid_endpoint_for_lms_user_module() {
-//	userReq.getAllUserwithRoles();
-//}
 //
-//@Then("User received proper status code with all users with roles")
-//public void user_received_proper_status_code_with_all_users_with_roles() {
+//@When("User calls GET Https method for the requesttype {string} to fetch all users with roles with endpoint for LMS User Module")
+//public void user_calls_get_https_method_for_the_requesttype_to_fetch_all_users_with_roles_with_endpoint_for_lms_user_module(String reqType) {
+//	userReq.getAllUserwithRoles(reqType);
+//}
+//@Then("User received proper status code {string} with all users with roles")
+//public void user_received_proper_status_code_with_all_users_with_roles(String string) {
 //	Assert.assertEquals(userReq.responseCode(), TestData_Get.get("statusCode").asInt());
 //}
+//
 //
 ///*
 // * Get status count
@@ -122,16 +136,16 @@
 //public void user_creates_get_request_to_get_users_with_status_count_with_request_body_for_lms_user_module(String requestType) throws Exception {
 //	TestData_Get=userReq.setGetUserRequest(requestType);
 //}
-//
-//@When("User calls GET Https method to fetch users with status count with valid endpoint for LMS User Module")
-//public void user_calls_get_https_method_to_fetch_users_with_status_count_with_valid_endpoint_for_lms_user_module() {
-//	userReq.GetAllUserStatusCount();
+//@When("User calls GET Https method for the requesttype {string} to fetch users with status count with endpoint for LMS User Module")
+//public void user_calls_get_https_method_for_the_requesttype_to_fetch_users_with_status_count_with_endpoint_for_lms_user_module(String reqType) {
+//	userReq.GetAllUserStatusCount(reqType);
 //}
 //
-//@Then("User received proper status code with user with status count")
-//public void user_received_proper_status_code_with_user_with_status_count() {
-//	Assert.assertEquals(userReq.responseCode(), TestData_Get.get("statusCode").asInt());
-//}
+//@Then("User received proper status code {string} with user with status count")
+//public void user_received_proper_status_code_with_user_with_status_count(String string) {
+//	Assert.assertEquals(userReq.responseCode(), TestData_Get.get("statusCode").asInt());}
+//
+//
 ////**********************************************Get All Request***********************************************************
 //
 //
@@ -144,57 +158,39 @@
 //	TestData_Get=userReq.setGetUserRequest(requestType);
 //}
 //
-//@When("User calls GET Https method to fetch Users by UserId with valid endpoint for LMS User Module")
-//public void user_calls_get_https_method_to_fetch_users_by_user_id_with_valid_endpoint_for_lms_user_module() {
-//   userReq.getUserById();
+//@When("User calls GET Https method for the requesttype {string} to fetch Users by UserId with endpoint for LMS User Module")
+//public void user_calls_get_https_method_for_the_requesttype_to_fetch_users_by_user_id_with_endpoint_for_lms_user_module(String reqType) {
+//	userReq.GetUserByUserId(reqType);
 //}
 //
-//@Then("User received proper status code with Users by UserId")
-//public void user_received_proper_status_code_with_users_by_user_id() {
-////	Assert.assertEquals(userReq.responseCode(), TestData_Get.get("statusCode").asInt());
+//
+//
+//@Then("User received proper status code {string} with Users by UserId")
+//public void user_received_proper_status_code_with_users_by_user_id(String string) {
+//	Assert.assertEquals(userReq.responseCode(), TestData_Get.get("statusCode").asInt());
 //}
+//
 ////**********************************************GetBy Id Ends***********************************************************
 //
 ////**********************************************PUT Request starts***********************************************************
-///*
-// * Put User by User id
-// */
-//@Given("User creates PUT Request to update User by UserId with request body {string} for LMS User Module")
-//public void user_creates_put_request_to_update_user_by_user_id_with_request_body_for_lms_user_module(String string) {
-//    // Write code here that turns the phrase above into concrete actions
-//    throw new io.cucumber.java.PendingException();
-//}
 //
-//@When("User calls PUT Https method to update User by UserId with valid endpoint for LMS User Module")
-//public void user_calls_put_https_method_to_update_user_by_user_id_with_valid_endpoint_for_lms_user_module() {
-//    // Write code here that turns the phrase above into concrete actions
-//    throw new io.cucumber.java.PendingException();
-//}
-//
-//@Then("User received proper status code with updated user details as response")
-//public void user_received_proper_status_code_with_updated_user_details_as_response() {
-//    // Write code here that turns the phrase above into concrete actions
-//    throw new io.cucumber.java.PendingException();
-//}
 ///*
 // * Put role by User id
 // */
 //@Given("User creates PUT Request to update role Id by user Id with request body {string} for LMS User Module")
-//public void user_creates_put_request_to_update_role_id_by_user_id_with_request_body_for_lms_user_module(String string) {
-//    // Write code here that turns the phrase above into concrete actions
-//    throw new io.cucumber.java.PendingException();
+//public void user_creates_put_request_to_update_role_id_by_user_id_with_request_body_for_lms_user_module(String string) throws Exception {
+//	userReq.updateUserRequest(string);
+//
 //}
 //
-//@When("User calls PUT Https method to update role Id by user Id with valid endpoint for LMS User Module")
-//public void user_calls_put_https_method_to_update_role_id_by_user_id_with_valid_endpoint_for_lms_user_module() {
-//    // Write code here that turns the phrase above into concrete actions
-//    throw new io.cucumber.java.PendingException();
+//@When("User calls PUT Https method for the requesttype {string} to update role Id by user Id with endpoint for LMS User Module")
+//public void user_calls_put_https_method_for_the_requesttype_to_update_role_id_by_user_id_with_endpoint_for_lms_user_module(String reqType) throws JsonProcessingException {
+//	userReq.updateRoleByUserId(reqType);
 //}
 //
-//@Then("User received proper status code with updated role details for the user as response")
-//public void user_received_proper_status_code_with_updated_role_details_for_the_user_as_response() {
-//    // Write code here that turns the phrase above into concrete actions
-//    throw new io.cucumber.java.PendingException();
+//@Then("User received proper status code {string} with updated role details for the user as response")
+//public void user_received_proper_status_code_with_updated_role_details_for_the_user_as_response(String string) {
+//	Assert.assertEquals(userReq.responseCode(), 200);
 //}
 ////**********************************************PUT Request Ends***********************************************************
 //
