@@ -8,7 +8,6 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import java.io.FileNotFoundException;
-import com.context.TextContext;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
@@ -24,7 +23,7 @@ public class SpecificationClass {
 		PrintStream log;
 		public SpecificationClass() throws FileNotFoundException
 		{
-			log =new PrintStream(new FileOutputStream(FilePath));
+			log = new PrintStream(new FileOutputStream(FilePath, true));
 		}
 		public RequestSpecification requestHeadersWithoutToken()
 		{
