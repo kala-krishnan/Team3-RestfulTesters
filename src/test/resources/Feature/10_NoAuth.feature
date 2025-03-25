@@ -1,7 +1,7 @@
 @NoAuth @LMS
 Feature: LMS API No Auth Request
 
------------------------------------ BATCH NO AUTH ---------------------------------
+#----------------------------------- BATCH NO AUTH ---------------------------------
   @NoAuthAddBatch
   Scenario: Verify create batch functionality with no Auth
     Given Admin creates "NoAuthAddBatch" Request in batch for NoAuth

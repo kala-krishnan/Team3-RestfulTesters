@@ -1,26 +1,24 @@
-Request method:	GET
-Request URI:	https://lms-hackthon-feb25-803334c87fbe.herokuapp.com/lms/batches/batchId/Invalid11959
+Request method:	DELETE
+Request URI:	https://lms-hackthon-feb25-803334c87fbe.herokuapp.com/lms/batches/11959
 Proxy:			<none>
 Request params:	<none>
 Query params:	<none>
 Form params:	<none>
 Path params:	<none>
-Headers:		Authorization=Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0b3JnYW5pemVyQGdtYWlsLmNvbSIsImlhdCI6MTc0MjgzMjkwMiwiZXhwIjoxNzQyODYxNzAyfQ.9cwIVjRDgJtnF2w4hAs-AsKGtgXnFxMcCJRXwPFS4vp9v7ZTHIJyma6ZcPFQAbsptAmjkwArnUcNSF3yAWhwEg
-				Accept=*/*
+Headers:		Accept=*/*
 				Content-Type=application/json
 Cookies:		<none>
 Multiparts:		<none>
 Body:			<none>
-HTTP/1.1 404 Not Found
+HTTP/1.1 401 Unauthorized
 Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-Content-Length: 16
-Content-Type: text/plain;charset=UTF-8
-Date: Mon, 24 Mar 2025 16:15:03 GMT
+Content-Length: 0
+Date: Mon, 24 Mar 2025 23:40:28 GMT
 Expires: 0
 Nel: {"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}
 Pragma: no-cache
-Report-To: {"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=5aMhIqnSbyf0qJiC2o3Lr8kkzktj311zm%2Ft2Gkf4eeQ%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1742832903"}],"max_age":3600}
-Reporting-Endpoints: heroku-nel="https://nel.heroku.com/reports?s=5aMhIqnSbyf0qJiC2o3Lr8kkzktj311zm%2Ft2Gkf4eeQ%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1742832903"
+Report-To: {"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=fV0c%2BOt2Gxzxk%2B3%2FOwSzuG4WwYncWXaEZoILWjouKj8%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1742859628"}],"max_age":3600}
+Reporting-Endpoints: heroku-nel="https://nel.heroku.com/reports?s=fV0c%2BOt2Gxzxk%2B3%2FOwSzuG4WwYncWXaEZoILWjouKj8%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1742859628"
 Server: Heroku
 Strict-Transport-Security: max-age=31536000 ; includeSubDomains
 Vary: Origin
@@ -30,16 +28,3 @@ Via: 1.1 heroku-router
 X-Content-Type-Options: nosniff
 X-Frame-Options: DENY
 X-Xss-Protection: 0
-
-Invalid endpoint
-NSF3yAWhwEg",
-    "type": "Bearer",
-    "userId": "U175",
-    "email": "sdetorganizer@gmail.com",
-    "roles": [
-        "ROLE_ADMIN",
-        "ROLE_STAFF"
-    ],
-    "status": "Active",
-    "passwordExpired": false
-}
