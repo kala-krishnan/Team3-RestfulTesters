@@ -1,35 +1,10 @@
-@userModule
-Feature: LMS API User Module
+Feature: To test LMS User API Endpoints
 
-Background:
-Given Set Auth to bearer token
+Background: User set Bearer token Authentication
+Given User Set Authentication Token for Authorisation
 
-Scenario Outline: Check if admin able to create a new user with valid endpoint and request body 
-Given Admin creates POST Request with request body "<requestType>" for LMS User Module
-When Admin calls Post Https method  with valid endpoint for LMS User Module
-Then Admin receive created  status for LMS User Module
-Examples:
-| requestType  |
-| CreateUserValid   |
-| CreateUserInValidPhNumber   | 
 
-Scenario Outline: Check if admin able to retrieve all user with facets and filters LMS User Module  
-Given Admin creates GET Request "<requestType>" for LMS User Module
-When Admin sends GET Request with v2 endpoint for LMS User Module
-Then Admin gets the list of active users with filters
-Examples:
-| requestType  |
-| GetAllUserWithFilters   |
 
-Scenario Outline: Check if admin able to retrieve user by parameter LMS User Module  
-Given Admin creates GET Request "<requestType>" and "<parameter>" for LMS User Module
-When Admin sends GET Request with endpoint and "<parameter>" for LMS User Module
-Then Admin gets the users details
-Examples:
-| requestType  |parameter|
-| GetUserByRoleID   |roleId|
-
-#####Kala Feature - March 24 7.15PM
 
 Scenario Outline: Check if User able to get all users with endpoint and request body 
 Given User creates Get Request to get user Details with request body "<requestType>" for LMS User Module
@@ -39,6 +14,10 @@ Examples:
 | requestType  |StatusCode|
 |  GetAllUsers  |200|
 |  GetAllUserInvalidEndpoint|404|
+
+
+
+
 
 
 Scenario Outline: Check if User able to get all active users with endpoint and request body 
@@ -113,4 +92,3 @@ Then User received proper status code "<StatusCode>" with updated role details f
 Examples:
 | requestType  |StatusCode|
 | PutUserRolebyUserId   |200|
-

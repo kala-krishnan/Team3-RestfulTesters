@@ -219,6 +219,7 @@
 				"statusText": "HTTP/1.1 200 OK"		
             }
         },
+
 		{
 		    "PutInvalidBatchID": {
 				"scenario":"Update Batch with invalid batchid",  
@@ -361,5 +362,103 @@
 				"statusText": "HTTP/1.1 401 Unauthorized"
 		    }
 		}
+
+         {
+					"GetAllUsers":{
+				    "scenario": "Get all Users",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				 {
+					"GetAllUserInvalidEndpoint":{
+				    "scenario": "Get all Users with inValid",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllActiveUsers":{
+				    "scenario": "Get all active Users",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllActiveUsersInvalidEndpoint":{
+				    "scenario": "Get all active Users with inValid",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetActiveEmailUsers":{
+				    "scenario": "Get all Active Users Email id",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetActiveEmailUsersInvalidEndpoint":{
+				    "scenario": "Get all active Users Email id with inValid",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllRoles":{
+				    "scenario": "Get all roles",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllRolesInvalidEndpoint":{
+				    "scenario": "Get all roles with inValid",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllUserwithRoles":{
+				    "scenario": "Get all users with roles",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllUserwithRolesInvalidEndpoint":{
+				    "scenario": "Get all Users with roles with inValid",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllUserStatusCount":{
+				    "scenario": "Get all User Status Count",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllUserStatusCountInvalidEndpoint":{
+				    "scenario": "Get all Users status count with inValid",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				}
+		
     ]
 }
