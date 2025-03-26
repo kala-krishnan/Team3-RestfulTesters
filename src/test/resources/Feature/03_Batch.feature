@@ -18,7 +18,7 @@ Background: Authorization SetUp
 			| AddBatchEmptyNonMandatory |  Valid		|   201   |
 			| AddBatchNameStrtWithNo    |  Valid		|   400   |
 			| AddBatchStatusInactive    |  Valid		|   400   |			
-				
+						
 						
 	@GetAllBatch   
   Scenario Outline: Verify search all batch functionality
@@ -28,8 +28,8 @@ Background: Authorization SetUp
     Examples: 
       | Scenario     			   | Status  |
       | GetAllBatchValid 	   |  200    |
-      | GetAllBatchInValidEP |  404    |
-    
+      | GetAllBatchInValidEP |  404    |  
+       
     
 	@GetBatchByID   
   Scenario Outline: Verify search by Batch ID functionality
@@ -41,8 +41,8 @@ Background: Authorization SetUp
       | GetByBatchIDValid    |  200    |
       | GetByBatchIDInactive |  200    |
       | GetByBatchIDInvalid  |  404    |
-      | GetByBatchIDInValidEP|  404    |      
-      
+      | GetByBatchIDInValidEP|  404    |            
+        
         
 	@GetBatchByName   
   Scenario Outline: Verify search by Batch Name functionality
@@ -56,6 +56,7 @@ Background: Authorization SetUp
       | GetByBatchNameInvalid   |  404    |
       | GetByBatchNameInValidEP |  404    |   
       
+      
   @GetBatchByPrgmID   
   Scenario Outline: Verify search by Program ID functionality
     Given Admin creates GET batch Request with Program ID "<Scenario>"
@@ -68,13 +69,14 @@ Background: Authorization SetUp
       | GetByProgramInvalid    |  404    |
       | GetByProgramIDInValidEP|  404    |         
       
+      
   @UpdateBatch   
-  Scenario Outline: Verify create batch functionality
+  Scenario Outline: Verify update batch functionality
     Given Admin creates PUT Request with "<Scenario>" in batch request body 
     When Admin sends PUT HTTPS Request update batch with "<Scenario>"
     Then Admin receives "<Status>" for Update batch request
     Examples: 
-      | Scenario     				       | Status  |
+      | Scenario     				   | Status  |
       | PutBatchValid 		     |   200   |
       | PutInvalidBatchID      |   404   |
       | PutBatchEmptyMandatory |   400   |

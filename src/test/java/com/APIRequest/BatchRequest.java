@@ -82,7 +82,6 @@ public class BatchRequest extends SpecificationClass{
 	
 	public void NoAuthPostNewBatchRequest()
 	{
-		TextContext.setProgramId(16449); //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 		BatchPojo batch = context.get("BatchPojo", BatchPojo.class);
 		response = RestAssured.given().spec(requestHeadersWithoutToken())
 				.body(batch).log().all()
