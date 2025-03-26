@@ -13,3 +13,4 @@ Feature: LMS Class Module
     Examples: 
       | requestType |
       | CreateClass  |
+#Add post create class
