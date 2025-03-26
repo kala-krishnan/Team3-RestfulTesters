@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "programId": {
+      "type": "integer"
+    },
+    "programName": {
+      "type": "string"
+    },
+    "programDescription": {
+      "type": "string"
+    },
+    "programStatus": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "programId",
+    "programName",
+    "programDescription",
+    "programStatus"
+  ]
+}
