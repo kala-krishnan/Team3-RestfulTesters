@@ -1,4 +1,4 @@
-@userModule @LMS1
+@userModule @LMS
 Feature: LMS API User Module
 
 Background:

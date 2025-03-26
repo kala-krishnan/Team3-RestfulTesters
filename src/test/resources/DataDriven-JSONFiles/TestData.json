@@ -2,7 +2,7 @@
     "requests": [
         {
             "LoginInvalidCreds": {
-                "scenario": "Login Invalid Username & Password",
+                "scenario": "Login Invalid Email & Password",
                 "userLoginEmailId": "APIRestassuredLMS@gmail.com",
                 "password": "ApiRest@2",
 				"statusCode":400,
@@ -11,13 +11,49 @@
         },
         {
             "LoginInvalidEndpoint": {
-                "scenario": "Check if Admin able to generate token with invalid credential",
+                "scenario": "Login Invalid Endpoint",
                 "userLoginEmailId": "Stepapi01@gmail.com",
                 "password": "phase@2",
-				"statusCode":401,
-				"statusText": "HTTP/1.1 401 Unauthorized"
+				"statusCode":404,
+				"statusText": "HTTP/1.1 401 Not Found"
             }
         },
+		{
+		    "LoginEmptyCredential": {
+		        "scenario": "Login Empty Credentials",
+		        "userLoginEmailId": "",
+		        "password": "",
+				"statusCode":400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+		    }
+		},
+		{
+		    "LoginEmptyUserEmail": {
+		        "scenario": "Login Empty User email id ",
+		        "userLoginEmailId": "",
+		        "password": "ApiRest@2",
+				"statusCode":400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+		    }
+		},
+		{
+		    "LoginEmptyPassword": {
+		        "scenario": "Login Empty Password",
+		        "userLoginEmailId": "APIRestassuredLMS@gmail.com",
+		        "password": "",
+				"statusCode":400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+		    }
+		},
+		{
+		    "LoginInvalidEmailFormat": {
+		        "scenario": "Login Invalid Email format",
+		        "userLoginEmailId": "APIRestassuredLMSgmailcom",
+		        "password": "ApiRest@2",
+				"statusCode":400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+		    }
+		},
         
         {
             "CreateUserValid": {
@@ -106,14 +142,6 @@
             }
         },
         {
-            "GetByBatchIDValid": {
-                "scenario": "Search Batch by ID",
-                "id": 9488,
-                "statusCode": 200,
-                "statusText": "HTTP/1.1 200 OK"
-            }
-        },
-        {
             "CreateProgramValid": {
                 "scenario": "Add Program with Bearer Token",
 				"programName": "teamfourone",
@@ -126,9 +154,10 @@
         },
 	        {
 	            "AddBatchValid": {
-					"scenario":"Add Batch valid",    
+					"scenario":"Add Batch valid", 
+					"id": 0,   
 	                "batchDescription": "TestBatches",
-	                "batchName": "APIBatchRest20",
+	                "batchName": "APIBatchRest49",
 	                "batchNoOfClasses": 10,
 	                "batchStatus": "Active",
 	                "programId": 16449,
@@ -138,9 +167,10 @@
 	        },
 			{
 	            "AddBatchEmptyNonMandatory": {
-					"scenario":"Add Batch with Non Mandatory field empty",    
+					"scenario":"Add Batch with Non Mandatory field empty", 
+					"id": 0,    
 	                "batchDescription": "",
-	                "batchName": "APIBatchRestful20",
+	                "batchName": "APIBatchRestful36",
 	                "batchNoOfClasses": 10,
 	                "batchStatus": "Active",
 	                "programId": 16449,
@@ -150,7 +180,8 @@
 	        },
 				{
 		           "AddBatchExistingName": {
-					   "scenario":"Add Batch with existing Batch Name",    
+					   "scenario":"Add Batch with existing Batch Name",   
+					   "id": 0,  
 		               "batchDescription": "TestBatches",
 		               "batchName": "APIBatchRest1",
 		               "batchNoOfClasses": 10,
@@ -163,7 +194,8 @@
 			  
 			  {
 	  	           "AddBatchEmptyMandatory": {
-	  				   "scenario":"Add Batch with Mandatory field empty",    
+	  				   "scenario":"Add Batch with Mandatory field empty", 
+					   "id": 0,    
 	  	               "batchDescription": "TestBatches",
 	  	               "batchName": "",
 	  	               "batchNoOfClasses": 10,
@@ -175,7 +207,8 @@
 	  		  },
 			  {
 		           "AddBatchNameStrtWithNo": {
-					   "scenario":"Add Batch with Name Starts with number",    
+					   "scenario":"Add Batch with Name Starts with number",
+					   "id": 0,     
 		               "batchDescription": "TestBatches",
 		               "batchName": "3TestBatch",
 		               "batchNoOfClasses": 10,
@@ -187,7 +220,8 @@
 			  },
 			  {
 	  	           "AddBatchStatusInactive": {
-	  				   "scenario":"Add Batch with Inactive status",    
+	  				   "scenario":"Add Batch with Inactive status",  
+					   "id": 0,   
 	  	               "batchDescription": "TestBatches",
 	  	               "batchName": "TestAPIBatch001",
 	  	               "batchNoOfClasses": 10,
@@ -199,7 +233,8 @@
 	  		  },
 			  {
 	  	           "AddBatchInvalidEp": {
-	  				   "scenario":"Add Batch with Invalid endpoint",    
+	  				   "scenario":"Add Batch with Invalid endpoint", 
+					   "id": 0,    
 	  	               "batchDescription": "TestBatches",
 	  	               "batchName": "TestAPIBatch001",
 	  	               "batchNoOfClasses": 10,
@@ -228,7 +263,7 @@
 	        {
 	            "GetByBatchIDValid": {
 					"scenario":"Search Batch by ID",   
-					"id": 11959,  
+					"id":0,  
 					"statusCode":200,
 					"statusText": "HTTP/1.1 200 OK"
 					
@@ -255,7 +290,7 @@
 			{
 	            "GetByBatchIDInValidEP": {
 					"scenario":"Search Batch by ID Invalid EndPoint",
-					"id":11959,
+					"id":0,
 					"statusCode":404,
 					"statusText": "HTTP/1.1 404 Not Found"
 					
@@ -299,7 +334,7 @@
 	        {
 	            "GetBatchByPrgmIDValid": {
 					"scenario":"Search Batch by Program ID",
-					"id": 16449,  
+					"id": 0,  
 					"statusCode":200,
 					"statusText": "HTTP/1.1 200 OK"
 					
@@ -325,7 +360,7 @@
 			{
 			    "GetByProgramIDInValidEP": {
 					"scenario":"Search Batch by Program ID Invalid endpoint",  
-					"id": 16449,  
+					"id": 0,  
 					"statusCode":404,
 					"statusText": "HTTP/1.1 404 Not Found"
 			    }
@@ -333,10 +368,10 @@
 	        {
 	            "PutBatchValid": {
 					"scenario":"Update Batch Valid",  
-					"id": 11959,  
+					"id": 0,  
 					"batchDescription": "TestBatches",
-					"batchName": "APIBatRest14",
-					"batchNoOfClasses": 10,
+					"batchName": "APIBahRest49",
+					"batchNoOfClasses": 11,
 					"batchStatus": "Active",
 					"programId": 16449,
 					"statusCode":200,
@@ -347,7 +382,7 @@
 			{
 			    "PutInvalidBatchID": {
 					"scenario":"Update Batch with invalid batchid",  
-					"id": 11959000000,  
+					"id": 1195900,  
 					"batchDescription": "TestBatches",
 					"batchName": "APIBatRest14",
 					"batchNoOfClasses": 10,
@@ -360,7 +395,7 @@
 			{
 			    "PutBatchEmptyMandatory": {
 					"scenario":"Update Batch Valid",  
-					"id": 11959,  
+					"id": 0,  
 					"batchDescription": "TestBatches",
 					"batchName": "",
 					"batchNoOfClasses": 0,
@@ -373,7 +408,7 @@
 			{
 			    "PutBatchNameStrtWithNo": {
 					"scenario":"Update Batch with Name starting with Number",  
-					"id": 11959,  
+					"id": 0,  
 					"batchDescription": "TestBatches",
 					"batchName": "12APIBatRest14",
 					"batchNoOfClasses": 10,
@@ -386,7 +421,7 @@
 			{
 			    "PutBatchInvalidEp": {
 					"scenario":"Update Batch Valid Invalid Endpoint",  
-					"id": 11959,  
+					"id": 0,  
 					"batchDescription": "TestBatches",
 					"batchName": "APIBattRest14",
 					"batchNoOfClasses": 10,
@@ -399,7 +434,7 @@
 			{
 			    "PutBatchInactivePrgmID": {
 					"scenario":"Update Batch with inactive Program ID",  
-					"id": 11959,  
+					"id": 0,  
 					"batchDescription": "TestBatches",
 					"batchName": "APIBatRest14",
 					"batchNoOfClasses": 10,
@@ -412,9 +447,9 @@
 			{
 			    "PutBatchwithInactiveID": {
 					"scenario":"Update inactive Batch ID",  
-					"id": 9178,  
+					"id": 12016,  
 					"batchDescription": "TestBatches",
-					"batchName": "APIBaRest14",
+					"batchName": "APIBaRestt14",
 					"batchNoOfClasses": 10,
 					"batchStatus": "Active",
 					"programId": 16449,
@@ -489,7 +524,7 @@
 			{
 			    "DeleteBatchValid": {
 					"scenario":"Delete Batch by ID",   
-					"id": 11881,  
+					"id":0,  
 					"statusCode":200,
 					"statusText": "HTTP/1.1 200 OK"	
 			    }
@@ -497,7 +532,7 @@
 			{
 			    "DeleteBatchInvalidEP": {
 					"scenario":"Delete Batch by Invalid Endpoint",   
-					"id": 10473,  
+					"id":0,  
 					"statusCode":404,
 					"statusText": "HTTP/1.1 404 Not Found"
 			    }
@@ -509,6 +544,20 @@
 					"statusCode":404,
 					"statusText": "HTTP/1.1 404 Not Found"
 			    }
-			}
+			},
+			{
+	            "LogoutValid": {
+	                "scenario": "Logout Valid",
+					"statusCode":200,
+					"statusText": "HTTP/1.1 200 OK"
+	            }
+	        },
+	        {
+	            "LogoutInvalidEP": {
+	                "scenario": "Logout Invalid endpoint",
+					"statusCode":404,
+					"statusText": "HTTP/1.1 404 Not Found"
+	            }
+	        }
     ]
 }
