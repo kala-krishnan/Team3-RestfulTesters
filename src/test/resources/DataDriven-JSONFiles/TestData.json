@@ -545,7 +545,7 @@
 					"statusText": "HTTP/1.1 404 Not Found"
 			    }
 			},
-<<<<<<< HEAD
+
 			{
 	            "LogoutValid": {
 	                "scenario": "Logout Valid",
@@ -560,7 +560,7 @@
 					"statusText": "HTTP/1.1 404 Not Found"
 	            }
 	        }
-=======
+
 			 {
 					"GetAllUsers":{
 				    "scenario": "Get all Users",
@@ -776,6 +776,5 @@
 					}
 					
 				}
->>>>>>> 6df7596b7af425073a7aa2699feb0166d40bf556
     ]
 }
