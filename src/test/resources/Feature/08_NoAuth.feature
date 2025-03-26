@@ -1,4 +1,4 @@
-@NoAuth @LMS
+@NoAuth @LMS1
 Feature: LMS API No Auth Request
 
 #----------------------------------- PROGRAM NO AUTH ---------------------------------

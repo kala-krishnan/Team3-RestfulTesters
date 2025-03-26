@@ -54,19 +54,17 @@ public class BatchRequest extends SpecificationClass{
 	public void PostNewBatchRequest(String Scenario)
 	{	
 		
-		TextContext.setProgramId(19449); //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-		
 		int PrgId =Integer.valueOf(getIdBatch());	
 		if(PrgId == 0)  PrgId = TextContext.getProgramId();
+				
 		
-		batchPojo.setProgramId(PrgId);
 		
 		String EndPoint = APIResources.valueOf("APIAddBatch").getResources();			
 		if (Scenario.equals("AddBatchInvalidEp")) 
 			EndPoint = APIResources.valueOf("APIAddBatch").getResources() + "Invalid";
 		
 		BatchPojo batch = context.get("BatchPojo", BatchPojo.class);
-		
+		batch.setProgramId(PrgId);
 		response = RestAssured.given().spec(requestHeadersWithToken())
 				.body(batch).log().all()
 				.post(EndPoint);       
@@ -80,8 +78,7 @@ public class BatchRequest extends SpecificationClass{
 			TextContext.setBatchName(BatchName);
 			
 		}
-		System.out.println("Printing chaining batch ID ***********************************************************" + TextContext.getBatchId() );
-		System.out.println("Printing chaining batch Name ***********************************************************" + TextContext.getBatchName() );	
+
 	}
 	
 	public void NoAuthPostNewBatchRequest()
@@ -208,7 +205,7 @@ public class BatchRequest extends SpecificationClass{
 	public void PutBatchRequest(String Scenario)
 	{
 		int PrgmID = TextContext.getProgramId();
-		batchPojo.setProgramId(PrgmID);
+		
 		
 		int id =Integer.valueOf(getIdBatch());
 		if(id == 0)  id = TextContext.getBatchId();
@@ -218,6 +215,7 @@ public class BatchRequest extends SpecificationClass{
 			EndPoint = APIResources.valueOf("APIUpdateBatchByID").getResources() + "Invalid";
 		
 		BatchPojo batch = context.get("BatchPojo", BatchPojo.class);
+		batch.setProgramId(PrgmID);
 		response = RestAssured.given().spec(requestHeadersWithToken())
 				.body(batch).log().all()
 				.pathParam("batchId", id)
@@ -226,7 +224,7 @@ public class BatchRequest extends SpecificationClass{
 		if (response.getStatusCode()==200 && Scenario.equals("PutBatchValid"))
 		{
 			context.set("batchName", response.jsonPath().getString("batchName"));
-			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ "+context.get("batchName"));
+
 		}
 	}
 	public void NoAuthPutBatchRequest()
@@ -246,9 +244,8 @@ public class BatchRequest extends SpecificationClass{
 	{
 		int id =Integer.valueOf(getIdBatch());
 		
-	System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+id);
+
 		if(id == 0)  id = TextContext.getBatchId();
-		System.out.println("*************************************"+id);
 		
 		String EndPoint = APIResources.valueOf("APIDeleteBatchByID").getResources();
 		if (Scenario.equals("DeleteBatchInvalidEP")) 
