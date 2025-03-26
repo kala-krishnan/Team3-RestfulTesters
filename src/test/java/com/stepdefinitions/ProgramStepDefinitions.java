@@ -40,7 +40,7 @@ public class ProgramStepDefinitions {
 	// ******************************************
 	@Given("Admin sets Authorization to Bearer Token Program")
 	public void admin_sets_authorization_to_bearer_token_program() {
-			logRequest.PostLoginRequest();
+		logRequest.PostLoginRequest();
 	}
 
 	@Given("Admin creates POST Request with request body {string} for LMS Program Module")
@@ -155,7 +155,8 @@ public class ProgramStepDefinitions {
 	// ........UPDATE PROGRAM BY PROGRAMID ......
 
 	@Given("Admin creates PUT Request with {string} in Program Module with request body")
-	public void admin_creates_put_request_with_in_program_module_with_request_body(String requestType) throws Exception {
+	public void admin_creates_put_request_with_in_program_module_with_request_body(String requestType)
+			throws Exception {
 		programRequest.setNewProgramRequest(requestType);
 	}
 
@@ -168,6 +169,8 @@ public class ProgramStepDefinitions {
 	@Then("Admin receives {string} for Update Program Module request")
 	public void admin_receives_for_update_program_module_request(String StatusCode) {
 		programResponse = context.get("programResponse", Response.class);
+		System.out.println("programResponseprogramResponseprogramResponse" + programResponse.getStatusCode());
+		System.out.println("programResponseprogramResponseprogramResponse" + programRequest.getProgramStatusCode());
 		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
 		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
 		ResponseValidation.validateResponseTime(programResponse);
@@ -178,7 +181,8 @@ public class ProgramStepDefinitions {
 	// ........UPDATE PROGRAM BY PROGRAMNAME ......
 
 	@Given("Admin creates PUT Request with {string} in Program Module by program name with request body")
-	public void admin_creates_put_request_with_in_program_module_by_program_name_with_request_body(String requestType) throws Exception {
+	public void admin_creates_put_request_with_in_program_module_by_program_name_with_request_body(String requestType)
+			throws Exception {
 		programRequest.setNewProgramRequest(requestType);
 
 	}
@@ -190,6 +194,28 @@ public class ProgramStepDefinitions {
 
 	@Then("Admin receives {string} for Update Program Module request by program name")
 	public void admin_receives_for_update_program_module_request_by_program_name(String StatusCode) {
+		programResponse = context.get("programResponse", Response.class);
+		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
+		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
+		ResponseValidation.validateResponseTime(programResponse);
+		if (!StatusCode.equals("404"))
+			ResponseValidation.validateContentType(programResponse);
+	}
+
+	@Given("Admin creates Delete by ProgramId Request  {string} for Program module")
+	public void admin_creates_delete_by_program_id_request_for_program_module(String requestType) throws Exception {
+		programRequest.setNewProgramRequest(requestType);
+
+	}
+
+	@When("Admin sends DELETE HTTPS Request  {string} for Program module")
+	public void admin_sends_delete_https_request_for_program_module(String requestType) {
+		programRequest.DeleteProgramIdhRequest(requestType);
+
+	}
+
+	@Then("Admin receives Program Delete {string}")
+	public void admin_receives_program_delete(String StatusCode) {
 		programResponse = context.get("programResponse", Response.class);
 		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
 		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());

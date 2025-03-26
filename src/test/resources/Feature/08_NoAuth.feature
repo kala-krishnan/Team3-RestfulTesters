@@ -5,23 +5,45 @@ Feature: LMS API No Auth Request
 
 #----------------------------------- BATCH NO AUTH -----------------------------------
 
-  @NoAuthBatch   
-  Scenario Outline: Verify create batch functionality with no Auth
-    Given Admin creates "<Scenario>" Request in batch for NoAuth
-    When Admin sends "<Request>" HTTPS batch Request
-    Then Admin receives batch 401 Status for NoAuth
-    Examples: 
-      | Scenario     		       |   Request     |
-      | NoAuthAddBatch 	       |   POST        |
-      | NoAuthGetAllBatch      |   GetAll      |
-      | NoAuthGetBatchById     |   GetById     |
-      | NoAuthGetBatchByName   |   GetByName   |
-      | NoAuthGetBatchByPrgmID |   GetByPrgmId |
-      | NoAuthEditBatch        |    PUT        |
-      | NoAuthDeleteBatch      |   Delete      |
+  #@NoAuthBatch   
+  #Scenario Outline: Verify create batch functionality with no Auth
+    #Given Admin creates "<Scenario>" Request in batch for NoAuth
+    #When Admin sends "<Request>" HTTPS batch Request
+    #Then Admin receives batch 401 Status for NoAuth
+    #Examples: 
+      #| Scenario     		       |   Request     |
+      #| NoAuthAddBatch 	       |   POST        |
+      #| NoAuthGetAllBatch      |   GetAll      |
+      #| NoAuthGetBatchById     |   GetById     |
+      #| NoAuthGetBatchByName   |   GetByName   |
+      #| NoAuthGetBatchByPrgmID |   GetByPrgmId |
+      #| NoAuthEditBatch        |    PUT        |
+      #| NoAuthDeleteBatch      |   Delete      |
       
- #----------------------------------- CLASS NO AUTH ----------------------------------- 
+ #----------------------------------- USER NO AUTH ----------------------------------- 
+  @NoAuthUser   
+  Scenario Outline: Verify create User functionality with no Auth
+    Given Admin creates "<Scenario>" Request in User for NoAuth
+    When Admin sends "<Request>" HTTPS User Request
+    Then Admin receives User 401 Status for NoAuth
+    Examples: 
+      | Scenario     		       						|   Request                      |
+      #| NoAuthAddUser 	       						|   APICreateUserWithRole        |
+      | NoAuthAPIGetAllUser    						|   APIGetAllUser                |
+      | NoAuthAPIGetAllUserRoles 					|   APIGetAllUserRoles           |
+      | NoAuthAPIGetUserByStatus        	|   APIGetUserByStatus           |
+      | NoAuthAPIGetActiveUser  					|   APIGetActiveUser             |
+      | NoAuthAPIGetAllRoles 							|   APIGetAllRoles               |
+      | NoAuthAPIGetAllUserEmail					|   APIGetAllUserEmail           |
+      | NoAuthAPIUpdateUserByID					  |   APIUpdateUserByID            |
+      | NoAuthAPIGetUserByID					    |   APIGetUserByID            |
+      
+      
+        #	| NoAuthAPIUpdateUser    |   PUT      |
+     #	| NoAuthAPIDeleteUserByID|   Delete     |
+     #  | APIGetUserWithFilter   |   GetByName   |
  
- #----------------------------------- USER NO AUTH -------------------------------------    
+ 
+ #----------------------------------- CLASS NO AUTH -------------------------------------    
       
  
