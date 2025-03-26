@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 
 import com.APIRequest.BatchRequest;
 import com.APIRequest.LoginRequest;
+import com.APIRequest.LogoutRequest;
 import com.APIRequest.NoAuthRequest;
 import com.APIRequest.UserRequest;
 import com.APIResponse.CommonResponseValidation;
@@ -16,7 +17,9 @@ import io.restassured.response.Response;
 
 public class NoAuthStepDefinition {
 	LoginRequest loginRequest;
+	
 	BatchRequest batch;
+	LogoutRequest logout;
 	private Response Response;
 	CommonResponseValidation ResponseValidation = new CommonResponseValidation();
 	ScenarioContext context = ScenarioContext.getInstance();
@@ -24,7 +27,9 @@ public class NoAuthStepDefinition {
 	NoAuthRequest noAuthReq;
 	public NoAuthStepDefinition() throws FileNotFoundException
 	{
+		batch = new BatchRequest();
 		user = new UserRequest();
+		logout = new LogoutRequest();
 		noAuthReq = new NoAuthRequest();
 	}
 	
@@ -60,8 +65,12 @@ public class NoAuthStepDefinition {
 		Response = context.get("batchResponse", Response.class);
 		ResponseValidation.validateStatusCode(Response, batch.getBatchStatusCode());
 		ResponseValidation.validateStatusLine(Response, batch.getBatchStatusLine());
-		ResponseValidation.validateResponseTime(Response);	
+		ResponseValidation.validateResponseTime(Response);
+		ResponseValidation.assertAll();
 	}
+	
+//--------------------------------- USER NO AUTH ------------------------------------------	
+	
 	@Given("Admin creates {string} Request in User for NoAuth")
 	public void admin_creates_request_in_user_for_no_auth(String scenario) throws Exception {
 		
@@ -102,6 +111,27 @@ public class NoAuthStepDefinition {
 		Response = context.get("userResponse", Response.class);
 		ResponseValidation.validateStatusCode(Response, user.getUserStatusCode());
 		
+	}
+
+//--------------------------------- LOGOUT NO AUTH ------------------------------------------
+	
+	@Given("Admin creates {string} Request for NoAuth")
+	public void admin_creates_request_for_no_auth(String Request) throws Exception {
+	    logout.setGetLogoutRequest(Request);
+	}
+	
+	@When("Admin sends GET HTTPS Logout Request")
+	public void admin_sends_get_https_logout_request() {
+		logout.NoAuthGetLogoutRequest();
+	}
+	
+	@Then("Admin receives batch {int} Status for Logout NoAuth")
+	public void admin_receives_batch_status_for_logout_no_auth(Integer Code) {
+		Response = context.get("logoutResponse", Response.class);
+		ResponseValidation.validateStatusCode(Response, logout.getStatusCode());
+		ResponseValidation.validateStatusLine(Response, logout.getStatusLine());
+		ResponseValidation.validateResponseTime(Response);
+		ResponseValidation.assertAll();
 	}
 
 	}

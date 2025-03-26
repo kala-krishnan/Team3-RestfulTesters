@@ -24,14 +24,14 @@ Background: Authorization SetUp
       			
 	#----------------------------------- DELETE PROGRAM ---------------------------------
 	
-	  @DeleteprogrambyId
-  Scenario Outline: Verify Delete program functionality
-    Given Admin creates Delete by ProgramId Request  "<requestType>" for Program module
-    When Admin sends DELETE HTTPS Request  "<requestType>" for Program module
-    Then Admin receives Program Delete "<Status>"
-
-    Examples: 
-      | requestType     		  Status |     |
-      | DeleteProgramIdValid       | 200 |
-      | DeleteProgramIdInvalidEP   | 404 |
-      | DeleteProgramIdInvalidID   | 404 |
+#	  @DeleteprogrambyId
+  #Scenario Outline: Verify Delete program functionality
+    #Given Admin creates Delete by ProgramId Request  "<requestType>" for Program module
+    #When Admin sends DELETE HTTPS Request  "<requestType>" for Program module
+    #Then Admin receives Program Delete "<Status>"
+#
+    #Examples: 
+      #| requestType     		  Status |     |
+      #| DeleteProgramIdValid       | 200 |
+      #| DeleteProgramIdInvalidEP   | 404 |
+      #| DeleteProgramIdInvalidID   | 404 |

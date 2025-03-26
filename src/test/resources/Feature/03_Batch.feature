@@ -28,7 +28,7 @@ Background: Authorization SetUp
 			| AddBatchNoofClassSplChar  |  Valid		|   400   |
 			| AddBatchNoofClassAlphaNum |  Valid		|   400   |
 			| AddBatchNoofClassZero     |  Valid		|   400   |	
-			| AddBatchNoofClass3Digit   |  Valid		|   400   |					
+			| AddBatchNoClassThreeDigit |  Valid		|   400   |					
 						
 	@GetAllBatch   
   Scenario Outline: Verify search all batch functionality
