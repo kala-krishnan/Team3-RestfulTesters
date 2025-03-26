@@ -42,8 +42,9 @@ public class BatchPojo {
 	@JsonIgnore 
     private int statusCode;
 	
+
 	@JsonIgnore 
-    private String statusText, id, name, scenario;
+    private String statusText, name, scenario, id;
 
 
 	public int getStatusCode() {
@@ -65,7 +66,6 @@ public class BatchPojo {
 	public void setScenario(String scenario) {
 		this.scenario = scenario;
 	}
-
 	public String getId() {
 		return id;
 	}

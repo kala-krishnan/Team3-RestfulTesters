@@ -16,5 +16,8 @@ Feature: LMS API Login
     Examples: 
       | Scenario     		       |   Code     |
       |  LoginInvalidCreds     |   400      |
-      |  LoginInvalidEndpoint  |   401      |
-
+      |  LoginInvalidEndpoint  |   404      |
+			|  LoginEmptyCredential  |   400      |
+			|  LoginEmptyUserEmail   |   400      |
+			|  LoginEmptyPassword    |   400      |
+			|LoginInvalidEmailFormat |   400      |

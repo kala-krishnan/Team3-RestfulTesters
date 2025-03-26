@@ -232,7 +232,7 @@ public class ProgramRequest extends SpecificationClass {
 	public void PutProgramByIdRequest(String scenario) {
 	    // Get program ID from TextContext
 	    int programId = TextContext.getProgramId();
-	    String programName = TextContext.getProgramName();
+	//    String programName = TextContext.getProgramName();
 	    // Verify program exists first (skip for invalid ID scenarios
 	    String endPoint = APIResources.valueOf("APIUpdateProgramByID").getResources();
 
@@ -271,7 +271,7 @@ public class ProgramRequest extends SpecificationClass {
 
 	    if (response.getStatusCode() == 200) {
 	        TextContext.setProgramId(programId);
-	        TextContext.setprogramName(program.getProgramName());
+//	        TextContext.setprogramName(program.getProgramName());
 	        context.set("updatedProgramName", program.getProgramName());
 	    }
 	}
@@ -279,8 +279,8 @@ public class ProgramRequest extends SpecificationClass {
 	// --------------------------------------- UPDATE PROGRAM BY NAME
 	// ----------------//
 	public void PutProgramByNameRequest(String scenario) {
-	    String originalProgramName = TextContext.getProgramName(); // Store original name for URL
-	    System.out.println("Getting PROGRAM IN PUT PROGRAMBYNAME+++" + originalProgramName);
+//	    String originalProgramName = TextContext.getProgramName(); // Store original name for URL
+	//    System.out.println("Getting PROGRAM IN PUT PROGRAMBYNAME+++" + originalProgramName);
 	    
 	    String endPoint = APIResources.valueOf("APIUpdateProgramByName").getResources();
 
@@ -296,7 +296,7 @@ public class ProgramRequest extends SpecificationClass {
 	        newProgramName = "abbb_abbbggg"; // Invalid program name
 	    }
 	    else if ("PutProgramValidProgramname".equals(scenario)) {
-	        newProgramName = originalProgramName + "upooteoodppp"; // Modify name
+	//        newProgramName = originalProgramName + "upooteoodppp"; // Modify name
 	    }
 	    else if ("PutProgramnameEmptyMandatory".equals(scenario)) {
 	        program.setProgramStatus(""); // Empty mandatory field
@@ -321,7 +321,7 @@ public class ProgramRequest extends SpecificationClass {
 	    // Execute PUT request
 	    response = RestAssured.given()
 	            .spec(requestHeadersWithToken())
-	            .pathParam("programName", originalProgramName) // Always use original name in URL
+	//            .pathParam("programName", originalProgramName) // Always use original name in URL
 	            .body(program)
 	            .log().all()
 	            .put(endPoint);

@@ -6,6 +6,7 @@ import org.testng.asserts.SoftAssert;
 
 import com.APIRequest.BatchRequest;
 import com.APIRequest.LoginRequest;
+import com.APIResponse.BatchModuleDataValidation;
 import com.APIResponse.CommonResponseValidation;
 import com.context.ScenarioContext;
 
@@ -19,6 +20,7 @@ public class BatchStepDefinition {
 	LoginRequest loginRequest;
 	BatchRequest batch;
 	private Response batchResponse;
+	BatchModuleDataValidation BatchValidation = new BatchModuleDataValidation();
 	CommonResponseValidation Validation = new CommonResponseValidation();
 	private ScenarioContext context =ScenarioContext.getInstance();
 	
@@ -57,7 +59,7 @@ public void admin_receives_for_batch_request(String Code) {
 	if(!Code.equals("404"))
 		Validation.validateContentType(batchResponse);
 	if(Code.equals("201")) {
-		//DataValidation(batchResponse);
+		BatchValidation.DataValidation(batchResponse);
 		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutValid_Schema.json" );	
 	}
 	else if(Code.equals("400"))
@@ -182,7 +184,10 @@ batchResponse = context.get("batchResponse", Response.class);
 	if(!Code.equals("404"))
 		Validation.validateContentType(batchResponse);
 	if(Code.equals("200"))
+	{
+		BatchValidation.DataValidation(batchResponse);
 		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutValid_Schema.json" );
+	}
 	else if(Code.equals("400"))
 		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutInvalid_Schema.json" );	
 }
