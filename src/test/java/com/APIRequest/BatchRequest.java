@@ -16,6 +16,7 @@ import io.restassured.specification.RequestSpecification;
 public class BatchRequest extends SpecificationClass{
 	
 	Response response;
+	
 	ScenarioContext context = ScenarioContext.getInstance();
 	RequestSpecification reqSpec;
 	public BatchRequest() throws FileNotFoundException
@@ -44,7 +45,7 @@ public class BatchRequest extends SpecificationClass{
 		context.set("BatchPojo", batch);
 	}
 	
-//---------------------------------------  POST BATCH ----------------------------------------------
+//----------------------------------------  POST BATCH ----------------------------------------------
 	
 	public void PostNewBatchRequest(String Scenario)
 	{
@@ -219,7 +220,7 @@ public class BatchRequest extends SpecificationClass{
 	{
 		String id = getIdBatch();
 		String EndPoint = APIResources.valueOf("APIDeleteBatchByID").getResources()+id;
-		if (Scenario.equals("DeleteBatchInvalidEp")) 
+		if (Scenario.equals("DeleteBatchInvalidEP")) 
 			EndPoint = APIResources.valueOf("APIDeleteBatchByID").getResources() + "Invalid"+id;
 		
 		BatchPojo batch = context.get("BatchPojo", BatchPojo.class);

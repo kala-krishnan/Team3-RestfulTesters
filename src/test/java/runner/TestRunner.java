@@ -1,25 +1,21 @@
 package runner;
 
-
-import org.testng.annotations.DataProvider;
-
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 
-@CucumberOptions(features= {"src/test/resources/Feature"},
-//tags = "@userModule or @userlogin or @LMS1 or @ProgramModule",
-tags = "@LMS1",
-glue={"com.stepdefinitions"},
-plugin = {
-        "pretty",
-        "html:target/cucumber-reports.html",
-        "json:target/cucumber.json"
-    })
-public class TestRunner extends AbstractTestNGCucumberTests{
-//	 @Override
-//	    @DataProvider(parallel = false)
-//	    public Object[][] scenarios() {
-//	        return super.scenarios();
-//	    }
+
+//@RunWith(Cucumber.class) 
+@CucumberOptions(
+		plugin = {"pretty","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm", //Allure Report
+				"json:target/CucumberReports/DSAlgoJson.json","html:target/CucumberReports/RestAssured.html",}, //Cucumber Report
+		monochrome=false,  //console output color
+		tags="@LMS", //tags from feature file
+		features = {"src/test/resources/Feature"}, //location of feature files
+		glue= {"com.stepdefinitions"}) //location of step definition files
+
+	public class TestRunner extends AbstractTestNGCucumberTests{
+	
+	
 }
+

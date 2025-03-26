@@ -19,7 +19,7 @@ public class BatchStepDefinition {
 	LoginRequest loginRequest;
 	BatchRequest batch;
 	private Response batchResponse;
-	CommonResponseValidation ResponseValidation = new CommonResponseValidation();
+	CommonResponseValidation Validation = new CommonResponseValidation();
 	private ScenarioContext context =ScenarioContext.getInstance();
 	
 	public BatchStepDefinition() throws FileNotFoundException {
@@ -33,7 +33,7 @@ public void admin_sets_authorization_to_bearer_token() throws Exception {
 	if(context.get("LMStoken")==(null))
 		loginRequest.PostLoginRequest();
 }
-	
+
 //********************************** CREATE BATCH ******************************************
 
 @Given("Admin creates Request with {string} in batch request body")
@@ -51,12 +51,17 @@ public void admin_sends_post_https_request_batch_with(String Scenario, String En
 public void admin_receives_for_batch_request(String Code) {
 	batchResponse = context.get("batchResponse", Response.class);
 
-	ResponseValidation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
-	ResponseValidation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
-	ResponseValidation.validateResponseTime(batchResponse);	
+	Validation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
+	Validation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
+	Validation.validateResponseTime(batchResponse);
 	if(!Code.equals("404"))
-	ResponseValidation.validateContentType(batchResponse);
-	
+		Validation.validateContentType(batchResponse);
+	if(Code.equals("201")) {
+		//DataValidation(batchResponse);
+		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutValid_Schema.json" );	
+	}
+	else if(Code.equals("400"))
+		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutInvalid_Schema.json" );	
 }
 
 //********************************** GET All BATCH ******************************************
@@ -75,11 +80,11 @@ public void admin_sends_get_https_request_with_batch(String Scenario) {
 public void admin_receives_with_batch_get_all_response_body(String Code) {
 	batchResponse = context.get("batchResponse", Response.class);
 	
-	ResponseValidation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
-	ResponseValidation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
-	ResponseValidation.validateResponseTime(batchResponse);	
+	Validation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
+	Validation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
+	Validation.validateResponseTime(batchResponse);	
 	if(!Code.equals("404"))
-	ResponseValidation.validateContentType(batchResponse);
+		Validation.validateContentType(batchResponse);
 }
 
 //********************************** GET BATCH BY ID ******************************************
@@ -98,11 +103,13 @@ public void admin_sends_get_https_request_with_batch_id(String Scenario) {
 public void admin_receives_with_batch_get_by_id_response_body(String Code) {
 	batchResponse = context.get("batchResponse", Response.class);
 	
-	ResponseValidation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
-	ResponseValidation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
-	ResponseValidation.validateResponseTime(batchResponse);	
+	Validation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
+	Validation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
+	Validation.validateResponseTime(batchResponse);	
+	if(Code.equals("200"))
+		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_GetByID_Schema.json" );
 	if(!Code.equals("404"))
-	ResponseValidation.validateContentType(batchResponse);
+		Validation.validateContentType(batchResponse);
 }
 
 //********************************** GET BATCH BY NAME ******************************************
@@ -121,11 +128,13 @@ public void admin_sends_get_https_request_with_batch_name(String Scenario) {
 public void admin_receives_with_batch_get_by_name_response_body(String Code) {
 batchResponse = context.get("batchResponse", Response.class);
 	
-	ResponseValidation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
-	ResponseValidation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
-	ResponseValidation.validateResponseTime(batchResponse);	
+	Validation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
+	Validation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
+	Validation.validateResponseTime(batchResponse);	
+	if(Code.equals("200"))
+		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_GetByName_Schema.json" );	
 	if(!Code.equals("404"))
-	ResponseValidation.validateContentType(batchResponse);
+		Validation.validateContentType(batchResponse);
 }
 
 //********************************** GET BATCH BY PROGRAM ID ***************************************
@@ -144,11 +153,11 @@ public void admin_sends_get_https_request_with_program_id(String Scenario) {
 public void admin_receives_with_batch_get_by_program_id_response_body(String Code) {
 batchResponse = context.get("batchResponse", Response.class);
 	
-	ResponseValidation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
-	ResponseValidation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
-	ResponseValidation.validateResponseTime(batchResponse);	
+	Validation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
+	Validation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
+	Validation.validateResponseTime(batchResponse);	
 	if(!Code.equals("404"))
-	ResponseValidation.validateContentType(batchResponse);
+		Validation.validateContentType(batchResponse);
 }
 
 //********************************** UPDATE BATCH ************************************************
@@ -167,14 +176,37 @@ public void admin_sends_put_https_request_update_batch_with(String Scenario) {
 public void admin_receives_for_update_batch_request(String Code) {
 batchResponse = context.get("batchResponse", Response.class);
 	
-	ResponseValidation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
-	ResponseValidation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
-	ResponseValidation.validateResponseTime(batchResponse);	
+	Validation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
+	Validation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
+	Validation.validateResponseTime(batchResponse);	
 	if(!Code.equals("404"))
-	ResponseValidation.validateContentType(batchResponse);
+		Validation.validateContentType(batchResponse);
+	if(Code.equals("200"))
+		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutValid_Schema.json" );
+	else if(Code.equals("400"))
+		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutInvalid_Schema.json" );	
 }
 
 //********************************** DELETE BATCH *********************************************
 
+@Given("Admin creates Delete Request for batch {string}")
+public void admin_creates_delete_request_for_batch(String requestType) throws Exception {
+	batch.setNewBatchRequest(requestType);
+}
+
+@When("Admin sends DELETE HTTPS Request batch {string}")
+public void admin_sends_delete_https_request_batch(String Scenario) {
+	batch.DeleteBatchRequest(Scenario);
+}
+
+@Then("Admin receives batch Delete {string}")
+public void admin_receives_batch_delete(String Code) {
+	batchResponse = context.get("batchResponse", Response.class);
+	Validation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
+	Validation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
+	Validation.validateResponseTime(batchResponse);	
+	if(!Code.equals("404"))
+		Validation.validateContentType(batchResponse);
+}
 	
 }
