@@ -559,7 +559,7 @@
 					"statusCode":404,
 					"statusText": "HTTP/1.1 404 Not Found"
 	            }
-	        }
+	        },
 
 			 {
 					"GetAllUsers":{
@@ -775,6 +775,39 @@
 				    "statusText": "OK"
 					}
 					
-				}
+				},
+				{
+            "CreateClass": {
+                "scenario": "Create new Class",
+				"type":"valid",
+                "statusCode": 201,
+                "statusText": "Created",
+                "batchId": 11959,
+                "classNo": 1,
+                "classDate": "2025-04-01",
+                "classTopic": "5643",
+                "classStatus": "Active",
+                "classStaffId": "U34",
+                "classDescription": "tes",
+                "classComments": "hello",
+                "classNotes": "none",
+                "classRecordingPath": "path",
+                "classScheduledDates": [
+                    "2025-11-09T15:11:08.750Z"
+                ]
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+				
     ]
 }
