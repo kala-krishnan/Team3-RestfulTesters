@@ -5,6 +5,7 @@ import org.testng.asserts.SoftAssert;
 import com.APIRequest.LoginRequest;
 import com.APIRequest.ProgramRequest;
 import com.APIResponse.CommonResponseValidation;
+import com.context.ScenarioContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,7 +13,7 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 
 public class ProgramStepDefinitions {
-
+	ScenarioContext context = ScenarioContext.getInstance();
 	// private ScenarioContext context = new ScenarioContext();
 	private Response programResponse;
 	LoginRequest logRequest;
@@ -24,8 +25,8 @@ public class ProgramStepDefinitions {
 
 	public ProgramStepDefinitions() throws FileNotFoundException {
 		// context = new ScenarioContext();
-		logRequest = new LoginRequest(LoginRequest.context);
-		programRequest = new ProgramRequest(LoginRequest.context);
+		logRequest = new LoginRequest();
+		programRequest = new ProgramRequest();
 	}
 
 	// ********************************** BackGground***********************//
@@ -37,6 +38,10 @@ public class ProgramStepDefinitions {
 
 	// ********************************** CREATE PROGRAM//
 	// ******************************************
+	@Given("Admin sets Authorization to Bearer Token Program")
+	public void admin_sets_authorization_to_bearer_token_program() {
+			logRequest.PostLoginRequest();
+	}
 
 	@Given("Admin creates POST Request with request body {string} for LMS Program Module")
 	public void admin_creates_post_request_with_request_body_for_lms_program_module(String requestType)
@@ -52,7 +57,7 @@ public class ProgramStepDefinitions {
 
 	@Then("Admin receive created  status  {string} for Program Module")
 	public void admin_receive_created_status_for_program_module(String StatusCode) {
-		programResponse = LoginRequest.context.get("programResponse", Response.class);
+		programResponse = context.get("programResponse", Response.class);
 		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
 		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
 		ResponseValidation.validateResponseTime(programResponse);
@@ -74,7 +79,7 @@ public class ProgramStepDefinitions {
 
 	@Then("Admin receives statuscode  {string} for Program Module get all")
 	public void admin_receives_statuscode_for_program_module_get_all(String StatusCode) {
-		programResponse = LoginRequest.context.get("programResponse", Response.class);
+		programResponse = context.get("programResponse", Response.class);
 		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
 		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
 		ResponseValidation.validateResponseTime(programResponse);
@@ -99,7 +104,7 @@ public class ProgramStepDefinitions {
 
 	@Then("Admin gets the program details of that programid with status  {string}")
 	public void admin_gets_the_program_details_of_that_programid_with_status(String StatusCode) {
-		programResponse = LoginRequest.context.get("programResponse", Response.class);
+		programResponse = context.get("programResponse", Response.class);
 		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
 		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
 		ResponseValidation.validateResponseTime(programResponse);
@@ -137,7 +142,7 @@ public class ProgramStepDefinitions {
 //	}
 //	@Then("Admin receives statuscode  {string} for  GETAllProgramswithUsers in Program Module")
 //	public void admin_receives_statuscode_for_get_all_programswith_users_in_program_module(String StatusCode) {
-//		programResponse = LoginRequest.context.get("programResponse", Response.class);
+//		programResponse = context.get("programResponse", Response.class);
 //		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
 //		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
 //		ResponseValidation.validateResponseTime(programResponse);
@@ -150,8 +155,8 @@ public class ProgramStepDefinitions {
 	// ........UPDATE PROGRAM BY PROGRAMID ......
 
 	@Given("Admin creates PUT Request with {string} in Program Module with request body")
-	public void admin_creates_put_request_with_in_program_module_with_request_body(String requestType) {
-
+	public void admin_creates_put_request_with_in_program_module_with_request_body(String requestType) throws Exception {
+		programRequest.setNewProgramRequest(requestType);
 	}
 
 	@When("Admin sends PUT HTTPS Request update Program Module with {string}")
@@ -162,7 +167,7 @@ public class ProgramStepDefinitions {
 
 	@Then("Admin receives {string} for Update Program Module request")
 	public void admin_receives_for_update_program_module_request(String StatusCode) {
-		programResponse = LoginRequest.context.get("programResponse", Response.class);
+		programResponse = context.get("programResponse", Response.class);
 		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
 		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
 		ResponseValidation.validateResponseTime(programResponse);
@@ -173,18 +178,19 @@ public class ProgramStepDefinitions {
 	// ........UPDATE PROGRAM BY PROGRAMNAME ......
 
 	@Given("Admin creates PUT Request with {string} in Program Module by program name with request body")
-	public void admin_creates_put_request_with_in_program_module_by_program_name_with_request_body(String requestType) {
+	public void admin_creates_put_request_with_in_program_module_by_program_name_with_request_body(String requestType) throws Exception {
+		programRequest.setNewProgramRequest(requestType);
 
 	}
 
 	@When("Admin sends PUT HTTPS Request update Program Module with {string} by program name")
 	public void admin_sends_put_https_request_update_program_module_with_by_program_name(String requestType) {
-		programRequest.PutProgramByIdRequest(requestType);
+		programRequest.PutProgramByNameRequest(requestType);
 	}
 
 	@Then("Admin receives {string} for Update Program Module request by program name")
 	public void admin_receives_for_update_program_module_request_by_program_name(String StatusCode) {
-		programResponse = LoginRequest.context.get("programResponse", Response.class);
+		programResponse = context.get("programResponse", Response.class);
 		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
 		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
 		ResponseValidation.validateResponseTime(programResponse);
