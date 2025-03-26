@@ -58,6 +58,7 @@ public class BatchRequest extends SpecificationClass{
 		
 		int PrgId =Integer.valueOf(getIdBatch());	
 		if(PrgId == 0)  PrgId = TextContext.getProgramId();
+		
 		batchPojo.setProgramId(PrgId);
 		
 		String EndPoint = APIResources.valueOf("APIAddBatch").getResources();			
@@ -74,10 +75,13 @@ public class BatchRequest extends SpecificationClass{
 		{			
 			// Setting BatchId for chaining 
 			int BatchID = response.jsonPath().get("batchId");
+			String BatchName = response.jsonPath().get("batchName");
 			TextContext.setBatchId(BatchID); 
+			TextContext.setBatchName(BatchName);
 			
 		}
 		System.out.println("Printing chaining batch ID ***********************************************************" + TextContext.getBatchId() );
+		System.out.println("Printing chaining batch Name ***********************************************************" + TextContext.getBatchName() );	
 	}
 	
 	public void NoAuthPostNewBatchRequest()
@@ -153,6 +157,8 @@ public class BatchRequest extends SpecificationClass{
 	public void GetBatchByNameRequest(String Scenario)
 	{
 		String name = getNameBatch();
+		
+		if(name.equals("0"))  name = TextContext.getBatchName();
 		String EndPoint = APIResources.valueOf("APIGetBatchByName").getResources();
 		if (Scenario.equals("GetByBatchNameInValidEP")) 
 			EndPoint = APIResources.valueOf("APIGetBatchByName").getResources() + "API";

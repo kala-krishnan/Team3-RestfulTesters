@@ -17,8 +17,18 @@ Background: Authorization SetUp
 			| AddBatchInvalidEp    	    | Invalid   |   404   |
 			| AddBatchEmptyNonMandatory |  Valid		|   201   |
 			| AddBatchNameStrtWithNo    |  Valid		|   400   |
-			| AddBatchStatusInactive    |  Valid		|   400   |			
-						
+			| AddBatchStatusInactive    |  Valid		|   400   |
+			| AddBatchEmptyBatchName    |  Valid		|   400   |
+			| AddBatchEmptyBatchStatus  |  Valid		|   400   |
+			| AddBatchEmptyNoofClass    |  Valid		|   400   |
+			| AddBatchNonExistProgramID |  Valid		|   400   |
+			| AddBatchStatusSpcChar     |  Valid		|   400   |
+			| AddBatchDescStartsWithNo  |  Valid		|   400   |		
+			| AddBatchNoofClassAlpha    |  Valid		|   400   |	
+			| AddBatchNoofClassSplChar  |  Valid		|   400   |
+			| AddBatchNoofClassAlphaNum |  Valid		|   400   |
+			| AddBatchNoofClassZero     |  Valid		|   400   |	
+			| AddBatchNoofClass3Digit   |  Valid		|   400   |					
 						
 	@GetAllBatch   
   Scenario Outline: Verify search all batch functionality
@@ -85,4 +95,16 @@ Background: Authorization SetUp
       | PutBatchInvalidEp      |   404   |
       | PutBatchInactivePrgmID |   400   |
       | PutBatchwithInactiveID |   200   | 
-      
+      | PutBatchExistingName   |   400   |
+      | PutBatchEmptyBatchName |   400   |
+      | PutBatchEmptyStatus    |   400   |
+      | PutBatchEmptyPrgmID    |   400   |
+      | PutBatchEmptyNoOfClass |   400   |
+      | PutBatchStatusSplChar  |   400   |
+      | PutBatchNameStrsWithNo |   400   |
+			| PutBatchNoofClassAlpha |   400   |	
+			| PutBatchNoClassSplChar |   400   |
+			| PutBatchNoClassAlphaNum|   400   |
+			| PutBatchNoofClassZero  |   400   |
+			| PutBatchNoClassThreeDgt|   400   |
+   
