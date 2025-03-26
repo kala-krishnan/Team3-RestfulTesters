@@ -228,109 +228,115 @@ public class ProgramRequest extends SpecificationClass {
 	 * e); } }
 	 */
 
-	
 	public void PutProgramByIdRequest(String scenario) {
-	    // Get program ID from TextContext
-	    int programId = TextContext.getProgramId();
-	    String programName = TextContext.getProgramName();
-	    // Verify program exists first (skip for invalid ID scenarios
-	    String endPoint = APIResources.valueOf("APIUpdateProgramByID").getResources();
+		// Get program ID from TextContext
+		int programId = TextContext.getProgramId();
+		String programName = TextContext.getProgramName();
+		// Verify program exists first (skip for invalid ID scenarios
+		String endPoint = APIResources.valueOf("APIUpdateProgramByID").getResources();
 
-	    ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
+		ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
+		if ("PutProgramIDInvalidEp".equals(scenario)) {
+			// endPoint = endPoint.replace("{programId}", "999") + "Invalid";
+			programId = 999; // Explicit invalid ID
+			endPoint = endPoint.replace("{programId}", String.valueOf(programId)) + "Invalid";
+		} else if ("PutInvalidProgramID".equals(scenario)) {
 
-	    if ("PutProgramIDInvalidEp".equals(scenario)) {
-	        endPoint = endPoint.replace("{programId}", "999") + "Invalid";
-	    } 
-	    else if ("PutInvalidProgramID".equals(scenario)) {
-	    	  programId = Integer.MAX_VALUE;
-	    }
-	    else if ("PutProgramValidProgramID".equals(scenario)) {	        // For valid updates, append reasonable suffix
-	        String currentName = program.getProgramName();
-	        program.setProgramName(currentName + "uzcbbbkk");
-	    }
-	    
-	    program.setProgramId(programId);
-	    if (program.getProgramDescription() == null) {
-	        program.setProgramDescription("Default description");
-	    }
-	    if (program.getProgramStatus() == null || program.getProgramStatus().equalsIgnoreCase("inactive")) {
-	        program.setProgramStatus("Active");
-	    }
+			programId = Integer.MAX_VALUE;
+			System.out.println("Integer.MAX_VALUE+++++=" + programId);
+		} else if ("PutProgramIDEmptyMandatory".equals(scenario)) { // For valid updates, append reasonable suffix
+			program.setProgramStatus(""); // Clear the mandatory field
+		} else if ("PutProgramValidProgramID".equals(scenario)) { // For valid updates, append reasonable suffix
+			String currentName = program.getProgramName();
+			program.setProgramName(currentName + "uzbbkpppk");
+		}
 
+		program.setProgramId(programId);
+		if (program.getProgramDescription() == null) {
+			program.setProgramDescription("Default description");
+		}
+		if (program.getProgramStatus() == null || program.getProgramStatus().equalsIgnoreCase("inactive")) {
+			program.setProgramStatus("Active");
+		}
 
-	
-	    response = RestAssured.given()
-	            .spec(requestHeadersWithToken())
-	            .pathParam("programId", programId)
-	            .body(program)
-	            .log().all()
-	            .put(endPoint);
+		response = RestAssured.given().spec(requestHeadersWithToken()).pathParam("programId", programId).body(program)
+				.log().all().put(endPoint);
+		context.set("programResponse", response);
 
-	    System.out.println("Response Status Code:******* " + response.getStatusCode());
-	   // System.out.println("Response Body: " + response.getBody().asString());
+		System.out.println("Response Status Code:******* " + response.getStatusCode());
+		// System.out.println("Response Body: " + response.getBody().asString());
 
-	    if (response.getStatusCode() == 200) {
-	        TextContext.setProgramId(programId);
-	        TextContext.setprogramName(program.getProgramName());
-	        context.set("updatedProgramName", program.getProgramName());
-	    }
+		if (response.getStatusCode() == 201) {
+			TextContext.setProgramId(programId);
+			TextContext.setprogramName(program.getProgramName());
+			context.set("updatedProgramName", program.getProgramName());
+		}
 	}
 
 	// --------------------------------------- UPDATE PROGRAM BY NAME
 	// ----------------//
 	public void PutProgramByNameRequest(String scenario) {
-	    String originalProgramName = TextContext.getProgramName(); // Store original name for URL
-	    System.out.println("Getting PROGRAM IN PUT PROGRAMBYNAME+++" + originalProgramName);
-	    
-	    String endPoint = APIResources.valueOf("APIUpdateProgramByName").getResources();
+		String originalProgramName = TextContext.getProgramName(); // Store original name for URL
+		System.out.println("Getting PROGRAM IN PUT PROGRAMBYNAME+++" + originalProgramName);
 
-	    // Get program data from context
-	    ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
-	    String newProgramName = program.getProgramName(); // Initialize with current name
+		String endPoint = APIResources.valueOf("APIUpdateProgramByName").getResources();
 
-	    // Handle scenario-specific modifications
-	    if ("PutProgramnameInvalidEp".equals(scenario)) {
-	        endPoint = endPoint + "Invalid"; // Invalid endpoint
-	    } 
-	    else if ("PutInvalidProgramname".equals(scenario)) {
-	        newProgramName = "abbb_abbbggg"; // Invalid program name
-	    }
-	    else if ("PutProgramValidProgramname".equals(scenario)) {
-	        newProgramName = originalProgramName + "upooteoodppp"; // Modify name
-	    }
-	    else if ("PutProgramnameEmptyMandatory".equals(scenario)) {
-	        program.setProgramStatus(""); // Empty mandatory field
-	    }
-	    else if ("PutProgramInactivePrgmname".equals(scenario)) {
-	        program.setProgramStatus("Inactive"); // Invalid status
-	    }
-	    
-	    // Update the program name in the payload (if changed)
-	    if (!newProgramName.equals(program.getProgramName())) {
-	        program.setProgramName(newProgramName);
-	    }
+		ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
+		String newProgramName = program.getProgramName(); // Initialize with current name
 
-	    // Ensure required fields are populated
-	    if (program.getProgramDescription() == null) {
-	        program.setProgramDescription("Default description");
-	    }
-	    if (program.getProgramStatus() == null || program.getProgramStatus().equalsIgnoreCase("inactive")) {
-	        program.setProgramStatus("Active");
-	    }
+		if ("PutProgramnameInvalidEp".equals(scenario)) {
+			endPoint = endPoint + "Invalid";
+		} else if ("PutInvalidProgramname".equals(scenario)) {
+			newProgramName = "abbb_abbbggg";
+		} else if ("PutProgramValidProgramname".equals(scenario)) {
+			newProgramName = originalProgramName + "upooteoodppp";
+		} else if ("PutProgramnameEmptyMandatory".equals(scenario)) {
+			program.setProgramStatus("");
+		} else if ("PutProgramInactivePrgmname".equals(scenario)) {
+			program.setProgramStatus("Inactive");
+		}
 
-	    // Execute PUT request
-	    response = RestAssured.given()
-	            .spec(requestHeadersWithToken())
-	            .pathParam("programName", originalProgramName) // Always use original name in URL
-	            .body(program)
-	            .log().all()
-	            .put(endPoint);
+		// Update the program name in the payload (if changed)
+		if (!newProgramName.equals(program.getProgramName())) {
+			program.setProgramName(newProgramName);
+		}
 
-	    System.out.println("Response Status Code:******* " + response.getStatusCode());
+		// Ensure required fields are populated
+		if (program.getProgramDescription() == null) {
+			program.setProgramDescription("Default description");
+		}
+		if (program.getProgramStatus() == null || program.getProgramStatus().equalsIgnoreCase("inactive")) {
+			program.setProgramStatus("Active");
+		}
 
-	    // Handle successful update
-	    if (response.getStatusCode() == 200) {
-	        context.set("updatedProgramName", newProgramName); // Store the new name
-	    }
+		// Execute PUT request
+		response = RestAssured.given().spec(requestHeadersWithToken()).pathParam("programName", originalProgramName) // Always
+																														// use
+																														// original
+																														// name
+																														// in
+																														// URL
+				.body(program).log().all().put(endPoint);
+		context.set("programResponse", response);
+
+		System.out.println("Response Status Code:******* " + response.getStatusCode());
+
+		// Handle successful update
+		if (response.getStatusCode() == 200) {
+			context.set("updatedProgramName", newProgramName); // Store the new name
+		}
+	}
+	// --------------------------------------- DELETE PROGRAM ID
+	// -----------------------------------------
+
+	public void DeleteProgramIdhRequest(String Scenario) {
+		int id = getProgramId();
+		String EndPoint = APIResources.valueOf("APIDeleteProgramByID").getResources() + id;
+		if (Scenario.equals("DeleteProgramIdInvalidEP"))
+			EndPoint = APIResources.valueOf("APIDeleteProgramByID").getResources() + "Invalid" + id;
+
+		ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
+		response = RestAssured.given().spec(requestHeadersWithToken()).log().all().delete(EndPoint);
+		context.set("programResponse", response);
 	}
 }
