@@ -35,29 +35,11 @@ public class LoginPojo {
 		this.statusText = statusText;
 	}
 
-	public String getAuthType() {
-		return authType;
-	}
-
-	public void setAuthType(String authType) {
-		this.authType = authType;
-	}
-
-	public String getContentType() {
-		return contentType;
-	}
-
-	public void setContentType(String contentType) {
-		this.contentType = contentType;
-	}
+	
 	@JsonIgnore 
     private String scenario;
     @JsonIgnore 
 	private String statusText;
-    @JsonIgnore 
-    private String authType;
-    @JsonIgnore 
-    private String contentType;
 	
 	public LoginPojo()
 	{
