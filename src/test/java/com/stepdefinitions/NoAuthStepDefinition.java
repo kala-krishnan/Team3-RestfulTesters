@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import com.APIRequest.BatchRequest;
 import com.APIRequest.LoginRequest;
 import com.APIRequest.LogoutRequest;
+import com.APIRequest.NoAuthRequest;
+import com.APIRequest.UserRequest;
 import com.APIResponse.CommonResponseValidation;
 import com.context.ScenarioContext;
 
@@ -14,14 +16,21 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 
 public class NoAuthStepDefinition {
-
+	LoginRequest loginRequest;
+	
 	BatchRequest batch;
+	LogoutRequest logout;
 	private Response Response;
 	CommonResponseValidation ResponseValidation = new CommonResponseValidation();
 	ScenarioContext context = ScenarioContext.getInstance();
-	
-	public NoAuthStepDefinition() throws FileNotFoundException {
+	UserRequest user; 
+	NoAuthRequest noAuthReq;
+	public NoAuthStepDefinition() throws FileNotFoundException
+	{
 		batch = new BatchRequest();
+		user = new UserRequest();
+		logout = new LogoutRequest();
+		noAuthReq = new NoAuthRequest();
 	}
 	
 //--------------------------------- BATCH NO AUTH ------------------------------------------
@@ -59,6 +68,70 @@ public class NoAuthStepDefinition {
 		ResponseValidation.validateResponseTime(Response);
 		ResponseValidation.assertAll();
 	}
+	
+//--------------------------------- USER NO AUTH ------------------------------------------	
+	
+	@Given("Admin creates {string} Request in User for NoAuth")
+	public void admin_creates_request_in_user_for_no_auth(String scenario) throws Exception {
 		
+		user.updateUserRequest(scenario);
+		if(!scenario.equals("NoAuthAPIUpdateUserByID") )
+		{
+			user.newUserRequest(scenario);
+		}
+	}
+
+	@When("Admin sends {string} HTTPS User Request")
+	public void admin_sends_https_user_request(String request) {
+		switch (request) {
+		case "APICreateUserWithRole": noAuthReq.PostNewUserRequestNoAuth();
+		break;
+		case "APIGetAllUser": noAuthReq.getAllUserRequestNoAuth(request);
+		break;
+		case "APIGetAllUserRoles": noAuthReq.getAllUserRequestNoAuth(request);
+		break;
+		case "APIGetUserByStatus": noAuthReq.getAllUserRequestNoAuth(request);
+		break;
+		case "APIGetActiveUser": noAuthReq.getAllUserRequestNoAuth(request);
+		break;
+		case "APIGetAllRoles": noAuthReq.getAllUserRequestNoAuth(request);
+		break;
+		case "APIGetAllUserEmail": noAuthReq.getAllUserRequestNoAuth(request);
+		break;
+		case "APIUpdateUserByID": noAuthReq.updateRoleByUserIdNoAuth(request);
+		break;
+		case "APIGetUserByID": noAuthReq.getUserByUserIdNoAuth(request);
+		break;
+		}
+		
+	}
+
+	@Then("Admin receives User {int} Status for NoAuth")
+	public void admin_receives_user_status_for_no_auth(Integer int1) {
+		Response = context.get("userResponse", Response.class);
+		ResponseValidation.validateStatusCode(Response, user.getUserStatusCode());
+		
+	}
+
+//--------------------------------- LOGOUT NO AUTH ------------------------------------------
+	
+	@Given("Admin creates {string} Request for NoAuth")
+	public void admin_creates_request_for_no_auth(String Request) throws Exception {
+	    logout.setGetLogoutRequest(Request);
+	}
+	
+	@When("Admin sends GET HTTPS Logout Request")
+	public void admin_sends_get_https_logout_request() {
+		logout.NoAuthGetLogoutRequest();
+	}
+	
+	@Then("Admin receives batch {int} Status for Logout NoAuth")
+	public void admin_receives_batch_status_for_logout_no_auth(Integer Code) {
+		Response = context.get("logoutResponse", Response.class);
+		ResponseValidation.validateStatusCode(Response, logout.getStatusCode());
+		ResponseValidation.validateStatusLine(Response, logout.getStatusLine());
+		ResponseValidation.validateResponseTime(Response);
+		ResponseValidation.assertAll();
+	}
 
 	}

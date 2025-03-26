@@ -43,7 +43,4 @@ public class LogoutStepDefinition {
 		Validation.assertAll();
 
 	}
-
-	
-
 }
