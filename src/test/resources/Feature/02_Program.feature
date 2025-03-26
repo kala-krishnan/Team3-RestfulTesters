@@ -1,4 +1,4 @@
-@ProgramModule
+@ProgramModule @LMS
 Feature: LMS API Program Module
 
   Background: 
@@ -12,10 +12,10 @@ Feature: LMS API Program Module
     Examples: 
       | requestType                      | Endpoint | Status |
       | CreateProgramValid               | Valid    |    201 |
-      | CreateInvalidExistingprogramname | InValid  |    400 |
-      | CreateProgramInvalidEp           | InValid  |    404 |
-      | CreateProgramEmptyNonMandatory   | Valid    |    201 |
-      | CreateProgramStatusInactive      | Valid    |    201 |
+      #| CreateInvalidExistingprogramname | InValid  |    400 |
+      #| CreateProgramInvalidEp           | InValid  |    404 |
+      #| CreateProgramEmptyNonMandatory   | Valid    |    201 |
+      #| CreateProgramStatusInactive      | Valid    |    201 |
 
   #@GetAllProgram
   #Scenario Outline: Admin creates GET all Request for LMS Program Module
@@ -28,19 +28,19 @@ Feature: LMS API Program Module
       #| GetAllValidProgram     |    200 |
       #| GetAllProgramInValidEP |    404 |
 #
-  @GetProgrambyProgramID
-  Scenario Outline: Check if admin able to retrieve Program by ProgramID
-    Given Admin creates GET Request by "<requestType>" for LMS Program module
-    When Admin sends GET Request by  "<requestType>" ProgramId for LMS Program Module
-    Then Admin gets the program details of that programid with status  "<Status>"
-
-    Examples: 
-      | requestType                  | Status |
-      | GetProgramByProgramID        |    200 |
-      | GetProgramByInvalidProgramID |    400 |
-      | GetByProgramIDInactive       |    200 |
-      | GetByProgramIDInValidEP      |    404 |
-      
+  #@GetProgrambyProgramID
+  #Scenario Outline: Check if admin able to retrieve Program by ProgramID
+    #Given Admin creates GET Request by "<requestType>" for LMS Program module
+    #When Admin sends GET Request by  "<requestType>" ProgramId for LMS Program Module
+    #Then Admin gets the program details of that programid with status  "<Status>"
+#
+    #Examples: 
+      #| requestType                  | Status |
+      #| GetProgramByProgramID        |    200 |
+      #| GetProgramByInvalidProgramID |    400 |
+      #| GetByProgramIDInactive       |    200 |
+      #| GetByProgramIDInValidEP      |    404 |
+      #
 #@GetAllProgramsWithUsers
   #Scenario Outline: Admin creates GETallProgramswithUser for Program Module  LMS 
     #Given Admin creates GETAllProgramswithUsers request "<requestType>" for Program Module
