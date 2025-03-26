@@ -103,6 +103,15 @@ public class BatchRequest extends SpecificationClass{
 		context.set("batchResponse", response); 
 	}
 	
+	public void GetAllBatchSearchString(String Scenario)
+	{
+		response = RestAssured.given().spec(requestHeadersWithToken())
+				.log().all()
+				.queryParam("searchString", "sdet")
+				.get(APIResources.valueOf("APIGetAllBatch").getResources());       
+		context.set("batchResponse", response); 
+	}
+	
 	public void NoAuthGetAllBatchRequest()
 	{
 		response = RestAssured.given().spec(requestHeadersWithoutToken())
@@ -118,12 +127,13 @@ public class BatchRequest extends SpecificationClass{
 		int id =Integer.valueOf(getIdBatch());
 		if(id == 0)  id = TextContext.getBatchId();
 
-		String EndPoint = APIResources.valueOf("APIGetBatchByID").getResources()+id;
+		String EndPoint = APIResources.valueOf("APIGetBatchByID").getResources();
 		if (Scenario.equals("GetByBatchIDInValidEP")) 
-			EndPoint = APIResources.valueOf("APIGetBatchByID").getResources() + "Invalid"+id;
+			EndPoint = APIResources.valueOf("APIGetBatchByID").getResources() + "API";
 
 		response = RestAssured.given().spec(requestHeadersWithToken())
 				.log().all()
+				.pathParam("batchId", id)
 				.get(EndPoint);       
 		context.set("batchResponse", response); 
 	}
@@ -133,7 +143,8 @@ public class BatchRequest extends SpecificationClass{
 		int id = TextContext.getBatchId();	
 		response = RestAssured.given().spec(requestHeadersWithoutToken())
 				.log().all()
-				.get(APIResources.valueOf("APIGetBatchByID").getResources()+id);       
+				.pathParam("batchId", id)
+				.get(APIResources.valueOf("APIGetBatchByID").getResources());       
 		context.set("batchResponse", response); 
 	}
 	
@@ -142,12 +153,13 @@ public class BatchRequest extends SpecificationClass{
 	public void GetBatchByNameRequest(String Scenario)
 	{
 		String name = getNameBatch();
-		String EndPoint = APIResources.valueOf("APIGetBatchByName").getResources()+name;
+		String EndPoint = APIResources.valueOf("APIGetBatchByName").getResources();
 		if (Scenario.equals("GetByBatchNameInValidEP")) 
-			EndPoint = APIResources.valueOf("APIGetBatchByName").getResources() + "Invalid"+name;
+			EndPoint = APIResources.valueOf("APIGetBatchByName").getResources() + "API";
 
 		response = RestAssured.given().spec(requestHeadersWithToken())
 				.log().all()
+				.pathParam("batchName", name)
 				.get(EndPoint);       
 		context.set("batchResponse", response); 
 	}
@@ -156,7 +168,8 @@ public class BatchRequest extends SpecificationClass{
 		String name = getNameBatch();
 		response = RestAssured.given().spec(requestHeadersWithoutToken())
 				.log().all()
-				.get(APIResources.valueOf("APIGetBatchByName").getResources()+name);       
+				.pathParam("batchName", name)
+				.get(APIResources.valueOf("APIGetBatchByName").getResources());       
 		context.set("batchResponse", response); 
 	}	
 //--------------------------------------- GET BATCH BY PROGRAM ID------------------------------------------
@@ -165,12 +178,13 @@ public class BatchRequest extends SpecificationClass{
 		int id =Integer.valueOf(getIdBatch());
 		if(id == 0)  id = TextContext.getProgramId();
 		
-		String EndPoint = APIResources.valueOf("APIGetBatchByPrgmID").getResources()+id;
+		String EndPoint = APIResources.valueOf("APIGetBatchByPrgmID").getResources();
 		if (Scenario.equals("GetByProgramIDInValidEP")) 
-			EndPoint = APIResources.valueOf("APIGetBatchByPrgmID").getResources() + "Invalid"+id;
+			EndPoint = APIResources.valueOf("APIGetBatchByPrgmID").getResources() + "Invalid";
 
 		response = RestAssured.given().spec(requestHeadersWithToken())
 				.log().all()
+				.pathParam("programId", id)
 				.get(EndPoint);       
 		context.set("batchResponse", response); 
 	}
@@ -179,7 +193,8 @@ public class BatchRequest extends SpecificationClass{
 		int id = TextContext.getProgramId();
 		response = RestAssured.given().spec(requestHeadersWithoutToken())
 				.log().all()
-				.get(APIResources.valueOf("APIGetBatchByPrgmID").getResources()+id);       
+				.pathParam("programId", id)
+				.get(APIResources.valueOf("APIGetBatchByPrgmID").getResources());       
 		context.set("batchResponse", response); 
 	}
 	
@@ -192,13 +207,14 @@ public class BatchRequest extends SpecificationClass{
 		int id =Integer.valueOf(getIdBatch());
 		if(id == 0)  id = TextContext.getBatchId();
 		
-		String EndPoint = APIResources.valueOf("APIUpdateBatchByID").getResources()+id;
+		String EndPoint = APIResources.valueOf("APIUpdateBatchByID").getResources();
 		if (Scenario.equals("PutBatchInvalidEp")) 
-			EndPoint = APIResources.valueOf("APIUpdateBatchByID").getResources() + "Invalid"+id;
+			EndPoint = APIResources.valueOf("APIUpdateBatchByID").getResources() + "Invalid";
 		
 		BatchPojo batch = context.get("BatchPojo", BatchPojo.class);
 		response = RestAssured.given().spec(requestHeadersWithToken())
 				.body(batch).log().all()
+				.pathParam("batchId", id)
 				.put(EndPoint);       
 		context.set("batchResponse", response); 
 		if (response.getStatusCode()==200 && Scenario.equals("PutBatchValid"))
@@ -209,11 +225,12 @@ public class BatchRequest extends SpecificationClass{
 	}
 	public void NoAuthPutBatchRequest()
 	{
-		String id = getIdBatch();
+		int id = TextContext.getBatchId();
 		BatchPojo batch = context.get("BatchPojo", BatchPojo.class);
 		response = RestAssured.given().spec(requestHeadersWithoutToken())
 				.body(batch).log().all()
-				.put(APIResources.valueOf("APIUpdateBatchByID").getResources()+id);       
+				.pathParam("batchId", id)
+				.put(APIResources.valueOf("APIUpdateBatchByID").getResources());       
 		context.set("batchResponse", response); 
 	}
 	
@@ -227,13 +244,14 @@ public class BatchRequest extends SpecificationClass{
 		if(id == 0)  id = TextContext.getBatchId();
 		System.out.println("*************************************"+id);
 		
-		String EndPoint = APIResources.valueOf("APIDeleteBatchByID").getResources()+id;
+		String EndPoint = APIResources.valueOf("APIDeleteBatchByID").getResources();
 		if (Scenario.equals("DeleteBatchInvalidEP")) 
-			EndPoint = APIResources.valueOf("APIDeleteBatchByID").getResources() + "Invalid"+id;
+			EndPoint = APIResources.valueOf("APIDeleteBatchByID").getResources() + "Invalid";
 		
 		BatchPojo batch = context.get("BatchPojo", BatchPojo.class);
 		response = RestAssured.given().spec(requestHeadersWithToken())
 				.log().all()
+				.pathParam("batchId", id)
 				.delete(EndPoint);       
 		context.set("batchResponse", response); 
 	}
@@ -243,7 +261,8 @@ public class BatchRequest extends SpecificationClass{
 		int id = TextContext.getBatchId();
 		response = RestAssured.given().spec(requestHeadersWithoutToken())
 				.log().all()
-				.delete(APIResources.valueOf("APIDeleteBatchByID").getResources()+id);       
+				.pathParam("batchId", id)
+				.delete(APIResources.valueOf("APIDeleteBatchByID").getResources());       
 		context.set("batchResponse", response); 
 	}
 	

@@ -56,7 +56,8 @@ public class NoAuthStepDefinition {
 		Response = context.get("batchResponse", Response.class);
 		ResponseValidation.validateStatusCode(Response, batch.getBatchStatusCode());
 		ResponseValidation.validateStatusLine(Response, batch.getBatchStatusLine());
-		ResponseValidation.validateResponseTime(Response);	
+		ResponseValidation.validateResponseTime(Response);
+		ResponseValidation.assertAll();
 	}
 		
 

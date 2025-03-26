@@ -34,7 +34,7 @@ public class TestDataLoader {
 					setFieldDynamically(pojo, "message", field.getValue(), String.class);
 					setFieldDynamically(pojo, "id", field.getValue(), String.class);
 					setFieldDynamically(pojo, "name", field.getValue(), String.class);
-
+					setFieldDynamically(pojo, "type", field.getValue(), String.class);
 					return pojo;
 				}
 			}

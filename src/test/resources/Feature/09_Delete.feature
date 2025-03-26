@@ -16,10 +16,11 @@ Background: Authorization SetUp
     When Admin sends DELETE HTTPS Request batch "<Scenario>"
     Then Admin receives batch Delete "<Status>"
     Examples: 
-      | Scenario     			   | Status  |
-      | DeleteBatchValid 	   |  200    |
-      | DeleteBatchInvalidEP |  404    |
-      | DeleteBatchInvalidID |  404    |
+      | Scenario     			        | Status  |
+      | DeleteBatchValid 	        |  200    |
+      | DeleteBatchInvalidEP      |  404    |
+      | DeleteBatchInvalidID      |  404    |
+      | DeleteAlreadyRemovedBatch |  404	  |
       			
 	#----------------------------------- DELETE PROGRAM ---------------------------------
 	

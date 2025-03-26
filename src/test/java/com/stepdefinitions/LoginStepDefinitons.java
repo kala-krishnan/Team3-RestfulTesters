@@ -32,7 +32,7 @@ public class LoginStepDefinitons {
 	
 	@Given("Admin creates Login Valid Request")
 	public void admin_creates_login_valid_request() {
-		//context.set("LMStoken",null);
+		context.set("LMStoken",null);
 	}
 
 	@When("Admin sends Post HTTPS Login Request")
@@ -46,6 +46,7 @@ public class LoginStepDefinitons {
 		Validation.validateStatusCode(loginResponse, 200);
 		Validation.validateStatusLine(loginResponse, "HTTP/1.1 200 OK");
 		Validation.validateResponseTime(loginResponse);
+		Validation.assertAll();
 	}
 
 	@Given("Admin creates Login {string} Request")
@@ -66,57 +67,8 @@ public class LoginStepDefinitons {
 		Validation.validateResponseTime(loginResponse);	
 		if(!Code.equals("404"))
 			Validation.validateContentType(loginResponse);
+		Validation.assertAll();
 	}
-
-
-	/************* from json file *****************/
-	
-//	@Given("Admin creates request with valid credentials {string} for LMS")
-//	public void admin_creates_request_with_valid_credentials(String requestType) throws Exception {
-//		logRequest.setLoginRequest(requestType);
-//	}
-//
-//	@When("Admin calls Post Https method  with valid endpoint for LMS")
-//	public void admin_calls_post_https_method_with_valid_endpoint_for_LMS() {
-//		logRequest.postLoginRequestFromJson();
-//	}
-//
-//	@Then("Admin receives created with auto generated token")
-//	public void admin_receives_created_with_auto_generated_token() {
-//		loginResponse = context.get("loginResponse", Response.class);
-//		int actualStatusCode = loginResponse.getStatusCode();
-//		int expectedStatusCode =logRequest.getStatusCode();
-//		softAssert =new SoftAssert();
-//
-//		//Status code Validation
-//		softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
-//
-//		//  Schema Validation
-//		if(actualStatusCode==200) {
-////			System.out.println(userLoginSchema);
-////			loginResponse.then().assertThat()
-////			.body(matchesJsonSchemaInClasspath(userLoginSchema));
-//
-//		// Validate data types
-//		Boolean passwordExpired = loginResponse.jsonPath().getBoolean("passwordExpired");
-//		softAssert.assertTrue(loginResponse.jsonPath().getString("token") instanceof String, "Token should be a String");
-//		softAssert.assertTrue(loginResponse.jsonPath().getString("type") instanceof String, "Type should be a String");
-//		softAssert.assertTrue(loginResponse.jsonPath().getString("userId") instanceof String, "User ID should be a String");
-//		softAssert.assertTrue(loginResponse.jsonPath().getString("email") instanceof String, "Email should be a String");
-//		softAssert.assertTrue(loginResponse.jsonPath().getList("roles") instanceof List, "Roles should be a List");
-//		softAssert.assertTrue(loginResponse.jsonPath().getString("status") instanceof String, "Status should be a String");
-//		softAssert.assertTrue(passwordExpired  instanceof Boolean, "PasswordExpired should be Boolean");
-//
-//		// Validate actual data values
-//		softAssert.assertFalse(loginResponse.jsonPath().getString("token").isEmpty(), "Token should not be empty");
-//		softAssert.assertEquals(loginResponse.jsonPath().getString("status"), "Active", "Status should be Active");
-//		softAssert.assertFalse(loginResponse.jsonPath().getList("roles").isEmpty(), "Roles list should not be empty");
-//		}
-//
-//		softAssert.assertAll();
-//
-//	}
-
 
 
 }
