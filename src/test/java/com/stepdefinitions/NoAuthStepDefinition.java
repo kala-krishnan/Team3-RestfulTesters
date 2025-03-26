@@ -113,6 +113,27 @@ public class NoAuthStepDefinition {
 		
 	}
 
+//--------------------------------- LOGOUT NO AUTH ------------------------------------------
+	
+	@Given("Admin creates {string} Request for NoAuth")
+	public void admin_creates_request_for_no_auth(String Request) throws Exception {
+	    logout.setGetLogoutRequest(Request);
+	}
+	
+	@When("Admin sends GET HTTPS Logout Request")
+	public void admin_sends_get_https_logout_request() {
+		logout.NoAuthGetLogoutRequest();
+	}
+	
+	@Then("Admin receives batch {int} Status for Logout NoAuth")
+	public void admin_receives_batch_status_for_logout_no_auth(Integer Code) {
+		Response = context.get("logoutResponse", Response.class);
+		ResponseValidation.validateStatusCode(Response, logout.getStatusCode());
+		ResponseValidation.validateStatusLine(Response, logout.getStatusLine());
+		ResponseValidation.validateResponseTime(Response);
+		ResponseValidation.assertAll();
+	}
+
 
 	}
 

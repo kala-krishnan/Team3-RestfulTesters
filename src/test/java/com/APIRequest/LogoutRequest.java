@@ -50,7 +50,7 @@ public class LogoutRequest  extends SpecificationClass{
 		context.set("logoutResponse", response); 
 	}
 	
-	public void NoAuthGetLogoutRequest(String Scenario)
+	public void NoAuthGetLogoutRequest()
 	{
 		response = RestAssured.given().spec(requestHeadersWithoutToken())
 				.log().all()

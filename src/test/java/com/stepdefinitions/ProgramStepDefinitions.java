@@ -5,8 +5,8 @@ import org.testng.asserts.SoftAssert;
 import com.APIRequest.LoginRequest;
 import com.APIRequest.ProgramRequest;
 import com.APIResponse.CommonResponseValidation;
+import com.APIResponse.ProgramModuleDataValidation;
 import com.context.ScenarioContext;
-import com.fasterxml.jackson.databind.JsonNode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,30 +14,21 @@ import io.restassured.response.Response;
 
 public class ProgramStepDefinitions {
 	ScenarioContext context = ScenarioContext.getInstance();
-	// private ScenarioContext context = new ScenarioContext();
 	private Response programResponse;
 	LoginRequest logRequest;
 	ProgramRequest programRequest;
 	SoftAssert softAssert;
-	// JsonNode getTestData_Get;
 	Response getProgramFilterResponse;
 	CommonResponseValidation ResponseValidation = new CommonResponseValidation();
+	ProgramModuleDataValidation ProgramValidation = new ProgramModuleDataValidation();
 
 	public ProgramStepDefinitions() throws FileNotFoundException {
-		// context = new ScenarioContext();
 		logRequest = new LoginRequest();
 		programRequest = new ProgramRequest();
 	}
 
-	// ********************************** BackGground***********************//
-//	@Given("Admin sets Authorization to Bearer Token")
-//	public void admin_sets_authorization_to_bearer_token() {
-//		logRequest.PostLoginRequest();
-//
-//	}
-
-	// ********************************** CREATE PROGRAM//
-	// ******************************************
+	// **********************************
+	// CREATEPROGRAM******************************************
 	@Given("Admin sets Authorization to Bearer Token Program")
 	public void admin_sets_authorization_to_bearer_token_program() {
 		logRequest.PostLoginRequest();
@@ -63,6 +54,11 @@ public class ProgramStepDefinitions {
 		ResponseValidation.validateResponseTime(programResponse);
 		if (!StatusCode.equals("404"))
 			ResponseValidation.validateContentType(programResponse);
+		if (StatusCode.equals("201")) {
+			ProgramValidation.DataValidation(programResponse);
+			ResponseValidation.validateJsonSchema(programResponse, "Schemas/Program_PostValid_Schema.json");
+		}
+		ResponseValidation.assertAll();
 	}
 
 //	//********************************** GETALL PROGRAM ******************************************
@@ -86,10 +82,10 @@ public class ProgramStepDefinitions {
 
 		if (!StatusCode.equals("404"))
 			ResponseValidation.validateContentType(programResponse);
-	}
+		ResponseValidation.assertAll();
 
-//	
-//	//........ GetProgramId......
+	}
+	// ........ GetProgramId......
 
 	@Given("Admin creates GET Request by {string} for LMS Program module")
 	public void admin_creates_get_request_by_for_lms_program_module(String requestType) throws Exception {
@@ -108,49 +104,40 @@ public class ProgramStepDefinitions {
 		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
 		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
 		ResponseValidation.validateResponseTime(programResponse);
+		if (StatusCode.equals("200"))
+			ResponseValidation.validateJsonSchema(programResponse, "Program_GetByProgramID_Schema.json");
+		if (!StatusCode.equals("404"))
+			ResponseValidation.validateContentType(programResponse);
+		ResponseValidation.assertAll();
+
+	}
+
+	// ........ GetAll Program With Users......//
+
+	@Given("Admin creates GETAllProgramswithUsers request {string} for Program Module")
+	public void admin_creates_get_all_programswith_users_request_for_program_module(String requestType) {
+		System.out.println("Creating request: " + requestType);
+
+	}
+
+	@When("Admin sends HTTPS Request with endpoint GETAllProgramswithUsers for Program Module {string}")
+	public void admin_sends_https_request_with_endpoint_get_all_programswith_users_for_program_module(
+			String requestType) {
+		programRequest.sendGetProgramReqWithUser(requestType);
+	}
+
+	@Then("Admin receives statuscode  {string} for  GETAllProgramswithUsers in Program Module")
+	public void admin_receives_statuscode_for_get_all_programswith_users_in_program_module(String StatusCode) {
+		programResponse = context.get("programResponse", Response.class);
+		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
+		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
+		ResponseValidation.validateResponseTime(programResponse);
 
 		if (!StatusCode.equals("404"))
 			ResponseValidation.validateContentType(programResponse);
+		ResponseValidation.assertAll();
+
 	}
-
-//	@Given("Admin creates PUT Request with {string} in Program Module with request body")
-//	public void admin_creates_put_request_with_in_program_module_with_request_body(String string) {
-//	    // Write code here that turns the phrase above into concrete actions
-//	    throw new io.cucumber.java.PendingException();
-//	}
-//	@When("Admin sends PUT HTTPS Request update Program Module with {string}")
-//	public void admin_sends_put_https_request_update_program_module_with(String string) {
-//	    // Write code here that turns the phrase above into concrete actions
-//	    throw new io.cucumber.java.PendingException();
-//	}
-//	@Then("Admin receives {string} for Update Program Module request")
-//	public void admin_receives_for_update_program_module_request(String string) {
-//	    // Write code here that turns the phrase above into concrete actions
-//	    throw new io.cucumber.java.PendingException();
-//	}
-
-	// ........ GetAll Program With Users......
-//	
-//	@Given("Admin creates GETAllProgramswithUsers request {string} for Program Module")
-//	public void admin_creates_get_all_programswith_users_request_for_program_module(String requestType) {
-//	    System.out.println("Creating request: " + requestType);
-//
-//	}
-//	@When("Admin sends HTTPS Request with endpoint GETAllProgramswithUsers for Program Module {string}")
-//	public void admin_sends_https_request_with_endpoint_get_all_programswith_users_for_program_module(String requestType) {
-//		programRequest.sendGetProgramReqWithUser(requestType);
-//	}
-//	@Then("Admin receives statuscode  {string} for  GETAllProgramswithUsers in Program Module")
-//	public void admin_receives_statuscode_for_get_all_programswith_users_in_program_module(String StatusCode) {
-//		programResponse = context.get("programResponse", Response.class);
-//		ResponseValidation.validateStatusCode(programResponse, programRequest.getProgramStatusCode());
-//		ResponseValidation.validateStatusLine(programResponse, programRequest.getProgramStatusLine());
-//		ResponseValidation.validateResponseTime(programResponse);
-//
-//		if (!StatusCode.equals("404"))
-//			ResponseValidation.validateContentType(programResponse);
-//	
-//	}
 
 	// ........UPDATE PROGRAM BY PROGRAMID ......
 
@@ -176,6 +163,11 @@ public class ProgramStepDefinitions {
 		ResponseValidation.validateResponseTime(programResponse);
 		if (!StatusCode.equals("404"))
 			ResponseValidation.validateContentType(programResponse);
+		if (StatusCode.equals("200")) {
+			ProgramValidation.DataValidation(programResponse);
+		}
+		ResponseValidation.assertAll();
+
 	}
 
 	// ........UPDATE PROGRAM BY PROGRAMNAME ......
@@ -200,7 +192,11 @@ public class ProgramStepDefinitions {
 		ResponseValidation.validateResponseTime(programResponse);
 		if (!StatusCode.equals("404"))
 			ResponseValidation.validateContentType(programResponse);
+		ResponseValidation.assertAll();
+
 	}
+	// ********************************** DELETE PROGRAM
+	// **********************************/
 
 	@Given("Admin creates Delete by ProgramId Request  {string} for Program module")
 	public void admin_creates_delete_by_program_id_request_for_program_module(String requestType) throws Exception {
@@ -222,6 +218,8 @@ public class ProgramStepDefinitions {
 		ResponseValidation.validateResponseTime(programResponse);
 		if (!StatusCode.equals("404"))
 			ResponseValidation.validateContentType(programResponse);
+		ResponseValidation.assertAll();
+
 	}
 
 }
