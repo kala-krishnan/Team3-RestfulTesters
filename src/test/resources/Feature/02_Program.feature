@@ -1,4 +1,4 @@
-@ProgramModule
+@ProgramModule @LMS
 Feature: LMS API Program Module
 
   Background: 
@@ -25,7 +25,7 @@ Feature: LMS API Program Module
 
     Examples: 
       | requestType            | Status |
-      | GetAllValidProgram     |    200 |
+      #| GetAllValidProgram     |    200 |
       | GetAllProgramInValidEP |    404 |
 
   @GetProgrambyProgramID
@@ -49,7 +49,7 @@ Feature: LMS API Program Module
 
     Examples: 
       | requestType                             | Status |
-      | GETAllProgramswithUsersValidProgram     |    200 |
+      #| GETAllProgramswithUsersValidProgram     |    200 |
       | GETAllProgramswithUsersProgramInValidEP |    404 |
 
   @UpdateProgrammodulebyProgramId

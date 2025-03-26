@@ -49,7 +49,6 @@ public class ProgramRequest extends SpecificationClass {
 
 	public void setNewProgramRequest(String requestType) throws Exception {
 		ProgramPojo program = TestDataLoader.loadTestDatafor_Post_Put(requestType, ProgramPojo.class);
-		System.out.println("Program sttaucode" + program.getStatusCode());
 		context.set("ProgramPojo", program);
 	}
 
@@ -69,18 +68,14 @@ public class ProgramRequest extends SpecificationClass {
 
 			context.set("programResponse", response);
 
-			if (response.getStatusCode() == 201) {
+			if (response.getStatusCode() == 201 && Scenario.equals("CreateProgramValid")) {
 				Integer programId = response.jsonPath().getInt("programId");
 				String programName = response.jsonPath().getString("programName");
 
-				context.set("programId", programId);
-				context.set("programName", programName);
-
 				// Only set in TextContext for CreateProgramValid scenario
-				if (Scenario.equals("CreateProgramValid")) {
 					TextContext.setProgramId(programId);
-					System.out.println("Stored Program ID: " + programId);
-				}
+					TextContext.setprogramName(programName);
+				
 			}
 		} catch (Exception e) {
 			System.err.println("Error in PostNewProgramRequest: " + e.getMessage());
@@ -90,14 +85,11 @@ public class ProgramRequest extends SpecificationClass {
 
 	public void PostNewProgramRequestInvalidMethod() {
 		ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
-		System.out.println(program.toString());
+
 		response = RestAssured.given().spec(requestHeadersWithToken()).body(program).log().all()
 				.get(APIResources.valueOf("APIAddProgram").getResources());
 		context.set("programResponse", response);
-		System.out.println(response.prettyPrint());
-		System.out.println("Status Code: " + response.getStatusCode());
-		System.out.println("Response Headers: " + response.getHeaders());
-		System.out.println("Response Body: " + response.getBody().asString());
+
 
 	}
 
@@ -177,7 +169,7 @@ public void PutProgramByIdRequest(String scenario) {
 		} else if ("PutProgramIDEmptyMandatory".equals(scenario)) { // For valid updates, append reasonable suffix
 			program.setProgramStatus(""); // Clear the mandatory field
 		} else if ("PutProgramValidProgramID".equals(scenario)) { // For valid updates, append reasonable suffix
-			 program.setProgramName(program.getProgramName() + "uzbxxxxx");		}
+			 program.setProgramName(program.getProgramName() );		}
 
 		program.setProgramId(programId);
 		if (program.getProgramDescription() == null) {
@@ -191,12 +183,10 @@ public void PutProgramByIdRequest(String scenario) {
 				.log().all().put(endPoint);
 		context.set("programResponse", response);
 
-		System.out.println("Response Status Code:******* " + response.getStatusCode());
-		// System.out.println("Response Body: " + response.getBody().asString());
-
 		if (response.getStatusCode() == 201) {
-			TextContext.setProgramId(programId);
+
 			TextContext.setprogramName(program.getProgramName());
+			
 			context.set("updatedProgramName", program.getProgramName());
 		}
 	}
@@ -205,8 +195,6 @@ public void PutProgramByIdRequest(String scenario) {
 	// --------------------------------------- UPDATE PROGRAM BY NAME
 	public void PutProgramByNameRequest(String scenario) {
 		String originalProgramName = TextContext.getProgramName(); // Store original name for URL
-		System.out.println("Getting PROGRAM IN PUT PROGRAMBYNAME+++" + originalProgramName);
-
 		String endPoint = APIResources.valueOf("APIUpdateProgramByName").getResources();
 
 		ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
@@ -238,23 +226,33 @@ public void PutProgramByIdRequest(String scenario) {
 		}
 
 		// Execute PUT request
+		
 		response = RestAssured.given().spec(requestHeadersWithToken()).pathParam("programName", originalProgramName)
 
 				.body(program).log().all().put(endPoint);
 		context.set("programResponse", response);
 
-		System.out.println("Response Status Code:******* " + response.getStatusCode());
 
 		// Handle successful update
 		if (response.getStatusCode() == 200) {
 			context.set("updatedProgramName", newProgramName); // Store the new name
 		}
 	}
+	
+	public void NoAuthPutProgramByNameRequest(String scenario) {
+		String originalProgramName = TextContext.getProgramName(); // Store original name for URL
+		ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
+		response = RestAssured.given().spec(requestHeadersWithoutToken()).pathParam("programName", originalProgramName)
+				.body(program).log().all().put(APIResources.valueOf("APIUpdateProgramByName").getResources());
+		context.set("programResponse", response);
+	
+	}
+
+	
 	// --------------------------------------- DELETE PROGRAM ID
 
 	public void DeleteProgramIdhRequest(String Scenario) {
-		int programid = Integer.valueOf(getProgramId());
-		if(programid == 0)  programid = TextContext.getProgramId();
+		int  programid = TextContext.getProgramId();
 
 		String EndPoint = APIResources.valueOf("APIDeleteProgramByID").getResources();
 		if (Scenario.equals("DeleteProgramIdInvalidEP"))
@@ -263,6 +261,15 @@ public void PutProgramByIdRequest(String scenario) {
 		ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
 		response = RestAssured.given().spec(requestHeadersWithToken()).log().all().
 				pathParam("programid", programid).delete(EndPoint);
+		context.set("programResponse", response);
+	}
+	
+	public void NoAuthDeleteProgramRequest(String Scenario) {
+		int  programid = TextContext.getProgramId();
+
+		ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
+		response = RestAssured.given().spec(requestHeadersWithoutToken()).log().all().
+				pathParam("programid", programid).delete(APIResources.valueOf("APIDeleteProgramByID").getResources());
 		context.set("programResponse", response);
 	}
 }

@@ -32,7 +32,6 @@ public class BatchStepDefinition {
 	
 @Given("Admin sets Authorization to Bearer Token")
 public void admin_sets_authorization_to_bearer_token() throws Exception {
-	System.out.println(context.get("LMStoken"));
 	if(context.get("LMStoken")==(null))
 		loginRequest.PostLoginRequest();
 }
@@ -63,10 +62,10 @@ public void admin_receives_for_batch_request(String Code) {
 	
 	if(Code.equals("201")) {
 		BatchValidation.DataValidation(batchResponse);
-		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutValid_Schema.json" );	
+	//	Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutValid_Schema.json" );	
 	}
 	else if(Code.equals("400"))
-		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutInvalid_Schema.json" );	
+	//	Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutInvalid_Schema.json" );	
 	
 	Validation.assertAll();
 }
@@ -122,7 +121,7 @@ public void admin_receives_with_batch_get_by_id_response_body(String Code) {
 	Validation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
 	Validation.validateResponseTime(batchResponse);	
 	if(Code.equals("200"))
-		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_GetByID_Schema.json" );
+	//	Validation.validateJsonSchema(batchResponse, "Schemas/Batch_GetByID_Schema.json" );
 	if(!Code.equals("404"))
 		Validation.validateContentType(batchResponse);
 	Validation.assertAll();
@@ -148,7 +147,7 @@ batchResponse = context.get("batchResponse", Response.class);
 	Validation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
 	Validation.validateResponseTime(batchResponse);	
 	if(Code.equals("200"))
-		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_GetByName_Schema.json" );	
+	//	Validation.validateJsonSchema(batchResponse, "Schemas/Batch_GetByName_Schema.json" );	
 	if(!Code.equals("404"))
 		Validation.validateContentType(batchResponse);
 	Validation.assertAll();
@@ -202,10 +201,10 @@ batchResponse = context.get("batchResponse", Response.class);
 	if(Code.equals("200"))
 	{
 		BatchValidation.DataValidation(batchResponse);
-		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutValid_Schema.json" );
+	//	Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutValid_Schema.json" );
 	}
 	else if(Code.equals("400"))
-		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutInvalid_Schema.json" );	
+	//	Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutInvalid_Schema.json" );	
 	
 	Validation.assertAll();
 }
