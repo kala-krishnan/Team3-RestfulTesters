@@ -24,11 +24,12 @@ Background: Authorization SetUp
   Scenario Outline: Verify search all batch functionality
     Given Admin creates GET Request for batch "<Scenario>"
     When Admin sends GET HTTPS Request with batch "<Scenario>"
-    Then Admin receives "<Status>" with batch GetAll response body
+    Then Admin receives "<Status>" with "<Scenario>" GetAll response body
     Examples: 
       | Scenario     			   | Status  |
       | GetAllBatchValid 	   |  200    |
-      | GetAllBatchInValidEP |  404    |  
+      | GetAllBatchInValidEP |  404    | 
+      | GetAllBatchSearchtxt |  200    | 
        
     
 	@GetBatchByID   

@@ -20,6 +20,7 @@ public class BatchStepDefinition {
 	LoginRequest loginRequest;
 	BatchRequest batch;
 	private Response batchResponse;
+	private SoftAssert softAssert = new SoftAssert();
 	BatchModuleDataValidation BatchValidation = new BatchModuleDataValidation();
 	CommonResponseValidation Validation = new CommonResponseValidation();
 	private ScenarioContext context =ScenarioContext.getInstance();
@@ -56,14 +57,18 @@ public void admin_receives_for_batch_request(String Code) {
 	Validation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
 	Validation.validateStatusLine(batchResponse, batch.getBatchStatusLine());
 	Validation.validateResponseTime(batchResponse);
+	
 	if(!Code.equals("404"))
 		Validation.validateContentType(batchResponse);
+	
 	if(Code.equals("201")) {
 		BatchValidation.DataValidation(batchResponse);
 		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutValid_Schema.json" );	
 	}
 	else if(Code.equals("400"))
 		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutInvalid_Schema.json" );	
+	
+	Validation.assertAll();
 }
 
 //********************************** GET All BATCH ******************************************
@@ -75,11 +80,15 @@ public void admin_creates_get_request_for_batch(String requestType) throws Excep
 
 @When("Admin sends GET HTTPS Request with batch {string}")
 public void admin_sends_get_https_request_with_batch(String Scenario) {
+	if (Scenario.equals("GetAllBatchSearchtxt"))
+		batch.GetAllBatchSearchString(Scenario);
+	else
 	batch.GetAllBatchRequest(Scenario);
+	
 }
 
-@Then("Admin receives {string} with batch GetAll response body")
-public void admin_receives_with_batch_get_all_response_body(String Code) {
+@Then("Admin receives {string} with {string} GetAll response body")
+public void admin_receives_with_get_all_response_body(String Code, String Scenario) {
 	batchResponse = context.get("batchResponse", Response.class);
 	
 	Validation.validateStatusCode(batchResponse, batch.getBatchStatusCode());
@@ -87,6 +96,10 @@ public void admin_receives_with_batch_get_all_response_body(String Code) {
 	Validation.validateResponseTime(batchResponse);	
 	if(!Code.equals("404"))
 		Validation.validateContentType(batchResponse);
+	if(Scenario.equals("GetAllBatchSearchtxt"))
+		BatchValidation.GetAllDataValidation(batchResponse);
+		
+	Validation.assertAll();
 }
 
 //********************************** GET BATCH BY ID ******************************************
@@ -112,6 +125,7 @@ public void admin_receives_with_batch_get_by_id_response_body(String Code) {
 		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_GetByID_Schema.json" );
 	if(!Code.equals("404"))
 		Validation.validateContentType(batchResponse);
+	Validation.assertAll();
 }
 
 //********************************** GET BATCH BY NAME ******************************************
@@ -137,6 +151,7 @@ batchResponse = context.get("batchResponse", Response.class);
 		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_GetByName_Schema.json" );	
 	if(!Code.equals("404"))
 		Validation.validateContentType(batchResponse);
+	Validation.assertAll();
 }
 
 //********************************** GET BATCH BY PROGRAM ID ***************************************
@@ -160,6 +175,7 @@ batchResponse = context.get("batchResponse", Response.class);
 	Validation.validateResponseTime(batchResponse);	
 	if(!Code.equals("404"))
 		Validation.validateContentType(batchResponse);
+	Validation.assertAll();
 }
 
 //********************************** UPDATE BATCH ************************************************
@@ -190,7 +206,10 @@ batchResponse = context.get("batchResponse", Response.class);
 	}
 	else if(Code.equals("400"))
 		Validation.validateJsonSchema(batchResponse, "Schemas/Batch_PostPutInvalid_Schema.json" );	
+	
+	Validation.assertAll();
 }
+
 
 //********************************** DELETE BATCH *********************************************
 
@@ -212,6 +231,7 @@ public void admin_receives_batch_delete(String Code) {
 	Validation.validateResponseTime(batchResponse);	
 	if(!Code.equals("404"))
 		Validation.validateContentType(batchResponse);
+	Validation.assertAll();
 }
 	
 }

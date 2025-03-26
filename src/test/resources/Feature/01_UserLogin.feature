@@ -21,3 +21,4 @@ Feature: LMS API Login
 			|  LoginEmptyUserEmail   |   400      |
 			|  LoginEmptyPassword    |   400      |
 			|LoginInvalidEmailFormat |   400      |
+			|LoginIncorrectPassword  |   400      |

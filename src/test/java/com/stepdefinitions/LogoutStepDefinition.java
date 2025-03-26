@@ -40,6 +40,7 @@ public class LogoutStepDefinition {
 		Validation.validateStatusCode(logoutResponse, logout.getStatusCode());
 		Validation.validateStatusLine(logoutResponse, logout.getStatusLine());
 		Validation.validateResponseTime(logoutResponse);
+		Validation.assertAll();
 
 	}
 
