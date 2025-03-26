@@ -22,7 +22,6 @@ public class LoginStepDefinitons {
 	CommonResponseValidation Validation = new CommonResponseValidation();
 	private Response loginResponse;
 	LoginRequest login;
-	SoftAssert softAssert ;
 	
 	String userLoginSchema = ConfigReader.getProperty("userLoginSchema");
 

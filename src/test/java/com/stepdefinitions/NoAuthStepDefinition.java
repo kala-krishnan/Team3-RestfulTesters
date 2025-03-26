@@ -1,7 +1,10 @@
 package com.stepdefinitions;
 
+import java.io.FileNotFoundException;
+
 import com.APIRequest.BatchRequest;
 import com.APIRequest.LoginRequest;
+import com.APIRequest.LogoutRequest;
 import com.APIResponse.CommonResponseValidation;
 import com.context.ScenarioContext;
 
@@ -11,12 +14,15 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 
 public class NoAuthStepDefinition {
-	LoginRequest loginRequest;
+
 	BatchRequest batch;
 	private Response Response;
 	CommonResponseValidation ResponseValidation = new CommonResponseValidation();
 	ScenarioContext context = ScenarioContext.getInstance();
 	
+	public NoAuthStepDefinition() throws FileNotFoundException {
+		batch = new BatchRequest();
+	}
 	
 //--------------------------------- BATCH NO AUTH ------------------------------------------
 

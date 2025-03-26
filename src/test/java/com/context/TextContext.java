@@ -13,10 +13,21 @@ public  class TextContext {
 		context.set(ContextKeyEnum.LMS_USER_ID.name(), userId);
 	}
 
+	public static void setRoleId(String role_id) {
+		context.set(ContextKeyEnum.LMS_ROLE_ID.name(), role_id);
+	}
+	
+	public static void setprogramName(String  programName) {
+		context.set(ContextKeyEnum.LMS_PROGRAM_NAME.name(), programName);
+	}
+	
+	public static void setBatchName(String batchName) {
+		context.set(ContextKeyEnum.LMS_BATCH_NAME.name(), batchName);
+	}
 	public static void setProgramId(Integer  programId) {
 		context.set(ContextKeyEnum.LMS_PROGRAM_ID.name(), programId);
 	}
-
+	
 	public static void setBatchId(int batchId) {
 		context.set(ContextKeyEnum.LMS_BATCH_ID.name(), batchId);
 	}
@@ -33,24 +44,29 @@ public  class TextContext {
 		return (String) context.get(ContextKeyEnum.LMS_USER_ID.name());
 	}
 
-	public static int getProgramId() {
-		return (int) context.get(ContextKeyEnum.LMS_PROGRAM_ID.name());
+	public static Integer getProgramId() {
+		return (Integer) context.get(ContextKeyEnum.LMS_PROGRAM_ID.name());
 	}
 
-	public static int getBatchId() {
-		return (int) context.get(ContextKeyEnum.LMS_BATCH_ID.name());
+	public static Integer getBatchId() {
+		return (Integer) context.get(ContextKeyEnum.LMS_BATCH_ID.name());
 	}
 
-	public static int getClassId() {
-		return (int) context.get(ContextKeyEnum.LMS_CLASS_ID.name());
+	public static Integer getClassId() {
+		return (Integer) context.get(ContextKeyEnum.LMS_CLASS_ID.name());
 	}
-
-
-
-	/*public static ScenarioContext scenarioContext = new ScenarioContext();
-		public static String setToken(){				
-		String retrievedToken =scenarioContext.getContext("LMStoken");
-		return retrievedToken;
-		}*/
-}
+	
+	public static String getRoleId() {
+		return (String) context.get(ContextKeyEnum.LMS_ROLE_ID.name());
+	}
+	
+	public static String getProgramName() {
+		return (String) context.get(ContextKeyEnum.LMS_PROGRAM_NAME.name());
+	}
+	
+	public static String getBatchName() {
+		return (String) context.get(ContextKeyEnum.LMS_BATCH_NAME.name());
+	}
+		
+	}
 
