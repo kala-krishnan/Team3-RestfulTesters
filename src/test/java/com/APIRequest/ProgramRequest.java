@@ -160,15 +160,16 @@ public class ProgramRequest extends SpecificationClass {
 
 	// --------------------------------------- UPDATE PROGRAM BY ID
 
-	public void PutProgramByIdRequest(String scenario) {
+public void PutProgramByIdRequest(String scenario) {
 		int programId = TextContext.getProgramId();
 		String programName = TextContext.getProgramName();
 		String endPoint = APIResources.valueOf("APIUpdateProgramByID").getResources();
 
 		ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
-		if ("PutProgramIDInvalidEp".equals(scenario)) {
-			programId = 999; // Explicit invalid ID
-			endPoint = endPoint.replace("{programId}", String.valueOf(programId)) + "Invalid";
+		   if ("PutProgramIDInvalidEp".equals(scenario)) {
+		        programId = 999;
+		        endPoint = endPoint + "/Invalid"; // Append to endpoint instead of replacing
+		    
 		} else if ("PutInvalidProgramID".equals(scenario)) {
 
 			programId = Integer.MAX_VALUE;
@@ -176,9 +177,7 @@ public class ProgramRequest extends SpecificationClass {
 		} else if ("PutProgramIDEmptyMandatory".equals(scenario)) { // For valid updates, append reasonable suffix
 			program.setProgramStatus(""); // Clear the mandatory field
 		} else if ("PutProgramValidProgramID".equals(scenario)) { // For valid updates, append reasonable suffix
-			String currentName = program.getProgramName();
-			program.setProgramName(currentName + "uzbbkpppk");
-		}
+			 program.setProgramName(program.getProgramName() + "uzbxxxxx");		}
 
 		program.setProgramId(programId);
 		if (program.getProgramDescription() == null) {
@@ -201,6 +200,7 @@ public class ProgramRequest extends SpecificationClass {
 			context.set("updatedProgramName", program.getProgramName());
 		}
 	}
+	
 
 	// --------------------------------------- UPDATE PROGRAM BY NAME
 	public void PutProgramByNameRequest(String scenario) {
@@ -253,13 +253,16 @@ public class ProgramRequest extends SpecificationClass {
 	// --------------------------------------- DELETE PROGRAM ID
 
 	public void DeleteProgramIdhRequest(String Scenario) {
-		int id = getProgramId();
-		String EndPoint = APIResources.valueOf("APIDeleteProgramByID").getResources() + id;
+		int programid = Integer.valueOf(getProgramId());
+		if(programid == 0)  programid = TextContext.getProgramId();
+
+		String EndPoint = APIResources.valueOf("APIDeleteProgramByID").getResources();
 		if (Scenario.equals("DeleteProgramIdInvalidEP"))
-			EndPoint = APIResources.valueOf("APIDeleteProgramByID").getResources() + "Invalid" + id;
+			EndPoint = APIResources.valueOf("APIDeleteProgramByID").getResources() + "Invalid";
 
 		ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
-		response = RestAssured.given().spec(requestHeadersWithToken()).log().all().delete(EndPoint);
+		response = RestAssured.given().spec(requestHeadersWithToken()).log().all().
+				pathParam("programid", programid).delete(EndPoint);
 		context.set("programResponse", response);
 	}
 }

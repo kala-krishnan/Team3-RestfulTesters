@@ -4,11 +4,9 @@ import java.io.FileNotFoundException;
 import org.testng.asserts.SoftAssert;
 import com.APIRequest.LoginRequest;
 import com.APIRequest.ProgramRequest;
-import com.APIResponse.BatchModuleDataValidation;
 import com.APIResponse.CommonResponseValidation;
 import com.APIResponse.ProgramModuleDataValidation;
 import com.context.ScenarioContext;
-import com.fasterxml.jackson.databind.JsonNode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -60,11 +58,12 @@ public class ProgramStepDefinitions {
 			ProgramValidation.DataValidation(programResponse);
 			ResponseValidation.validateJsonSchema(programResponse, "Schemas/Program_PostValid_Schema.json");
 		}
+		ResponseValidation.assertAll();
 	}
 
 //	//********************************** GETALL PROGRAM ******************************************
 
-/*	@Given("Admin creates GETAll request {string} for Program Module")
+	@Given("Admin creates GETAll request {string} for Program Module")
 	public void admin_creates_get_all_request_for_program_module(String requestType) throws Exception {
 		programRequest.setNewProgramRequest(requestType);
 	}
@@ -83,8 +82,10 @@ public class ProgramStepDefinitions {
 
 		if (!StatusCode.equals("404"))
 			ResponseValidation.validateContentType(programResponse);
+		ResponseValidation.assertAll();
+
 	}
-*/	// ........ GetProgramId......
+	// ........ GetProgramId......
 
 	@Given("Admin creates GET Request by {string} for LMS Program module")
 	public void admin_creates_get_request_by_for_lms_program_module(String requestType) throws Exception {
@@ -107,11 +108,13 @@ public class ProgramStepDefinitions {
 			ResponseValidation.validateJsonSchema(programResponse, "Program_GetByProgramID_Schema.json");
 		if (!StatusCode.equals("404"))
 			ResponseValidation.validateContentType(programResponse);
+		ResponseValidation.assertAll();
+
 	}
 
 	// ........ GetAll Program With Users......//
 
-/*	@Given("Admin creates GETAllProgramswithUsers request {string} for Program Module")
+	@Given("Admin creates GETAllProgramswithUsers request {string} for Program Module")
 	public void admin_creates_get_all_programswith_users_request_for_program_module(String requestType) {
 		System.out.println("Creating request: " + requestType);
 
@@ -132,6 +135,7 @@ public class ProgramStepDefinitions {
 
 		if (!StatusCode.equals("404"))
 			ResponseValidation.validateContentType(programResponse);
+		ResponseValidation.assertAll();
 
 	}
 
@@ -162,6 +166,7 @@ public class ProgramStepDefinitions {
 		if (StatusCode.equals("200")) {
 			ProgramValidation.DataValidation(programResponse);
 		}
+		ResponseValidation.assertAll();
 
 	}
 
@@ -187,6 +192,8 @@ public class ProgramStepDefinitions {
 		ResponseValidation.validateResponseTime(programResponse);
 		if (!StatusCode.equals("404"))
 			ResponseValidation.validateContentType(programResponse);
+		ResponseValidation.assertAll();
+
 	}
 	// ********************************** DELETE PROGRAM
 	// **********************************/
@@ -211,6 +218,8 @@ public class ProgramStepDefinitions {
 		ResponseValidation.validateResponseTime(programResponse);
 		if (!StatusCode.equals("404"))
 			ResponseValidation.validateContentType(programResponse);
+		ResponseValidation.assertAll();
+
 	}
 
 }

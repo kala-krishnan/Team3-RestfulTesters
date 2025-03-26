@@ -27,12 +27,6 @@ public class ProgramModuleDataValidation {
 
 	}
 
-	public void GetAllDataValidation(Response response) {
 
-		String responseBody = response.getBody().asString();
-		softAssert.assertTrue(responseBody.contains("sdet"),
-				"Search string 'sdet' is not present in the response body.");
-
-	}
 
 }
