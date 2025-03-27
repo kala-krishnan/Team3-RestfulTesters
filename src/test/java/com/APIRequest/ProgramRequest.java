@@ -274,4 +274,53 @@ public void PutProgramByIdRequest(String scenario) {
 				pathParam("programid", programid).delete(APIResources.valueOf("APIDeleteProgramByID").getResources());
 		context.set("programResponse", response);
 	}
+	//-----------NO AUTH------------------------------------------------
+	
+	public void NoAuthCreateProgram()
+	{
+		ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
+		response = RestAssured.given().spec(requestHeadersWithoutToken())
+				.body(program).log().all()
+				.post(APIResources.valueOf("APIAddProgram").getResources());       
+		context.set("programResponse", response); 	
+	}
+	
+	public void NoAuthGetAllProgram()
+	{
+		response = RestAssured.given().spec(requestHeadersWithoutToken())
+				.log().all()
+				.get(APIResources.valueOf("APIGetAllProgram").getResources());       
+		context.set("programResponse", response); 
+	}
+	
+	public void NoAuthGetProgramById()
+	{
+		int programId = TextContext.getProgramId();	
+		response = RestAssured.given().spec(requestHeadersWithoutToken())
+				.log().all()
+				.pathParam("programId", programId)
+				.get(APIResources.valueOf("APIGetProgramByID").getResources());       
+		context.set("programResponse", response); 
+	}
+	public void NoAuthPUTProgramID()
+	{
+		int programId = TextContext.getProgramId();
+		ProgramPojo program = context.get("ProgramPojo", ProgramPojo.class);
+		response = RestAssured.given().spec(requestHeadersWithoutToken())
+				.body(program).log().all()
+				.pathParam("programId", programId)
+				.put(APIResources.valueOf("APIUpdateProgramByID").getResources());       
+		context.set("programResponse", response); 
+	}
+	public void NoAuthDeleteProgrambyId()
+	{
+		int programId = TextContext.getProgramId();
+		response = RestAssured.given().spec(requestHeadersWithoutToken())
+				.log().all()
+				.pathParam("programId", programId)
+				.delete(APIResources.valueOf("APIDeleteProgramByID").getResources());       
+		context.set("programResponse", response); 
+	}
+	
+	
 }

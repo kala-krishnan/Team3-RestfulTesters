@@ -3,6 +3,23 @@ Feature: LMS API No Auth Request
 
 #----------------------------------- PROGRAM NO AUTH ---------------------------------
 
+
+  @NoAuthProgram   
+  Scenario Outline: Verify program module functionality with no Auth
+    Given Admin creates "<Scenario>" Request in program for NoAuth
+    When Admin sends "<Request>" HTTPS program Request
+    Then Admin receives program 401 Status for NoAuth
+    Examples: 
+      | Scenario     		          |   Request     |
+      | NoAuthCreateProgram 	    |   POST        |
+      | NoAuthGetAllProgram       |   GetAll      |
+      | NoAuthGetProgramById      |   GetById     |
+      | NoAuthPUTProgramID        |    PUT        |
+      | NoAuthDeleteProgrambyId   |   Delete      |
+      
+
+
+
 #----------------------------------- BATCH NO AUTH -----------------------------------
 
   @NoAuthBatch   
