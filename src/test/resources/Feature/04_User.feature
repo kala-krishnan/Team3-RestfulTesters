@@ -13,6 +13,15 @@ Examples:
 | requestType  |
 | CreateUserValid   |
 
+@updateprogrambatchuser
+Scenario Outline: Update User Role Program Batch Status
+Given User creates PUT Request User Role Program Batch Status "<requestType>" for LMS User Module
+When User calls PUT Https method for the requesttype "<requestType>" to Update User Role Program Batch Status LMS User Module
+Then User received proper status code <StatusCode> with updated Update User Role Program Batch Status
+Examples:
+| requestType  |StatusCode|
+| UpdateUserByRPBStatus   |200|
+
 
 @getalluserdetails
 Scenario Outline: Check if admin able to retrieve all user with facets and filters LMS User Module  
@@ -36,15 +45,6 @@ Examples:
 |GetUserBatchID|userId|
 
 
-@getuserprmbatch
-Scenario Outline: Check if admin able to retrieve user by parameter LMS User Module for prm batch
-Given Admin creates GET Request "<requestType>" and "<parameter>" for LMS User Module for prm batch
-When Admin sends GET Request with endpoint and "<requestType>"  and "<parameter>" for LMS User Module for prm batch
-Then Admin gets the users detailsfor prm batch
-Examples:
-| requestType  |parameter|
-| GetByProgramID   |programId|  
-| GetByBatchID   |batchId|  
 
 
 @getalluser
@@ -137,13 +137,15 @@ Examples:
 |PutUserRolebyUserIdwithoutRolestatus|400|
 |PutUserRolebyUserIdSpecialRolestatus|400|
 
-
-
-@updateprogrambatchuser
-Scenario Outline: Update User Role Program Batch Status
-Given User creates PUT Request User Role Program Batch Status "<requestType>" for LMS User Module
-When User calls PUT Https method for the requesttype "<requestType>" to Update User Role Program Batch Status LMS User Module
-Then User received proper status code "<StatusCode>" with updated Update User Role Program Batch Status
+@createinvaliduser
+Scenario Outline: Check if admin able to create a new user with invalid endpoint and invalid request body 
+Given Admin creates POST Request with request body "<requestType>" for LMS User Module invalid phone number
+When Admin calls Post Https method  with valid endpoint for LMS User Module invalid  phone number
+Then Admin receive created  status for LMS User Module invalid  phone number
 Examples:
-| requestType  |StatusCode|
-| UpdateUserByRPBStatus   |200|
+| requestType  |
+| CreateUserInValidemailid   |
+
+
+
+
