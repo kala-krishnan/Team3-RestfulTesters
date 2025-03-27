@@ -1,4 +1,4 @@
-@Login @LMS1
+@Login @LMS
 
 Feature: LMS API Login
 

@@ -3,7 +3,7 @@
         {
 			"CreateProgramValid": {
 			  "scenario": "Add Program with Bearer Token",
-			  "programName": "RestfullJuiciesAPI",
+			  "programName": "RestfullJenkinAPI",
 			  "programDescription": "hackathon test three",
 			  "programStatus": "active",
 			  "statusCode": 201,
@@ -13,7 +13,7 @@
 		  {
 			"CreateProgramEmptyNonMandatory": {
 			  "scenario": "Add Program with empty non-mandatory fields",
-			  "programName": "RestfullJuiciesPrg",
+			  "programName": "RestfullJenkinPrg",
 			  "programDescription": "",
 			  "programStatus": "active",
 			  "statusCode": 201,
@@ -23,7 +23,7 @@
 		  {
 			"CreateProgramStatusInactive": {
 			  "scenario": "Add Program with inactive status",
-			  "programName": "RestfullJuiciesProgram",
+			  "programName": "RestfullJenkinProgram",
 			  "programDescription": "inactive test",
 			  "programStatus": "Inactive",
 			  "statusCode": 201,
@@ -35,7 +35,7 @@
 			  "scenario": "Update Batch Valid",
 			  "programId": 19192,
 			  "statusCode": 200,
-			  "programName": "RestfullJuiciesEditPrg",
+			  "programName": "RestfullJenkinEditPrg",
 			  "programStatus": "Active",
 			  "statusText": "HTTP/1.1 200 OK"
 			}
@@ -45,7 +45,7 @@
 			  "scenario": "Update Batch Valid",
 			  "programId": 19192,
 			  "statusCode": 200,
-			  "programName": "RestfullJuiciesEditPrgg",
+			  "programName": "RestfullJenkinEditPrgg",
 			  "programStatus": "Active",
 			  "statusText": "HTTP/1.1 200 OK"
 			}
@@ -56,7 +56,7 @@
 				"scenario":"*********Add Batch valid", 
 				"id": 0,   
 				"batchDescription": "TestBatches",
-				"batchName": "RestfullJuiciesBatch",
+				"batchName": "RestfullJenkinBatch",
 				"batchNoOfClasses": 10,
 				"batchStatus": "Active",
 				"programId": 16449,
@@ -69,7 +69,7 @@
 				"scenario":"*******8Add Batch with Non Mandatory field empty", 
 				"id": 0,    
 				"batchDescription": "",
-				"batchName": "RestfullJuiciesBatche",
+				"batchName": "RestfullJenkinBatche",
 				"batchNoOfClasses": 10,
 				"batchStatus": "Active",
 				"programId": 16449,
@@ -82,7 +82,7 @@
 				"scenario":"********Update Batch Valid",  
 				"id": 0,  
 				"batchDescription": "TestBatches",
-				"batchName": "RestfullJuiciesBatchs",
+				"batchName": "RestfullJenkinBatchs",
 				"batchNoOfClasses": 11,
 				"batchStatus": "Active",
 				"programId": 16449,
@@ -96,15 +96,15 @@
 		                "statusCode": 201,
 		                "statusText": "Created",
 		                "type": "valid",
-		                "userComments": "wineComments",
+		                "userComments": "JenkinComments",
 		                "userEduPg": "mgfte",
 		                "userEduUg": "bedggd8",
-		                "userFirstName": "wineMary",
-		                "userLastName": "wineLame",
+		                "userFirstName": "JenkinMary",
+		                "userLastName": "JenkinLame",
 		                "userLinkedinUrl": "www.linkedin.com4/url",
 		                "userLocation": "texas",
 		                "userMiddleName": "middle",
-		                "userPhoneNumber": "+91 7478249042",
+		                "userPhoneNumber": "+91 6884275091",
 		                "userRoleMaps": [
 		                    {
 		                        "roleId": "R02",
@@ -115,7 +115,7 @@
 		                "userVisaStatus": "H1B",
 		                "userLogin": {
 		                    "loginStatus": "Active",
-		                    "userLoginEmail": "winemary@gmail.com",
+		                    "userLoginEmail": "Jenkinmary@gmail.com",
 		                    "status": "Active"
 		                }
 		            }
@@ -130,7 +130,7 @@
 				        "batchId": 11959,
 				        "classNo": 1,
 				        "classDate": "2025-04-01",
-				        "classTopic": "JuiciesTopic",
+				        "classTopic": "JenkinTopic",
 				        "classStatus": "Active",
 				        "classStaffId": "U34",
 				        "classDescription": "tes",
@@ -627,7 +627,7 @@
 			 		   "scenario":"Add Batch No of Class zero", 
 			 		   "id": 0,    
 			               "batchDescription": "APIPowertest",
-			               "batchName": "Chaintest7",
+			               "batchName": "Jenkintest7",
 			               "batchNoOfClasses": "0",
 			               "batchStatus": "Active",
 			               "programId": 16449,
@@ -640,7 +640,7 @@
  			 		   "scenario":"Add Batch No of Class more than two digit", 
  			 		   "id": 0,    
  			               "batchDescription": "APIcowertest",
- 			               "batchName": "Chaintest7",
+ 			               "batchName": "Jenkintest7",
  			               "batchNoOfClasses": "123",
  			               "batchStatus": "Active",
  			               "programId": 16449,
@@ -1198,286 +1198,455 @@
 								        "statusText": "OK"
 								    }
 								},
-								{
-													"GetAllUsers":{
-												    "scenario": "Get all Users",
-												    "authType": "Bearer Token",
-												    "statusCode": 200,
-												    "statusText": "HTTP/1.1 200 OK"
-													}
-												},
-												 {
-													"GetAllUserInvalidEndpoint":{
-												    "scenario": "Get all Users with inValid",
-												    "authType": "Bearer Token",
-												    "statusCode": 404,
-												    "statusText": "HTTP/1.1 404 Not Found"
-													}
-												},
-												{
-													"GetAllActiveUsers":{
-												    "scenario": "Get all active Users",
-												    "authType": "Bearer Token",
-												    "statusCode": 200,
-												    "statusText": "HTTP/1.1 200 OK"
-													}
-												},
-												{
-													"GetAllActiveUsersInvalidEndpoint":{
-												    "scenario": "Get all active Users with inValid",
-												    "authType": "Bearer Token",
-												    "statusCode": 404,
-												    "statusText": "HTTP/1.1 404 Not Found"
-													}
-												},
-												{
-													"GetActiveEmailUsers":{
-												    "scenario": "Get all Active Users Email id",
-												    "authType": "Bearer Token",
-												    "statusCode": 200,
-												    "statusText": "HTTP/1.1 200 OK"
-													}
-												},
-												{
-													"GetActiveEmailUsersInvalidEndpoint":{
-												    "scenario": "Get all active Users Email id with inValid",
-												    "authType": "Bearer Token",
-												    "statusCode": 404,
-												    "statusText": "HTTP/1.1 404 Not Found"
-													}
-												},
-												{
-													"GetAllRoles":{
-												    "scenario": "Get all roles",
-												    "authType": "Bearer Token",
-												    "statusCode": 200,
-												    "statusText": "HTTP/1.1 200 OK"
-													}
-												},
-												{
-													"GetAllRolesInvalidEndpoint":{
-												    "scenario": "Get all roles with inValid",
-												    "authType": "Bearer Token",
-												    "statusCode": 404,
-												    "statusText": "HTTP/1.1 404 Not Found"
-													}
-												},
-												{
-													"GetAllUserwithRoles":{
-												    "scenario": "Get all users with roles",
-												    "authType": "Bearer Token",
-												    "statusCode": 200,
-												    "statusText": "HTTP/1.1 200 OK"
-													}
-												},
-												{
-													"GetAllUserwithRolesInvalidEndpoint":{
-												    "scenario": "Get all Users with roles with inValid",
-												    "authType": "Bearer Token",
-												    "statusCode": 404,
-												    "statusText": "HTTP/1.1 404 Not Found"
-													}
-												},
-												{
-													"GetAllUserStatusCount":{
-												    "scenario": "Get all User Status Count",
-												    "authType": "Bearer Token",
-												    "statusCode": 200,
-												    "statusText": "HTTP/1.1 200 OK"
-													}
-												},
-												{
-													"GetAllUserStatusCountInvalidEndpoint":{
-												    "scenario": "Get all Users status count with inValid",
-												    "authType": "Bearer Token",
-												    "statusCode": 404,
-												    "statusText": "HTTP/1.1 404 Not Found"
-													}
-												},
-												{
-													"GetUserbyUserId":{
-												    "scenario": "Get Users by UserId",
-												    "authType": "Bearer Token",
-												    "statusCode": 200,
-												    "statusText": "HTTP/1.1 200 OK"
-													}
-												},
-												{
-													"GetUserByUserIDInvalidEndpoint":{
-												    "scenario": "Get Users by UserId with inValid Endpoint",
-												    "authType": "Bearer Token",
-												    "statusCode": 404,
-												    "statusText": "HTTP/1.1 404 Not Found"
-													}
-												},
-												{
-													"GetUserByInvalidUserId":{
-												    "scenario": "Get Users by UserId with inValid Id",
-												    "authType": "Bearer Token",
-												    "statusCode": 404,
-												    "statusText": "HTTP/1.1 404 Not Found",
-												    "id": 9090909
-													}
-												},
-													{
-													"GetUserByInvalidSpecialCharacterUserId":{
-												    "scenario": "Get Users by UserId with inValid Special Character",
-												    "authType": "Bearer Token",
-												    "statusCode": 404,
-												    "statusText": "HTTP/1.1 404 Not Found",
-												    "id": "******"
-													}
-												},
-													{
-													"PutUserRolebyUserId":{
-												    "scenario": "Update User roles by UserId",
-												    "roleId":"R02",
-												    "userRoleStatus" :"active",
-												    "authType": "Bearer Token",
-												    "statusCode": 200,
-												    "statusText": "HTTP/1.1 200 OK"
-													}},
-													{
-													"PutUserRolebyUserIdInvalidRoleID":{
-												    "scenario": "Update User roles invalid by UserId",
-												    "roleId":"R021",
-												    "userRoleStatus" :"active",
-												    "authType": "Bearer Token",
-												    "statusCode": 400,
-												    "statusText": "HTTP/1.1 400 Bad Request"
-													}
-													
-												},
-												{
-													"PutUserRolebyUserIdSpecialRoleID":{
-												    "scenario": "Update User roles invalid by UserId",
-												    "roleId":"(****",
-												    "userRoleStatus" :"active",
-												    "authType": "Bearer Token",
-												    "statusCode": 400,
-												    "statusText": "HTTP/1.1 400 Bad Request"
-													}
-													
-												},
-												{
-													"PutUserRolebyUserIdwithoutRoleID":{
-												    "scenario": "Update User roles invalid by UserId",
-												    "roleId":"",
-												    "userRoleStatus" :"active",
-												    "authType": "Bearer Token",
-												    "statusCode": 400,
-												    "statusText": "HTTP/1.1 400 Bad Request"
-													}
-													
-												},
-												{
-													"PutUserRolebyUserIdwithoutRolestatus":{
-												    "scenario": "Update User roles invalid by UserId",
-												    "roleId":"R02",
-												    "userRoleStatus" :"",
-												    "authType": "Bearer Token",
-												    "statusCode": 400,
-												    "statusText": "HTTP/1.1 400 Bad Request"
-													}
-													
-												},
-												{
-													"PutUserRolebyUserIdSpecialRolestatus":{
-												    "scenario": "Update User roles invalid by UserId",
-												    "roleId":"R02",
-												    "userRoleStatus" :"&&&&",
-												    "authType": "Bearer Token",
-												    "statusCode": 400,
-												    "statusText": "HTTP/1.1 400 Bad Request"
-													}
-													
-												},
-												{
-												            "NoAuthAddUser": {
-												                "scenario": "Add User without Authentication",
-												                "statusCode": 401,
-												                "statusText": "HTTP/1.1 401 Unauthorized",
-												                "authType": "No Auth",
-												                "userComments": "teamhacktonuser8",
-												                "userEduPg": "mtech8",
-												                "userEduUg": "be8",
-												                "userFirstName": "teamfiveeight",
-												                "userLastName": "hackathonfiveeight",
-												                "userLinkedinUrl": "www.linkedin.com4/url",
-												                "userLocation": "texas",
-												                "userMiddleName": "middle",
-												                "userPhoneNumber": "+91 9442800000",
-												               	"roleId":"R02",
-																"userRoleStatus" :"active",
-												                "userTimeZone": "CST",
-												                "userVisaStatus": "H1B",
-												                "loginStatus": "Active",
-												                "userLoginEmail": "great8chaining@gmail.com",
-												                "status": "Active"
-												                
-												            }
-												            
-												        },
-												        {
-															    "NoAuthAPIGetAllUser": {
-																	"scenario":"Search All User No Auth",    
-																	"statusCode":401,
-																	"statusText": "HTTP/1.1 401 Unauthorized"	
-															    }
-															},
-												   			{
-															    "NoAuthAPIGetAllUserRoles": {
-																	"scenario":"Search All User roles No Auth",    
-																	"statusCode":401,
-																	"statusText": "HTTP/1.1 401 Unauthorized"	
-															    }
-															},
-															{
-															    "NoAuthAPIGetUserByStatus": {
-																	"scenario":"Search All User by status No Auth",    
-																	"statusCode":401,
-																	"statusText": "HTTP/1.1 401 Unauthorized"	
-															    }
-															},
-															{
-															    "NoAuthAPIGetActiveUser": {
-																	"scenario":"Search All active User No Auth",    
-																	"statusCode":401,
-																	"statusText": "HTTP/1.1 401 Unauthorized"	
-															    }
-															},
-															{
-															    "NoAuthAPIGetAllRoles": {
-																	"scenario":"Search All roles No Auth",    
-																	"statusCode":401,
-																	"statusText": "HTTP/1.1 401 Unauthorized"	
-															    }
-															},
-															{
-															    "NoAuthAPIGetAllUserEmail": {
-																	"scenario":"Search All User email No Auth",    
-																	"statusCode":401,
-																	"statusText": "HTTP/1.1 401 Unauthorized"	
-															    }
-															},
-															{
-															    "NoAuthAPIUpdateUserByID": {
-																	"scenario":"Update all user roles by userid No Auth",    
-																	"statusCode":401,
-																	"statusText": "HTTP/1.1 401 Unauthorized",
-																	"roleId":"R02",
-																    "userRoleStatus" :"active"
-																		
-															    }
-															},
-															{
-															    "NoAuthAPIGetUserByID": {
-																	"scenario":"Search All User by user id No Auth",    
-																	"statusCode":401,
-																	"statusText": "HTTP/1.1 401 Unauthorized"	
-															    }
-															},
+{
+					"GetAllUsers":{
+				    "scenario": "Get all Users",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				 {
+					"GetAllUserInvalidEndpoint":{
+				    "scenario": "Get all Users with inValid",
+				    "authType": "Bearer Token",
+				    "statusCode": 404,
+				    "statusText": "HTTP/1.1 404 Not Found"
+					}
+				},
+				{
+					"GetAllActiveUsers":{
+				    "scenario": "Get all active Users",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllActiveUsersInvalidEndpoint":{
+				    "scenario": "Get all active Users with inValid",
+				    "authType": "Bearer Token",
+				    "statusCode": 404,
+				    "statusText": "HTTP/1.1 404 Not Found"
+					}
+				},
+				{
+					"GetActiveEmailUsers":{
+				    "scenario": "Get all Active Users Email id",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetActiveEmailUsersInvalidEndpoint":{
+				    "scenario": "Get all active Users Email id with inValid",
+				    "authType": "Bearer Token",
+				    "statusCode": 404,
+				    "statusText": "HTTP/1.1 404 Not Found"
+					}
+				},
+				{
+					"GetAllRoles":{
+				    "scenario": "Get all roles",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllRolesInvalidEndpoint":{
+				    "scenario": "Get all roles with inValid",
+				    "authType": "Bearer Token",
+				    "statusCode": 404,
+				    "statusText": "HTTP/1.1 404 Not Found"
+					}
+				},
+				{
+					"GetAllUserwithRoles":{
+				    "scenario": "Get all users with roles",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllUserwithRolesInvalidEndpoint":{
+				    "scenario": "Get all Users with roles with inValid",
+				    "authType": "Bearer Token",
+				    "statusCode": 404,
+				    "statusText": "HTTP/1.1 404 Not Found"
+					}
+				},
+				{
+					"GetAllUserStatusCount":{
+				    "scenario": "Get all User Status Count",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetAllUserStatusCountInvalidEndpoint":{
+				    "scenario": "Get all Users status count with inValid",
+				    "authType": "Bearer Token",
+				    "statusCode": 404,
+				    "statusText": "HTTP/1.1 404 Not Found"
+					}
+				},
+				{
+					"GetUserbyUserId":{
+				    "scenario": "Get Users by UserId",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}
+				},
+				{
+					"GetUserByUserIDInvalidEndpoint":{
+				    "scenario": "Get Users by UserId with inValid Endpoint",
+				    "authType": "Bearer Token",
+				    "statusCode": 404,
+				    "statusText": "HTTP/1.1 404 Not Found"
+					}
+				},
+				{
+					"GetUserByInvalidUserId":{
+				    "scenario": "Get Users by UserId with inValid Id",
+				    "authType": "Bearer Token",
+				    "statusCode": 404,
+				    "statusText": "HTTP/1.1 404 Not Found",
+				    "id": 9090909
+					}
+				},
+					{
+					"GetUserByInvalidSpecialCharacterUserId":{
+				    "scenario": "Get Users by UserId with inValid Special Character",
+				    "authType": "Bearer Token",
+				    "statusCode": 404,
+				    "statusText": "HTTP/1.1 404 Not Found",
+				    "id": "******"
+					}
+				},
+					{
+					"PutUserRolebyUserId":{
+				    "scenario": "Update User roles by UserId",
+				    "roleId":"R02",
+				    "userRoleStatus" :"active",
+				    "authType": "Bearer Token",
+				    "statusCode": 200,
+				    "statusText": "HTTP/1.1 200 OK"
+					}},
+					{
+					"PutUserRolebyUserIdInvalidRoleID":{
+				    "scenario": "Update User roles invalid by UserId",
+				    "roleId":"R021",
+				    "userRoleStatus" :"active",
+				    "authType": "Bearer Token",
+				    "statusCode": 400,
+				    "statusText": "HTTP/1.1 400 Bad Request"
+					}
+					
+				},
+				{
+					"PutUserRolebyUserIdSpecialRoleID":{
+				    "scenario": "Update User roles invalid by UserId",
+				    "roleId":"(****",
+				    "userRoleStatus" :"active",
+				    "authType": "Bearer Token",
+				    "statusCode": 400,
+				    "statusText": "HTTP/1.1 400 Bad Request"
+					}
+					
+				},
+				{
+					"PutUserRolebyUserIdwithoutRoleID":{
+				    "scenario": "Update User roles invalid by UserId",
+				    "roleId":"",
+				    "userRoleStatus" :"active",
+				    "authType": "Bearer Token",
+				    "statusCode": 400,
+				    "statusText": "HTTP/1.1 400 Bad Request"
+					}
+					
+				},
+				{
+					"PutUserRolebyUserIdwithoutRolestatus":{
+				    "scenario": "Update User roles invalid by UserId",
+				    "roleId":"R02",
+				    "userRoleStatus" :"",
+				    "authType": "Bearer Token",
+				    "statusCode": 400,
+				    "statusText": "HTTP/1.1 400 Bad Request"
+					}
+					
+				},
+				{
+					"PutUserRolebyUserIdSpecialRolestatus":{
+				    "scenario": "Update User roles invalid by UserId",
+				    "roleId":"R02",
+				    "userRoleStatus" :"&&&&",
+				    "authType": "Bearer Token",
+				    "statusCode": 400,
+				    "statusText": "HTTP/1.1 400 Bad Request"
+					}
+					
+				},
+				{
+							    "GetAllClasses": {
+							        "scenario": "Get all class ",
+							        "authType": "Bearer Token",
+							        "statusCode": 200,
+							        "statusText": "OK"
+							    }
+							},			{
+							    "GetAllClassesInvalidEndpoint": {
+							        "scenario": "Get all invalid ",
+							        "authType": "Bearer Token",
+							        "statusCode": 404,
+							        "statusText": "Not Found"
+							    }
+							},
+							{
+							    "ChangeMethodInRequest": {
+							        "scenario": " change method in request",
+							        "authType": "Bearer Token",
+							        "statusCode": 405,
+							        "statusText": "Method not Allowed"
+							    }
+							},			{
+							    "GetClassByBatchId": {
+							        "scenario": "Get class by batchId",
+							        "authType": "Bearer Token",
+							        "statusCode": 200,
+							        "batchId": "8432",
+							        "statusText": "OK"
+							    }
+							},			{
+							    "GetClassByInvalidBatchId": {
+							        "scenario": "Get class by batchId",
+							        "authType": "Bearer Token",
+							        "statusCode": 404,
+							        "batchId": "***",
+							        "statusText": "HTTP/1.1 404 Not Found"
+							    }
+							},			{
+							    "GetClassByClassId": {
+							        "scenario": "Get class by classId",
+							        "authType": "Bearer Token",
+							        "statusCode": 200,
+							        "classId": "881",
+							        "statusText": "OK"
+							    }
+							},			{
+							    "GetClassByInvalidClassId": {
+							        "scenario": "Get class by invalid classId",
+							        "authType": "Bearer Token",
+							        "statusCode": 404,
+							        "classId": "91",
+							        "statusText": "HTTP/1.1 404 Not Found"
+							    }
+							},
+							{
+							    "GetClassBySpecialCharClassId": {
+							        "scenario": "Get class by invalid classId",
+							        "authType": "Bearer Token",
+							        "statusCode": 404,
+							        "classId": "**",
+							        "statusText": "HTTP/1.1 404 Not Found"
+							    }
+							},			{
+							    "GetValidClasstopic": {
+							        "scenario": "Get class by class topic",
+							        "authType": "Bearer Token",
+							        "statusCode": 200,
+							        "classTopic": "1234",
+							        "statusText": "OK"
+							    }
+							},			{
+							    "GetInvalidClasstopic": {
+							        "scenario": "Get class by invalid classId",
+							        "authType": "Bearer Token",
+							        "statusCode": 404,
+							        "classTopic": "91a",
+							        "statusText": "HTTP/1.1 404 Not Found"
+							    }
+							},
+							{
+							    "GetSpecialCharClasstopic": {
+							        "scenario": "Get class by invalid classId",
+							        "authType": "Bearer Token",
+							        "statusCode": 404,
+							        "classTopic": "**",
+							        "statusText": "HTTP/1.1 404 Not Found"
+							    }
+							},			{
+							    "GetClassrecordingValidBatchID": {
+							        "scenario": "Get class byclass recording batchId",
+							        "authType": "Bearer Token",
+							        "statusCode": 200,
+							        "classRecordingByBatchId": "9954",
+							        "statusText": "OK"
+							    }
+							},
+							{
+							    "GetClassrecordingInValidBatchID": {
+							        "scenario": "Get class byclass recording invalid batchId",
+							        "authType": "Bearer Token",
+							        "statusCode": 404,
+							        "classRecordingByBatchId": "9954a",
+							        "statusText": "HTTP/1.1 404 Not Found"
+							    }
+							},					{
+								    "GetClassrecordingValidClassID": {
+								        "scenario": "Get class byclass recording classId",
+								        "authType": "Bearer Token",
+								        "statusCode": 200,
+								        "classRecordingByClassId": "881",
+								        "statusText": "OK"
+								    }
+								},		{
+							    "GetClassrecordingInValidClassID": {
+							        "scenario": "Get class byclass recording catchId",
+							        "authType": "Bearer Token",
+							        "statusCode": 404,
+							        "classRecordingByClassId": "**12",
+							        "statusText": "HTTP/1.1 404 Not Found"
+							    }
+							},			{
+							    "GetAllClassRecording": {
+							        "scenario": "Get all recordings",
+							        "authType": "Bearer Token",
+							        "statusCode": 200,
+							        "statusText": "OK"
+							    }
+							},			{
+							    "GetAllClassRecordingInvalidEndpoint": {
+							        "scenario": "Get all recordings invalid endpoint",
+							        "authType": "Bearer Token",
+							        "statusCode": 404,
+							        "statusText": "HTTP/1.1 404 Not Found"
+							    }
+							},			{
+							    "GetAllClassesValidStaffId": {
+							        "scenario": "Get class valid StaffId",
+							        "authType": "Bearer Token",
+							        "statusCode": 200,
+							        "classByStaffId": "U34",
+							        "statusText": "OK"
+							    }
+							},			{
+							    "GetClassInvalidStaffId": {
+							        "scenario": "Get class invalid staffId",
+							        "authType": "Bearer Token",
+							        "statusCode": 404,
+							        "classByStaffId": "U3",
+							        "statusText": "HTTP/1.1 404 Not Found"
+							    }
+							},			{
+							    "DeleteClassValid": {
+							        "scenario": "Delete classId",
+							        "authType": "Bearer Token",
+							        "statusCode": 200,
+							        "DeleteClass": "801",
+							        "statusText": "OK"
+							    }
+							},			{
+							    "DeleteAlreadyRemovedClass": {
+							        "scenario": "Delete classId",
+							        "authType": "Bearer Token",
+							        "statusCode": 404,
+							        "DeleteClass": "801",
+							        "statusText": "HTTP/1.1 404 Not Found"
+							    }
+							},		
+												
+{
+            "NoAuthAddUser": {
+                "scenario": "Add User without Authentication",
+                "statusCode": 401,
+                "statusText": "HTTP/1.1 401 Unauthorized",
+                "authType": "No Auth",
+                "userComments": "teamhacktonuser8",
+                "userEduPg": "mtech8",
+                "userEduUg": "be8",
+                "userFirstName": "teamfiveeight",
+                "userLastName": "hackathonfiveeight",
+                "userLinkedinUrl": "www.linkedin.com4/url",
+                "userLocation": "texas",
+                "userMiddleName": "middle",
+                "userPhoneNumber": "+91 9442800000",
+               	"roleId":"R02",
+				"userRoleStatus" :"active",
+                "userTimeZone": "CST",
+                "userVisaStatus": "H1B",
+                "loginStatus": "Active",
+                "userLoginEmail": "great8Robaooing@gmail.com",
+                "status": "Active"
+                
+            }
+            
+        },
+        {
+			    "NoAuthAPIGetAllUser": {
+					"scenario":"Search All User No Auth",    
+					"statusCode":401,
+					"statusText": "HTTP/1.1 401 Unauthorized"	
+			    }
+			},
+   			{
+			    "NoAuthAPIGetAllUserRoles": {
+					"scenario":"Search All User roles No Auth",    
+					"statusCode":401,
+					"statusText": "HTTP/1.1 401 Unauthorized"	
+			    }
+			},
 			{
+			    "NoAuthAPIGetUserByStatus": {
+					"scenario":"Search All User by status No Auth",    
+					"statusCode":401,
+					"statusText": "HTTP/1.1 401 Unauthorized"	
+			    }
+			},
+			{
+			    "NoAuthAPIGetActiveUser": {
+					"scenario":"Search All active User No Auth",    
+					"statusCode":401,
+					"statusText": "HTTP/1.1 401 Unauthorized"	
+			    }
+			},
+			{
+			    "NoAuthAPIGetAllRoles": {
+					"scenario":"Search All roles No Auth",    
+					"statusCode":401,
+					"statusText": "HTTP/1.1 401 Unauthorized"	
+			    }
+			},
+			{
+			    "NoAuthAPIGetAllUserEmail": {
+					"scenario":"Search All User email No Auth",    
+					"statusCode":401,
+					"statusText": "HTTP/1.1 401 Unauthorized"	
+			    }
+			},
+			{
+			    "NoAuthAPIUpdateUserByID": {
+					"scenario":"Update all user roles by userid No Auth",    
+					"statusCode":401,
+					"statusText": "HTTP/1.1 401 Unauthorized",
+					"roleId":"R02",
+				    "userRoleStatus" :"active"
+						
+			    }
+			},
+			{
+			    "NoAuthAPIGetUserByID": {
+					"scenario":"Search All User by user id No Auth",    
+					"statusCode":401,
+					"statusText": "HTTP/1.1 401 Unauthorized"	
+			    }
+			},
+{
 			    "NoAuthAddBatch": {
 					"scenario":"Add Batch valid No Auth",    
 	                "batchDescription": "TestBatches",
@@ -1576,7 +1745,38 @@
 					"statusText": "HTTP/1.1 404 Not Found"
 			    }
 			},
-			
+			{
+						    "DeleteUserValid": {
+								"scenario":"Delete User by ID", 
+								"id":"U236", 
+								"statusCode":200,
+								"statusText": "HTTP/1.1 200 OK"	
+						    }
+						},
+						{
+						    "DeleteUserInvalidEP": {
+								"scenario":"Delete User by Invalid Endpoint",   
+								"id":0,  
+								"statusCode":404,
+								"statusText": "HTTP/1.1 404 Not Found"
+						    }
+						},
+						{
+						    "DeleteUserInvalidID": {
+								"scenario":"Delete User by Invalid ID",   
+								"id": "*****",  
+								"statusCode":404,
+								"statusText": "HTTP/1.1 404 Not Found"
+						    }
+						},
+						{
+						    "DeleteAlreadyRemovedUser": {
+								"scenario":"Delete User by Invalid ID",   
+								"id": "U236",  
+								"statusCode":200,
+								"statusText": "HTTP/1.1 200 OK"
+						    }
+						},
 			{
 						    "NoAuthCreateProgram": {
 								"scenario":"NoAuthCreateProgramValid",    

@@ -22,6 +22,7 @@ public class NoAuthStepDefinition {
 	BatchRequest batch;
 	LogoutRequest logout;
 	ProgramRequest program;
+	
 
 	private Response Response;
 	CommonResponseValidation ResponseValidation = new CommonResponseValidation();
@@ -30,6 +31,7 @@ public class NoAuthStepDefinition {
 	NoAuthRequest noAuthReq;
 	public NoAuthStepDefinition() throws FileNotFoundException
 	{
+		program = new ProgramRequest();
 		batch = new BatchRequest();
 		user = new UserRequest();
 		logout = new LogoutRequest();
@@ -160,8 +162,12 @@ public class NoAuthStepDefinition {
 	}
 	@Then("Admin receives program {int} Status for NoAuth")
 	public void admin_receives_program_status_for_no_auth(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		Response = context.get("programResponse", Response.class);
+		ResponseValidation.validateStatusCode(Response, program.getProgramStatusCode());
+		ResponseValidation.validateStatusLine(Response, program.getProgramStatusLine());
+		ResponseValidation.validateResponseTime(Response);
+		ResponseValidation.assertAll();
+
 	}
 	//-------------------------------ClassNoAuth------------------------------
 	@Given("Admin creates {string} Request in class for NoAuth")

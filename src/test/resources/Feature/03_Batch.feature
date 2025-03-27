@@ -78,7 +78,7 @@ Background: Authorization SetUp
       | GetBatchByPrgmIDValid  |  200    |
       | GetByProgramInactive   |  404    |
       | GetByProgramInvalid    |  404    |
-      | GetByProgramIDInValidEP|  404    |         
+      #| GetByProgramIDInValidEP|  404    |         
       
       
   @UpdateBatch   

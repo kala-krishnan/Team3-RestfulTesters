@@ -359,8 +359,8 @@ public void admin_sends_delete_https_request_user(String string) {
 	userRequest.DeleteBatchRequest(string);
 }
 
-@Then("Admin receives User Delete {string}")
-public void admin_receives_user_delete(String string) {
+@Then("Admin receives User Delete {int}")
+public void admin_receives_user_delete(int string) {
 	System.out.println(string);
 	Assert.assertEquals(string, getTestData_Get.get("statusCode").asInt());
 }
