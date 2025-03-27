@@ -103,3 +103,6 @@ Feature: LMS Class Module
       | requestType               | parameter      |
       | GetAllClassesValidStaffId | classByStaffId |
       | GetClassInvalidStaffId    | classByStaffId |
+      
+      
+      

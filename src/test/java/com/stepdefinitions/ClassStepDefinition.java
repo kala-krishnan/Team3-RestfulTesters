@@ -247,4 +247,31 @@ public void admin_sends_https_get_request_with_classtopic_and(String requestType
 		softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertAll();
 	}
+	
+	//DeleteClass
+	@Given("Admin creates Delete request for class {string} and {string}")
+	public void admin_creates_delete_request_for_class_and(String requestType, String paramValue) throws Exception {
+	   //setGetClassRequestBodyDeleteClass
+		getTestData_Get=classRequest.setGetClassRequestBodyDeleteClass(requestType,paramValue);
+		
+	}
+
+	@When("Admin sends delete HTTPS request class {string} and {string}")
+	public void admin_sends_delete_https_request_class_and(String requestType, String paramValue) {
+		classResponse=classRequest.sendGetClassReqWithBodyDeleteClass(requestType,paramValue);
+	}
+
+	@Then("Admin receives class delete")
+	public void admin_receives_class_delete() {
+		int actualStatusCode = classResponse.getStatusCode();
+		int expectedStatusCode =getTestData_Get.get("statusCode").asInt();
+		softAssert =new SoftAssert();
+		
+		//Status code Validation
+		System.out.println("Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
+		softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
+		softAssert.assertAll();
+	}
+
+
 }
