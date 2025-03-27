@@ -163,6 +163,21 @@ public class NoAuthStepDefinition {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
+	//-------------------------------ClassNoAuth------------------------------
+	@Given("Admin creates {string} Request in class for NoAuth")
+	public void admin_creates_request_in_class_for_no_auth(String string) {
+	    
+	}
+
+	@When("Admin sends {string} HTTPS class Request")
+	public void admin_sends_https_class_request(String string) {
+	    
+	}
+
+	@Then("Admin receives class {int} Status for NoAuth")
+	public void admin_receives_class_status_for_no_auth(Integer int1) {
+	   
+	}
 
 
 
