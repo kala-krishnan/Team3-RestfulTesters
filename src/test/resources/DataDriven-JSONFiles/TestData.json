@@ -60,16 +60,16 @@
                 "scenario": "Add User with Bearer Token",
                 "statusCode": 201,
                 "statusText": "Created",
-                "authType": "Bearer Token",
-                "userComments": "teamhacktonuser8",
-                "userEduPg": "mtech8",
-                "userEduUg": "be8",
-                "userFirstName": "teamfiveeight",
-                "userLastName": "hackathonfiveeight",
+                "type": "valid",
+                "userComments": "tdfddfbfsaefgtr",
+                "userEduPg": "mgfte",
+                "userEduUg": "bedggd8",
+                "userFirstName": "tevvbcciddyjht",
+                "userLastName": "haeqvbajht",
                 "userLinkedinUrl": "www.linkedin.com4/url",
                 "userLocation": "texas",
                 "userMiddleName": "middle",
-                "userPhoneNumber": "+91 9442800000",
+                "userPhoneNumber": "+91 5795002099",
                 "userRoleMaps": [
                     {
                         "roleId": "R02",
@@ -80,18 +80,34 @@
                 "userVisaStatus": "H1B",
                 "userLogin": {
                     "loginStatus": "Active",
-                    "userLoginEmail": "great8chaining@gmail.com",
+                    "userLoginEmail": "gtfbfxr2th@gmail.com",
                     "status": "Active"
                 }
             }
-        },
+        },			{
+			    "UpdateUserByRPBStatus": {
+			        "scenario": "Assign Update User Role Program Batch Status",
+			        "type": "valid",
+			        "statusCode": 200,
+			        "statusText": "OK",
+			        "programId": 16925,
+			        "roleId": "R02",
+			        "userId": "U2884",
+			        "userRoleProgramBatches": [
+			            {
+			                "batchId": 9488,
+			                "userRoleProgramBatchStatus": "Active"
+			            }
+			        ]
+			    }
+			},
         {
             "CreateUserInValidPhNumber": {
                 "scenario": "create a new user with valid endpoint and invalid - exisiting phone number",
                 "statusCode": 400,
                 "statusText": "Failed",
-                "authType": "Bearer Token",
-                "userComments": "teamhacktonuser5",
+                "type": "invalid",
+                "userComments": "teaktonuser5",
                 "userEduPg": "mtech3",
                 "userEduUg": "be3",
                 "userFirstName": "teamfou",
@@ -114,33 +130,145 @@
                     "status": "Active"
                 }
             }
-        },
-        {
-            "GetAllUserWithFilters": {
-                "scenario": "Get all User with Facets and Filter ",
-                "authType": "Bearer Token",
-                "statusCode": 200,
-                "statusText": "OK"
-            }
-        },
-        {
-            "GetUserByRoleID": {
-                "scenario": "Get user by roleid",
-                "authType": "Bearer Token",
-                "statusCode": 200,
-                "roleId": "R04",
-                "statusText": "OK"
-            }
-        },
-        {
-            "GetUserByID": {
-                "scenario": "Get user by id",
-                "authType": "Bearer Token",
-                "statusCode": 200,
-                "id": "U212",
-                "statusText": "OK"
-            }
-        },
+        },			
+		{
+			            "CreateUserInValidemailid": {
+			                "scenario": "create a new user with valid endpoint and invalid - exisiting phone number",
+			                "statusCode": 400,
+			                "statusText": "Failed",
+							"statusMessage":"Email already existing",
+			                "type": "invalid",
+			                "userComments": "teamhacktonuser5",
+			                "userEduPg": "mtech3",
+			                "userEduUg": "be3",
+			                "userFirstName": "teamfou",
+			                "userLastName": "hackatho",
+			                "userLinkedinUrl": "www.linkedin.com4/url",
+			                "userLocation": "texas",
+			                "userMiddleName": "middle",
+			                "userPhoneNumber": "+91 9419200000",
+			                "userRoleMaps": [
+			                    {
+			                        "roleId": "R02",
+			                        "userRoleStatus": "Active"
+			                    }
+			                ],
+			                "userTimeZone": "CST",
+			                "userVisaStatus": "H1B",
+			                "userLogin": {
+			                    "loginStatus": "Active",
+			                    "userLoginEmail": "great41@gmail.com",
+			                    "status": "Active"
+			                }
+			            }
+			        },
+					{
+									    "GetUserWithFilter": {
+									        "scenario": "Get all User with Facets and Filter ",
+									        "type": "valid",
+									        "statusCode": 200,
+									        "statusText": "OK"
+									    }
+									},
+					{
+					    "GetUserWithFilterInvalid": {
+					        "scenario": "Get all User with Facets and Filter invalid ",
+					        "type": "invalid",
+					        "statusCode": 405,
+					        "statusText": "Bad Request"
+					    }
+					},
+					{
+					    "GetUserByRoleID": {
+					        "scenario": "Get use by roleid",
+					        "type": "valid",
+					        "statusCode": 200,
+					        "roleId": "R01",
+					        "statusText": "OK"
+					    }
+					},
+					{
+					    "GetUserByRoleID_Invalid": {
+					        "scenario": "Get user by roleid invalid",
+					        "type": "invalid",
+					        "statusCode": 400,
+					        "roleId": "R04",
+					        "statusText": "OK"
+					    }
+					},
+					{
+					    "GetUserByID": {
+					        "scenario": "Get user by id",
+					        "type": "valid",
+					        "statusCode": 200,
+					        "userId": "U212",
+					        "statusText": "OK"
+					    }
+					},
+					{
+					    "GetUserByID_invalid": {
+					        "scenario": "Get user by id invalid",
+					        "type": "invalid",
+					        "statusCode": 400,
+					        "userId": "U212t",
+					        "statusText": "OK"
+					    }
+					},
+					{
+					    "GetUserBatchID": {
+					        "scenario": "Get user batch id userid",
+					        "type": "valid",
+					        "statusCode": 200,
+					        "batchId": "U212",
+					        "statusText": "OK"
+					    }
+					},
+					{
+					    "GetUserBatchID_invalid": {
+					        "scenario": "Get user batch id from userid invalid",
+					        "type": "valid",
+					        "statusCode": 200,
+					        "batchId": "U212",
+					        "statusText": "OK"
+					    }
+					},
+					{
+					    "GetByProgramID": {
+					        "scenario": "Get user program id userid",
+					        "type": "valid",
+					        "statusCode": 200,
+					        "programId": "16925",
+					        "statusText": "OK"
+					    }
+					},
+					
+					{
+					    "GetByProgramID_invalid": {
+					        "scenario": "Get user program id userid invalid",
+					        "type": "invalid",
+					        "statusCode": 400,
+					        "programId": "16925",
+					        "statusText": "OK"
+					    }
+					},
+					{
+					    "GetByBatchID": {
+					        "scenario": "Get user batch id userid ",
+					        "type": "valid",
+					        "statusCode": 200,
+					        "batchId": "9488",
+					        "statusText": "OK"
+					    }
+					},
+					{
+					    "GetByBatchID_invalid": {
+					        "scenario": "Get user batch id userid invalid",
+					        "type": "invalid",
+					        "statusCode": 400,
+					        "batchId": "9488",
+					        "statusText": "OK"
+					    }
+					},
         {
             "CreateProgramValid": {
                 "scenario": "Add Program with Bearer Token",
