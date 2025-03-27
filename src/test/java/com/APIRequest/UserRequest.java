@@ -111,9 +111,9 @@ public class UserRequest extends SpecificationClass{
 	public JsonNode setGetUserRequestBody(String requestType,String parameterValue) throws Exception
 	{
 		System.out.println("vidhya "+TextContext.getUserId());
-		TextContext.setBatchId(9488);
+		//TextContext.setBatchId(9488);
 		//TextContext.setUserId("U212");
-		TextContext.setProgramId(16925);
+		//TextContext.setProgramId(16925);
 		TextContext.setRoleId("R02");
 		getTestData_get = TestDataLoader.loadTestDatafor_Get(requestType);
 	    String type = getTestData_get.get("type").asText();
@@ -149,9 +149,9 @@ public class UserRequest extends SpecificationClass{
 
 	public JsonNode setGetUserReqBody(String requestType,String parameterValue) throws Exception
 	{
-		TextContext.setBatchId(9488);
+		//TextContext.setBatchId(9488);
 		//TextContext.setUserId("U212");
-		TextContext.setProgramId(16925);
+		//TextContext.setProgramId(16925);
 		getTestData_get = TestDataLoader.loadTestDatafor_Get(requestType);
 	    String type = getTestData_get.get("type").asText();
 
@@ -416,7 +416,7 @@ public class UserRequest extends SpecificationClass{
 	public void GetUserByUserId(String reqType)
 	{
 		Endpoints = APIResources.valueOf("APIGetUserByID").getResources();
-		TextContext.setUserId("U1767");
+		//TextContext.setUserId("U1767");
 		if (requestType.equals("GetUserByUserIDInvalidEndpoint")) 
 			Endpoints = APIResources.valueOf("APIGetUserByID").getResources() + "Invalid";
 		if(reqType.equals("GetUserByInvalidUserId") || reqType.equals("GetUserByInvalidSpecialCharacterUserId"))
@@ -460,7 +460,7 @@ public class UserRequest extends SpecificationClass{
 	{
 		Endpoints = APIResources.valueOf("APIUpdateUserByID").getResources();
 		UserRoleWrapperClass userWrapper = new UserRoleWrapperClass();
-		TextContext.setUserId("U1767");
+	//	TextContext.setUserId("U1767");
 		UserRole userrole = context.get("UserRole", UserRole.class);
 		userWrapper.setUserRoleList(Arrays.asList(userrole));
 
@@ -488,9 +488,9 @@ public class UserRequest extends SpecificationClass{
 	
 	public void updateUserProgramBatchRequest(String requestType) throws Exception 
 	{
-		TextContext.setBatchId(9488);
+		//TextContext.setBatchId(9488);
 		//TextContext.setUserId("U212");
-		TextContext.setProgramId(16925);
+		//TextContext.setProgramId(16925);
 		UserPayloadPut userPut = TestDataLoader.loadTestDatafor_Post_Put(requestType, UserPayloadPut.class);
 		userPut.setUserId(TextContext.getUserId());
 		userPut.setProgramId(TextContext.getProgramId());
@@ -526,7 +526,7 @@ public class UserRequest extends SpecificationClass{
 	}
 	public void DeleteBatchRequest(String Scenario)
 	{
-		 TextContext.setUserId("U1767");
+		// TextContext.setUserId("U1767");
 		 if(Scenario.equals("DeleteUserInvalidID") || Scenario.equals("DeleteAlreadyRemovedUser"))
 			{
 				TextContext.setUserId(getTestData.get("id").toString());
