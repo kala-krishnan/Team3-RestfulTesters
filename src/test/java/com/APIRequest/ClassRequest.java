@@ -53,7 +53,6 @@ public class ClassRequest extends SpecificationClass {
 		ClassPojo pojo = context.get("ClassPojo", ClassPojo.class);
 		String chaining_userID = null;
 		Integer chaining_batchId =null;
-		
 		//getting the chaining variable programid,batchid, userid
 		String type = pojo.getType();
 		if(type.equalsIgnoreCase("Valid"))
@@ -75,6 +74,7 @@ public class ClassRequest extends SpecificationClass {
 		context.set("classResponse", response); 
 		String classID  = response.jsonPath().getString("csId");
 		TextContext.setUserId(classID); // Setting userid for chaining 
+		TextContext.setClassId(classID); // Setting userid for chaining 
 
 		System.out.println(response.prettyPrint());
 		System.out.println("Status Code: " + response.getStatusCode());
@@ -316,6 +316,37 @@ public Response sendGetClassReqWithBodyClassByStaffId(String requestType,String 
 				.pathParam("classId",paramForGetEndpoint)
 				.delete(APIResources.valueOf("APIDeleteClassByClassId").getResources());				
 		return response;
+	}
+	
+	
+	
+	
+	public void putNewClassRequest(String requestType) {
+	    	
+			
+	    	String endpoint;
+	        ClassPojo classPojo = context.get("ClassPojo", ClassPojo.class);
+	        int classId=classPojo.getCsId();
+	        if (classPojo.getCsId() == 0) {
+	            throw new IllegalArgumentException("csId cannot be 0");
+	        }
+			
+			if (requestType.equals("PutClassValidClassId")) {
+	         endpoint = APIResources.valueOf("APIUpdateNewClass").getResources();
+	        
+	        response = RestAssured.given()
+	                .spec(requestHeadersWithToken())
+	                .pathParam("classId", classId)
+	                .body(classPojo)
+	                .log().all()
+	                .put(endpoint);
+	        context.set("classResponse", response);
+
+	        if (context.get("classResponse") == null) {
+	            throw new RuntimeException("Failed to store API response in context");
+	        }
+
+	    }
 	}
 	}
 
