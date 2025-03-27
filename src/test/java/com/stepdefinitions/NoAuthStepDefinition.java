@@ -6,6 +6,7 @@ import com.APIRequest.BatchRequest;
 import com.APIRequest.LoginRequest;
 import com.APIRequest.LogoutRequest;
 import com.APIRequest.NoAuthRequest;
+import com.APIRequest.ProgramRequest;
 import com.APIRequest.UserRequest;
 import com.APIResponse.CommonResponseValidation;
 import com.context.ScenarioContext;
@@ -20,6 +21,8 @@ public class NoAuthStepDefinition {
 	
 	BatchRequest batch;
 	LogoutRequest logout;
+	ProgramRequest program;
+
 	private Response Response;
 	CommonResponseValidation ResponseValidation = new CommonResponseValidation();
 	ScenarioContext context = ScenarioContext.getInstance();
@@ -133,5 +136,33 @@ public class NoAuthStepDefinition {
 		ResponseValidation.validateResponseTime(Response);
 		ResponseValidation.assertAll();
 	}
+	
+	
+	//--------------------------------- PROGRAM NO AUTH ------------------------------------------
+	@Given("Admin creates {string} Request in program for NoAuth")
+	public void admin_creates_request_in_program_for_no_auth(String requestType) throws Exception {
+		program.setNewProgramRequest(requestType);
+	}
+	@When("Admin sends {string} HTTPS program Request")
+	public void admin_sends_https_program_request(String request) {
+		switch (request) {
+		case "POST": program.NoAuthCreateProgram();
+			break;
+		case "GetAll": program.NoAuthGetAllProgram();	
+			break;
+		case "GetById": program.NoAuthGetProgramById();	
+			break;
+		case "GetByName": program.NoAuthPUTProgramID();	
+			break;	
+		case "Delete": program.NoAuthDeleteProgrambyId();
+			break;	
+		}
+	}
+	@Then("Admin receives program {int} Status for NoAuth")
+	public void admin_receives_program_status_for_no_auth(Integer int1) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
 
 	}
