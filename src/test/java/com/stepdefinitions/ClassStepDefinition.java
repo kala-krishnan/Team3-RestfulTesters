@@ -32,7 +32,6 @@ public class ClassStepDefinition {
 	}
 	@Given("Set Auth to bearer token for class")
 	public void set_auth_to_bearer_token_for_class() throws Exception {
-		System.out.println(context.get("LMStoken"));
 		if(context.get("LMStoken")==(null))
 			logRequest.PostLoginRequest();
 	}
@@ -102,7 +101,6 @@ public class ClassStepDefinition {
 		softAssert =new SoftAssert();
 		
 		//Status code Validation
-		System.out.println("Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertAll();
 	}
@@ -125,7 +123,6 @@ public class ClassStepDefinition {
 		softAssert =new SoftAssert();
 		
 		//Status code Validation
-		System.out.println("Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertAll();
 	}
@@ -151,7 +148,6 @@ public void admin_sends_https_get_request_with_classtopic_and(String requestType
 		softAssert =new SoftAssert();
 		
 		//Status code Validation
-		System.out.println("Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertAll();
 	}
@@ -175,7 +171,6 @@ public void admin_sends_https_get_request_with_classtopic_and(String requestType
 		softAssert =new SoftAssert();
 		
 		//Status code Validation
-		System.out.println("Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertAll();
 	}
@@ -198,7 +193,6 @@ public void admin_sends_https_get_request_with_classtopic_and(String requestType
 		softAssert =new SoftAssert();
 		
 		//Status code Validation
-		System.out.println("Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertAll();
 	}
@@ -221,7 +215,6 @@ public void admin_sends_https_get_request_with_classtopic_and(String requestType
 		softAssert =new SoftAssert();
 		
 		//Status code Validation
-		System.out.println("Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertAll();
 	}
@@ -243,7 +236,6 @@ public void admin_sends_https_get_request_with_classtopic_and(String requestType
 		softAssert =new SoftAssert();
 		
 		//Status code Validation
-		System.out.println("Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertAll();
 	}
@@ -268,7 +260,6 @@ public void admin_sends_https_get_request_with_classtopic_and(String requestType
 		softAssert =new SoftAssert();
 		
 		//Status code Validation
-		System.out.println("Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertAll();
 	}

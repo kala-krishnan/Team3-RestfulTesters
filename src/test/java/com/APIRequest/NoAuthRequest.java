@@ -34,15 +34,7 @@ public class NoAuthRequest extends SpecificationClass{
 		context.set("userResponse", response); 
 		System.out.println("User response" +response.getStatusCode());
 	}
-//	public void PutUserRequestNoAuth()
-//	{
-//		UserPojo user = context.get("UserPojo", UserPojo.class);
-//		response = RestAssured.given().spec(requestHeadersWithoutToken())
-//				.body(user)
-//				.put(APIResources.valueOf("APIUpdateUser").getResources());
-//		context.set("userResponse", response); 
-//		System.out.println("User response" +response.getStatusCode());
-//	}
+
 	public void getAllUserRequestNoAuth(String requestEndpoint)
 	{
 		response =RestAssured.given().spec(requestHeadersWithoutToken())
