@@ -178,12 +178,12 @@ public class BatchRequest extends SpecificationClass{
 //--------------------------------------- GET BATCH BY PROGRAM ID------------------------------------------
 	public void GetBatchByPrgmIDRequest(String Scenario)
 	{
-		int id =Integer.valueOf(getIdBatch());
+		Integer id =Integer.valueOf(getIdBatch());
 		if(id == 0)  id = TextContext.getProgramId();
 		
 		String EndPoint = APIResources.valueOf("APIGetBatchByPrgmID").getResources();
 		if (Scenario.equals("GetByProgramIDInValidEP")) 
-			EndPoint = APIResources.valueOf("APIGetBatchByPrgmID").getResources() + "Invalid";
+			EndPoint = APIResources.valueOf("APIGetBatchByPrgmID").getResources() + 1000;
 
 		response = RestAssured.given().spec(requestHeadersWithToken())
 				.log().all()
