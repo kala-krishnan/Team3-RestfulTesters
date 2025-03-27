@@ -1,1839 +1,1873 @@
 {
-    "requests": [
-        {
+	"requests": [
+		{
 			"CreateProgramValid": {
-			  "scenario": "Add Program with Bearer Token",
-			  "programName": "RestfullJenkinAPI",
-			  "programDescription": "hackathon test three",
-			  "programStatus": "active",
-			  "statusCode": 201,
-			  "statusText": "HTTP/1.1 201 Created"
+				"scenario": "Add Program with Bearer Token",
+				"programName": "RestfullJenkinAPI",
+				"programDescription": "hackathon test three",
+				"programStatus": "active",
+				"statusCode": 201,
+				"statusText": "HTTP/1.1 201 Created"
 			}
-		  },
-		  {
+		},
+		{
 			"CreateProgramEmptyNonMandatory": {
-			  "scenario": "Add Program with empty non-mandatory fields",
-			  "programName": "RestfullJenkinPrg",
-			  "programDescription": "",
-			  "programStatus": "active",
-			  "statusCode": 201,
-			  "statusText": "HTTP/1.1 201 Created"
+				"scenario": "Add Program with empty non-mandatory fields",
+				"programName": "RestfullJenkinPrg",
+				"programDescription": "",
+				"programStatus": "active",
+				"statusCode": 201,
+				"statusText": "HTTP/1.1 201 Created"
 			}
-		  },
-		  {
+		},
+		{
 			"CreateProgramStatusInactive": {
-			  "scenario": "Add Program with inactive status",
-			  "programName": "RestfullJenkinProgram",
-			  "programDescription": "inactive test",
-			  "programStatus": "Inactive",
-			  "statusCode": 201,
-			  "statusText": "HTTP/1.1 201 Created"
+				"scenario": "Add Program with inactive status",
+				"programName": "RestfullJenkinProgram",
+				"programDescription": "inactive test",
+				"programStatus": "Inactive",
+				"statusCode": 201,
+				"statusText": "HTTP/1.1 201 Created"
 			}
-		  },
-		  {
+		},
+		{
 			"PutProgramValidProgramID": {
-			  "scenario": "Update Batch Valid",
-			  "programId": 19192,
-			  "statusCode": 200,
-			  "programName": "RestfullJenkinEditPrg",
-			  "programStatus": "Active",
-			  "statusText": "HTTP/1.1 200 OK"
+				"scenario": "Update Batch Valid",
+				"programId": 19192,
+				"statusCode": 200,
+				"programName": "RestfullJenkinEditPrg",
+				"programStatus": "Active",
+				"statusText": "HTTP/1.1 200 OK"
 			}
-		  },
-		  {
+		},
+		{
 			"PutProgramValidProgramname": {
-			  "scenario": "Update Batch Valid",
-			  "programId": 19192,
-			  "statusCode": 200,
-			  "programName": "RestfullJenkinEditPrgg",
-			  "programStatus": "Active",
-			  "statusText": "HTTP/1.1 200 OK"
+				"scenario": "Update Batch Valid",
+				"programId": 19192,
+				"statusCode": 200,
+				"programName": "RestfullJenkinEditPrgg",
+				"programStatus": "Active",
+				"statusText": "HTTP/1.1 200 OK"
 			}
-		  },
-		  
-		  {
+		},
+		{
 			"AddBatchValid": {
-				"scenario":"*********Add Batch valid", 
-				"id": 0,   
+				"scenario": "*********Add Batch valid",
+				"id": 0,
 				"batchDescription": "TestBatches",
 				"batchName": "RestfullJenkinBatch",
 				"batchNoOfClasses": 10,
 				"batchStatus": "Active",
 				"programId": 16449,
-				"statusCode":201,
+				"statusCode": 201,
 				"statusText": "HTTP/1.1 201 Created"
 			}
 		},
 		{
 			"AddBatchEmptyNonMandatory": {
-				"scenario":"*******8Add Batch with Non Mandatory field empty", 
-				"id": 0,    
+				"scenario": "*******8Add Batch with Non Mandatory field empty",
+				"id": 0,
 				"batchDescription": "",
 				"batchName": "RestfullJenkinBatche",
 				"batchNoOfClasses": 10,
 				"batchStatus": "Active",
 				"programId": 16449,
-				"statusCode":201,
-				"statusText": "HTTP/1.1 201 Created"		
+				"statusCode": 201,
+				"statusText": "HTTP/1.1 201 Created"
 			}
 		},
 		{
 			"PutBatchValid": {
-				"scenario":"********Update Batch Valid",  
-				"id": 0,  
+				"scenario": "********Update Batch Valid",
+				"id": 0,
 				"batchDescription": "TestBatches",
 				"batchName": "RestfullJenkinBatchs",
 				"batchNoOfClasses": 11,
 				"batchStatus": "Active",
 				"programId": 16449,
-				"statusCode":200,
-				"statusText": "HTTP/1.1 200 OK"		
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
 			}
 		},
 		{
-		            "CreateUserValid": {
-		                "scenario": "Add User with Bearer Token",
-		                "statusCode": 201,
-		                "statusText": "Created",
-		                "type": "valid",
-		                "userComments": "JenkinComments",
-		                "userEduPg": "mgfte",
-		                "userEduUg": "bedggd8",
-		                "userFirstName": "JenkinMary",
-		                "userLastName": "JenkinLame",
-		                "userLinkedinUrl": "www.linkedin.com4/url",
-		                "userLocation": "texas",
-		                "userMiddleName": "middle",
-		                "userPhoneNumber": "+91 6884275091",
-		                "userRoleMaps": [
-		                    {
-		                        "roleId": "R02",
-		                        "userRoleStatus": "Active"
-		                    }
-		                ],
-		                "userTimeZone": "CST",
-		                "userVisaStatus": "H1B",
-		                "userLogin": {
-		                    "loginStatus": "Active",
-		                    "userLoginEmail": "Jenkinmary@gmail.com",
-		                    "status": "Active"
-		                }
-		            }
-		        },	
-	{
-		
-				    "CreateClass": {
-				        "scenario": "Create new Class",
-						"type":"valid",
-				        "statusCode": 201,
-				        "statusText": "Created",
-				        "batchId": 11959,
-				        "classNo": 1,
-				        "classDate": "2025-04-01",
-				        "classTopic": "JenkinTopic",
-				        "classStatus": "Active",
-				        "classStaffId": "U34",
-				        "classDescription": "tes",
-				        "classComments": "hello",
-				        "classNotes": "none",
-				        "classRecordingPath": "path",
-				        "classScheduledDates": [
-				            "2025-11-09T15:11:08.750Z"
-				        ]
-				    }
-				},	
+			"CreateUserValid": {
+				"scenario": "Add User with Bearer Token",
+				"statusCode": 201,
+				"statusText": "Created",
+				"type": "valid",
+				"userComments": "JenkinComments",
+				"userEduPg": "mgfte",
+				"userEduUg": "bedggd8",
+				"userFirstName": "JenkinMary",
+				"userLastName": "JenkinLame",
+				"userLinkedinUrl": "www.linkedin.com4/url",
+				"userLocation": "texas",
+				"userMiddleName": "middle",
+				"userPhoneNumber": "+91 6884275091",
+				"userRoleMaps": [
+					{
+						"roleId": "R02",
+						"userRoleStatus": "Active"
+					}
+				],
+				"userTimeZone": "CST",
+				"userVisaStatus": "H1B",
+				"userLogin": {
+					"loginStatus": "Active",
+					"userLoginEmail": "Jenkinmary@gmail.com",
+					"status": "Active"
+				}
+			}
+		},
 		{
-            "LoginInvalidCreds": {
-                "scenario": "Login Invalid Email & Password",
-                "userLoginEmailId": "APIRestassuredLMS@gmail.com",
-                "password": "ApiRest@2",
-				"statusCode":400,
+			"CreateClass": {
+				"scenario": "Create new Class",
+				"type": "valid",
+				"statusCode": 201,
+				"statusText": "Created",
+				"batchId": 11959,
+				"classNo": 1,
+				"classDate": "2025-04-01",
+				"classTopic": "JenkinTopic",
+				"classStatus": "Active",
+				"classStaffId": "U34",
+				"classDescription": "tes",
+				"classComments": "hello",
+				"classNotes": "none",
+				"classRecordingPath": "path",
+				"classScheduledDates": [
+					"2025-11-09T15:11:08.750Z"
+				]
+			}
+		},
+		{
+			"LoginInvalidCreds": {
+				"scenario": "Login Invalid Email & Password",
+				"userLoginEmailId": "APIRestassuredLMS@gmail.com",
+				"password": "ApiRest@2",
+				"statusCode": 400,
 				"statusText": "HTTP/1.1 400 Bad Request"
-            }
-        },
-        {
-            "LoginInvalidEndpoint": {
-                "scenario": "Login Invalid Endpoint",
-                "userLoginEmailId": "Stepapi01@gmail.com",
-                "password": "phase@2",
-				"statusCode":404,
+			}
+		},
+		{
+			"LoginInvalidEndpoint": {
+				"scenario": "Login Invalid Endpoint",
+				"userLoginEmailId": "Stepapi01@gmail.com",
+				"password": "phase@2",
+				"statusCode": 404,
 				"statusText": "HTTP/1.1 401 Unauthozied"
-            }
-        },
-		{
-		    "LoginEmptyCredential": {
-		        "scenario": "Login Empty Credentials",
-		        "userLoginEmailId": "",
-		        "password": "",
-				"statusCode":400,
-				"statusText": "HTTP/1.1 400 Bad Request"
-		    }
+			}
 		},
 		{
-		    "LoginEmptyUserEmail": {
-		        "scenario": "Login Empty User email id ",
-		        "userLoginEmailId": "",
-		        "password": "ApiRest@2",
-				"statusCode":400,
+			"LoginEmptyCredential": {
+				"scenario": "Login Empty Credentials",
+				"userLoginEmailId": "",
+				"password": "",
+				"statusCode": 400,
 				"statusText": "HTTP/1.1 400 Bad Request"
-		    }
+			}
 		},
 		{
-		    "LoginEmptyPassword": {
-		        "scenario": "Login Empty Password",
-		        "userLoginEmailId": "APIRestassuredLMS@gmail.com",
-		        "password": "",
-				"statusCode":400,
+			"LoginEmptyUserEmail": {
+				"scenario": "Login Empty User email id ",
+				"userLoginEmailId": "",
+				"password": "ApiRest@2",
+				"statusCode": 400,
 				"statusText": "HTTP/1.1 400 Bad Request"
-		    }
+			}
 		},
 		{
-		    "LoginInvalidEmailFormat": {
-		        "scenario": "Login Invalid Email format",
-		        "userLoginEmailId": "APIRestassuredLMSgmailcom",
-		        "password": "ApiRest@2",
-				"statusCode":400,
+			"LoginEmptyPassword": {
+				"scenario": "Login Empty Password",
+				"userLoginEmailId": "APIRestassuredLMS@gmail.com",
+				"password": "",
+				"statusCode": 400,
 				"statusText": "HTTP/1.1 400 Bad Request"
-		    }
+			}
 		},
 		{
-		    "LoginIncorrectPassword": {
-		        "scenario": "Login Incorrect Password",
-		        "userLoginEmailId": "sdetorganizer@gmail.com",
-		        "password": "123456",
-				"statusCode":400,
+			"LoginInvalidEmailFormat": {
+				"scenario": "Login Invalid Email format",
+				"userLoginEmailId": "APIRestassuredLMSgmailcom",
+				"password": "ApiRest@2",
+				"statusCode": 400,
 				"statusText": "HTTP/1.1 400 Bad Request"
-		    }
+			}
 		},
-		
-		  {
+		{
+			"LoginIncorrectPassword": {
+				"scenario": "Login Incorrect Password",
+				"userLoginEmailId": "sdetorganizer@gmail.com",
+				"password": "123456",
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
 			"CreateInvalidExistingprogramname": {
-			  "scenario": "Add Program with existing name",
-			  "programName": "teamhaciithreenewontwozz",
-			  "programDescription": "hackathon test three",
-			  "programStatus": "active",
-			  "statusCode": 400,
-			  "statusText": "HTTP/1.1 400 Bad Request"
+				"scenario": "Add Program with existing name",
+				"programName": "teamhaciithreenewontwozz",
+				"programDescription": "hackathon test three",
+				"programStatus": "active",
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
 			}
-		  },
-		  {
+		},
+		{
 			"CreateProgramInvalidEp": {
-			  "scenario": "Add Program with invalid endpoint",
-			  "programName": "teatmabrrrrwiqssllxiwqzzmmzllaaa",
-			  "programDescription": "test description",
-			  "programStatus": "active",
-			  "statusCode": 404,
-			  "statusText": "HTTP/1.1 404 Not Found"
+				"scenario": "Add Program with invalid endpoint",
+				"programName": "teatmabrrrrwiqssllxiwqzzmmzllaaa",
+				"programDescription": "test description",
+				"programStatus": "active",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
 			}
-		  },
-
-		  {
+		},
+		{
 			"GetAllValidProgram": {
-			  "scenario": "Get all Programs",
-			  "authType": "Bearer Token",
-			  "statusCode": 200,
-			  "statusText": "HTTP/1.1 200 OK"
+				"scenario": "Get all Programs",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
 			}
-		  },
-		  {
+		},
+		{
 			"GETAllProgramswithUsersValidProgram": {
-			  "scenario": "GET All Programs with Users",
-			  "authType": "Bearer Token",
-			  "statusCode": 200,
-			  "statusText": "HTTP/1.1 200 OK"
+				"scenario": "GET All Programs with Users",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
 			}
-		  },
-		  {
+		},
+		{
 			"GETAllProgramswithUsersProgramInValidEP": {
-			  "scenario": "GET All Programs with Users",
-			  "statusCode": 404,
-			  "statusText": "HTTP/1.1 404 Not Found"
+				"scenario": "GET All Programs with Users",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
 			}
-		  },
-		 
-		  {
+		},
+		{
 			"PutInvalidProgramID": {
-			  "scenario": "Update Invalid ProgramId",
-			  "programId": 66666666,
-			  "programName": "bbbbbccccnncczzz",
-			  "programDescription": "ghgg",
-			  "programStatus": "Active",
-			  "statusCode": 404,
-			  "statusText": "HTTP/1.1 404 Not Found"
+				"scenario": "Update Invalid ProgramId",
+				"programId": 66666666,
+				"programName": "bbbbbccccnncczzz",
+				"programDescription": "ghgg",
+				"programStatus": "Active",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
 			}
-		  },
-		  {
+		},
+		{
 			"PutProgramIDEmptyMandatory": {
-			  "scenario": "Update Program EmptyMandatory",
-			  "programId": 19357,
-			  "programName": "bbbbbcccccczzz",
-			  "programDescription": "ghgg",
-			  "programStatus": "",
-			  "statusCode": 400,
-			  "statusText": "Bad Request"
+				"scenario": "Update Program EmptyMandatory",
+				"programId": 19357,
+				"programName": "bbbbbcccccczzz",
+				"programDescription": "ghgg",
+				"programStatus": "",
+				"statusCode": 400,
+				"statusText": "Bad Request"
 			}
-		  },
-		  {
+		},
+		{
 			"PutProgramidprpgramNameStrtWithNo": {
-			  "scenario": "PutProgramidprpgramNameStrtWithNo",
-			  "programId": 19357,
-			  "programName": "",
-			  "programDescription": "ghgg",
-			  "programStatus": "Active",
-			  "statusCode": 400,
-			  "statusText": "Bad Request"
+				"scenario": "PutProgramidprpgramNameStrtWithNo",
+				"programId": 19357,
+				"programName": "",
+				"programDescription": "ghgg",
+				"programStatus": "Active",
+				"statusCode": 400,
+				"statusText": "Bad Request"
 			}
-		  },
-		  {
+		},
+		{
 			"PutProgramIDInvalidEp": {
-			  "scenario": "PutProgramIDInvalidEp",
-			  "programId": 19357,
-			  "programName": "ghghghg",
-			  "programDescription": "ghgg",
-			  "programStatus": "Active",
-			  "statusCode": 404,
-			  "statusText": "HTTP/1.1 404 Not Found"
+				"scenario": "PutProgramIDInvalidEp",
+				"programId": 19357,
+				"programName": "ghghghg",
+				"programDescription": "ghgg",
+				"programStatus": "Active",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
 			}
-		  },
-		  {
+		},
+		{
 			"PutProgramInactivePrgmID": {
-			  "scenario": "PutProgramIDInvalidEp",
-			  "programId": 19342,
-			  "programName": "ghghghg",
-			  "programDescription": "ghgg",
-			  "programStatus": "Inactive",
-			  "statusCode": 400,
-			  "statusText": "HTTP/1.1 400 Bad Request"
+				"scenario": "PutProgramIDInvalidEp",
+				"programId": 19342,
+				"programName": "ghghghg",
+				"programDescription": "ghgg",
+				"programStatus": "Inactive",
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
 			}
-		  },
-
-		  {
+		},
+		{
 			"PutInvalidProgramname": {
-			  "scenario": "Update Invalid ProgramId",
-			  "programId": 66666666,
-			  "programName": "bbbbbccccnncczzz",
-			  "programDescription": "ghgg",
-			  "programStatus": "Active",
-			  "statusCode": 400,
-			  "statusText": "HTTP/1.1 400 Bad Request"
+				"scenario": "Update Invalid ProgramId",
+				"programId": 66666666,
+				"programName": "bbbbbccccnncczzz",
+				"programDescription": "ghgg",
+				"programStatus": "Active",
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
 			}
-		  },
-		  {
+		},
+		{
 			"PutProgramnameEmptyMandatory": {
-			  "scenario": "Update Program EmptyMandatory",
-			  "programId": 19357,
-			  "programName": "bbbbbcccccczzz",
-			  "programDescription": "ghgg",
-			  "programStatus": "",
-			  "statusCode": 400,
-			  "statusText": "HTTP/1.1 400 Bad Request"
+				"scenario": "Update Program EmptyMandatory",
+				"programId": 19357,
+				"programName": "bbbbbcccccczzz",
+				"programDescription": "ghgg",
+				"programStatus": "",
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
 			}
-		  },
-		  {
+		},
+		{
 			"PutProgramnameprpgramNameStrtWithNo": {
-			  "scenario": "PutProgramidprpgramNameStrtWithNo",
-			  "programId": 19357,
-			  "programName": "",
-			  "programDescription": "ghgg",
-			  "programStatus": "Active",
-			  "statusCode": 400,
-			  "statusText": "HTTP/1.1 400 Bad Request"
+				"scenario": "PutProgramidprpgramNameStrtWithNo",
+				"programId": 19357,
+				"programName": "",
+				"programDescription": "ghgg",
+				"programStatus": "Active",
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
 			}
-		  },
-		  {
+		},
+		{
 			"PutProgramnameInvalidEp": {
-			  "scenario": "PutProgramIDInvalidEp",
-			  "programId": 19357,
-			  "programName": "ghghghg",
-			  "programDescription": "ghgg",
-			  "programStatus": "Active",
-			  "statusCode": 404,
-			  "statusText": "HTTP/1.1 404 Not Found"
+				"scenario": "PutProgramIDInvalidEp",
+				"programId": 19357,
+				"programName": "ghghghg",
+				"programDescription": "ghgg",
+				"programStatus": "Active",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
 			}
-		  },
-		  {
+		},
+		{
 			"PutProgramInactivePrgmname": {
-			  "scenario": "PutProgramIDInvalidEp",
-			  "programId": 19342,
-			  "programName": "ghghghg",
-			  "programDescription": "ghgg",
-			  "programStatus": "Inactive",
-			  "statusCode": 404,
-			  "statusText": "HTTP/1.1 404 Not Found"
+				"scenario": "PutProgramIDInvalidEp",
+				"programId": 19342,
+				"programName": "ghghghg",
+				"programDescription": "ghgg",
+				"programStatus": "Inactive",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
 			}
-		  },
-		  {
+		},
+		{
 			"GetAllProgramInValidEP": {
-			  "scenario": "Search All Batch Programs end point",
-			  "statusCode": 404,
-			  "statusText": "HTTP/1.1 404 Not Found"
+				"scenario": "Search All Batch Programs end point",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
 			}
-		  },
-		  {
+		},
+		{
 			"GetProgramByProgramID": {
-			  "scenario": "Get program by Program ID",
-			  "authType": "Bearer Token",
-			  "statusCode": 200,
-			  "programId": 19191,
-			  "statusText": "HTTP/1.1 200 OK"
+				"scenario": "Get program by Program ID",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"programId": 19191,
+				"statusText": "HTTP/1.1 200 OK"
 			}
-		  },
-		  {
+		},
+		{
 			"GetByProgramIDInactive": {
-			  "scenario": "Get inactive program by Program ID",
-			  "statusCode": 200,
-			  "programId": 19192,
-			  "statusText": "HTTP/1.1 200 OK",
-			  "programStatus": "Inactive"
+				"scenario": "Get inactive program by Program ID",
+				"statusCode": 200,
+				"programId": 19192,
+				"statusText": "HTTP/1.1 200 OK",
+				"programStatus": "Inactive"
 			}
-		  },
-		  {
+		},
+		{
 			"GetByProgramIDInValidEP": {
-			  "scenario": "Search Program by ID Invalid EndPoint",
-			  "programId": 19192,
-			  "statusCode": 404,
-			  "statusText": "HTTP/1.1 404 Not Found"
+				"scenario": "Search Program by ID Invalid EndPoint",
+				"programId": 19192,
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
 			}
-		  },
-		  {
+		},
+		{
 			"DeleteProgramIdValid": {
-			  "scenario": "DeleteProgramIdValid",
-			  "statusCode": 200,
-			  "programId": 19192,
-			  "statusText": "HTTP/1.1 200 OK",
-			  "programStatus": "active"
+				"scenario": "DeleteProgramIdValid",
+				"statusCode": 200,
+				"programId": 19192,
+				"statusText": "HTTP/1.1 200 OK",
+				"programStatus": "active"
 			}
-		  },
-		  {
+		},
+		{
 			"DeleteProgramIdInvalidEP": {
-			  "scenario": "DeleteProgramIdInvalidEP",
-			  "statusCode": 404,
-			  "programId": 19192,
-			  "statusText": "HTTP/1.1 404 Not Found",
-			  "programStatus": "active"
+				"scenario": "DeleteProgramIdInvalidEP",
+				"statusCode": 404,
+				"programId": 19192,
+				"statusText": "HTTP/1.1 404 Not Found",
+				"programStatus": "active"
 			}
-		  },
-		  {
+		},
+		{
 			"DeleteProgramIdInvalidID": {
-			  "scenario": "DeleteProgramIdInvalidID",
-			  "statusCode": 404,
-			  "programId": 6666666,
-			  "statusText": "HTTP/1.1 404 Not Found",
-			  "programStatus": "active"
+				"scenario": "DeleteProgramIdInvalidID",
+				"statusCode": 404,
+				"programId": 6666666,
+				"statusText": "HTTP/1.1 404 Not Found",
+				"programStatus": "active"
 			}
-		  },
-		  {
+		},
+		{
 			"GetProgramByInvalidProgramID": {
-			  "scenario": "Get program by invalid Program ID",
-			  "authType": "Bearer Token",
-			  "statusCode": 400,
-			  "programId": 6666666,
-			  "statusText": "HTTP/1.1 400 Bad Request"
+				"scenario": "Get program by invalid Program ID",
+				"authType": "Bearer Token",
+				"statusCode": 400,
+				"programId": 6666666,
+				"statusText": "HTTP/1.1 400 Bad Request"
 			}
-		  },
-
-				{
-		           "AddBatchExistingName": {
-					   "scenario":"Add Batch with existing Batch Name",   
-					   "id": 0,  
-		               "batchDescription": "TestBatches",
-		               "batchName": "APIBatchRest1",
-		               "batchNoOfClasses": 10,
-		               "batchStatus": "Active",
-		               "programId": 16449,
-						"statusCode":400,
-						"statusText": "HTTP/1.1 400 Bad Request"	
-		           }
-			  },
-			  
-			  {
-	  	           "AddBatchEmptyMandatory": {
-	  				   "scenario":"Add Batch with Mandatory field empty", 
-					   "id": 0,    
-	  	               "batchDescription": "TestBatches",
-	  	               "batchName": "",
-	  	               "batchNoOfClasses": 10,
-	  	               "batchStatus": "",
-	  	               "programId": 0,
-	  					"statusCode":400,
-	  					"statusText": "HTTP/1.1 400 Bad Request"
-	  			 }
-	  		  },
-			  {
-		           "AddBatchNameStrtWithNo": {
-					   "scenario":"Add Batch with Name Starts with number",
-					   "id": 0,     
-		               "batchDescription": "TestBatches",
-		               "batchName": "3TestBatch",
-		               "batchNoOfClasses": 10,
-		               "batchStatus": "Active",
-		               "programId": 16449,
-						"statusCode":400,
-						"statusText": "HTTP/1.1 400 Bad Request"	
-		           }
-			  },
-			  {
-	  	           "AddBatchStatusInactive": {
-	  				   "scenario":"Add Batch with Inactive status",  
-					   "id": 0,   
-	  	               "batchDescription": "TestBatches",
-	  	               "batchName": "Norman03",
-	  	               "batchNoOfClasses": 10,
-	  	               "batchStatus": "Inactive",
-	  	               "programId": 16449,
-	  					"statusCode":400,
-	  					"statusText": "HTTP/1.1 400 Bad Request"
-	  	           }
-	  		  },
-			  {
-	  	           "AddBatchInvalidEp": {
-	  				   "scenario":"Add Batch with Invalid endpoint", 
-					   "id": 0,    
-	  	               "batchDescription": "TestBatches",
-	  	               "batchName": "TestAPIBatth001",
-	  	               "batchNoOfClasses": 10,
-	  	               "batchStatus": "Active",
-	  	               "programId": 16449,
-	  					"statusCode":404,
-	  					"statusText": "HTTP/1.1 404 Not Found"
-	  	           }
-	  		  },
-			 {
- 	  	           "AddBatchEmptyBatchName": {
- 	  				   "scenario":"Add Batch Empty Batch Name", 
- 					   "id": 0,    
- 	  	               "batchDescription": "TestBatches",
- 	  	               "batchName": "",
- 	  	               "batchNoOfClasses": 10,
- 	  	               "batchStatus": "Active",
- 	  	               "programId": 16449,
-					   "statusCode":400,
-					   "statusText": "HTTP/1.1 400 Bad Request"
- 	  	           }
-   		 	 },
- 			{
-  	  	           "AddBatchEmptyBatchStatus": {
-  	  				   "scenario":"Add Batch Empty Batch Status", 
-  					   "id": 0,    
-  	  	               "batchDescription": "APIPowertest",
-  	  	               "batchName": "APIPowertest7",
-  	  	               "batchNoOfClasses": 10,
-  	  	               "batchStatus": "",
-  	  	               "programId": 16449,
- 					   "statusCode":400,
- 					   "statusText": "HTTP/1.1 400 Bad Request"
-  	  	           }
-    		 },
-			 {
-			           "AddBatchEmptyNoofClass": {
-			 		   "scenario":"Add Batch Empty Batch Status", 
-			 		   "id": 0,    
-			               "batchDescription": "APIPowertest",
-			               "batchName": "APIPowertest7",
-			               "batchNoOfClasses": "",
-			               "batchStatus": "Active",
-			               "programId": 16449,
-			 		   "statusCode":400,
-			 		   "statusText": "HTTP/1.1 400 Bad Request"
-			           }
-			 },
-			 			  
-			 {
-			           "AddBatchNonExistProgramID": {
-			 		   "scenario":"Add Batch NonExist ProgramID", 
-			 		   "id": 1678909,    
-			               "batchDescription": "APIPowertest",
-			               "batchName": "APIPowertest7",
-			               "batchNoOfClasses": 10,
-			               "batchStatus": "Active",
-			               "programId": 16449,
-			 		   "statusCode":400,
-			 		   "statusText": "HTTP/1.1 400 Bad Request"
-			           }
-			 },
-			 			  
-			 {
-			           "AddBatchStatusSpcChar": {
-			 		   "scenario":"Add Batch Status - special char", 
-			 		   "id": 0,    
-			               "batchDescription": "APIPowertest",
-			               "batchName": "APIPowertest7",
-			               "batchNoOfClasses": 10,
-			               "batchStatus": "*Active",
-			               "programId": 16449,
-			 		   "statusCode":400,
-			 		   "statusText": "HTTP/1.1 400 Bad Request"
-			           }
-			 },
-			 			  
-			 {
-			           "AddBatchDescStartsWithNo": {
-			 		   "scenario":"Add Batch Description starting with number", 
-			 		   "id": 0,    
-			               "batchDescription": "34APIPowertest",
-			               "batchName": "Powerrangers",
-			               "batchNoOfClasses": 10,
-			               "batchStatus": "Active",
-			               "programId": 16449,
-			 		   "statusCode":400,
-			 		   "statusText": "HTTP/1.1 400 Bad Request"
-			           }
-			 },
-			 			  
-			 {
-			           "AddBatchNoofClassAlpha": {
-			 		   "scenario":"Add Batch No of class starts with Alphabet", 
-			 		   "id": 0,    
-			               "batchDescription": "APIPowertest",
-			               "batchName": "TestNorway6",
-			               "batchNoOfClasses": "One",
-			               "batchStatus": "Active",
-			               "programId": 16449,
-			 		   "statusCode":400,
-			 		   "statusText": "HTTP/1.1 400 Bad Request"
-			           }
-			 },
-			 			  
-			 {
-			           "AddBatchNoofClassSplChar": {
-			 		   "scenario":"Add Batch No of class special char", 
-			 		   "id": 0,    
-			               "batchDescription": "APIPowertest",
-			               "batchName": "PIPowertest7",
-			               "batchNoOfClasses": "@",
-			               "batchStatus": "Active",
-			               "programId": 16449,
-			 		   "statusCode":400,
-			 		   "statusText": "HTTP/1.1 400 Bad Request"
-			           }
-			 },
-			 			  
-			 {
-			           "AddBatchNoofClassAlphaNum": {
-			 		   "scenario":"Add Batch No of Class with AlphaNumeric", 
-			 		   "id": 0,    
-			               "batchDescription": "APIPowertest",
-			               "batchName": "wertest7",
-			               "batchNoOfClasses": "A3",
-			               "batchStatus": "Active",
-			               "programId": 16449,
-			 		   "statusCode":400,
-			 		   "statusText": "HTTP/1.1 400 Bad Request"
-			           }
-			 },
-			 			  
-			 {
-			           "AddBatchNoofClassZero": {
-			 		   "scenario":"Add Batch No of Class zero", 
-			 		   "id": 0,    
-			               "batchDescription": "APIPowertest",
-			               "batchName": "Jenkintest7",
-			               "batchNoOfClasses": "0",
-			               "batchStatus": "Active",
-			               "programId": 16449,
-			 		   "statusCode":400,
-			 		   "statusText": "HTTP/1.1 400 Bad Request"
-			           }
-			 },
-			 {
- 			           "AddBatchNoClassThreeDigit": {
- 			 		   "scenario":"Add Batch No of Class more than two digit", 
- 			 		   "id": 0,    
- 			               "batchDescription": "APIcowertest",
- 			               "batchName": "Jenkintest7",
- 			               "batchNoOfClasses": "123",
- 			               "batchStatus": "Active",
- 			               "programId": 16449,
- 			 		   "statusCode":400,
- 			 		   "statusText": "HTTP/1.1 400 Bad Request"
- 			           }
- 			 },
-		 			  
-			{
-	            "GetAllBatchValid": {
-					"scenario":"Search All Batch",    
-					"statusCode":200,
-					"statusText": "HTTP/1.1 200 OK"
-					
-	            }
-	        },
-			{
-	            "GetAllBatchSearchtxt": {
-					"scenario":"Search All Batch - Search text",    
-					"statusCode":200,
-					"statusText": "HTTP/1.1 200 OK"
-					
-	            }
-	        },
-			{
-	            "GetAllBatchInValidEP": {
-					"scenario":"Search All Batch Invalid end point",    
-					"statusCode":404,
-					"statusText": "HTTP/1.1 404 Not Found"
-					
-	            }
-	        },
-	        {
-	            "GetByBatchIDValid": {
-					"scenario":"Search Batch by ID",   
-					"id":0,  
-					"statusCode":200,
-					"statusText": "HTTP/1.1 200 OK"
-					
-	            }
-	        },
-			{
-	            "GetByBatchIDInactive": {
-					"scenario":"Search Inactive Batch by ID",   
-					"id": 11958,
-					"statusCode":200,
-					"statusText": "HTTP/1.1 200 OK"
-					
-	            }
-	        },
-			{
-	            "GetByBatchIDInvalid": {
-					"scenario":"Search Invalid Batch by ID", 
-					"id": 10101010,   
-					"statusCode":404,
-					"statusText": "HTTP/1.1 404 Not Found"
-					
-	            }
-	        },
-			{
-	            "GetByBatchIDInValidEP": {
-					"scenario":"Search Batch by ID Invalid EndPoint",
-					"id":0,
-					"statusCode":404,
-					"statusText": "HTTP/1.1 404 Not Found"
-					
-	            }
-	        },
-	        {
-	            "GetByBatchNameValid": {
-					"scenario":"Search Batch by Name",
-					"name":"0",    
-					"statusCode":200,
-					"statusText": "HTTP/1.1 200 OK"
-	            }
-	        },
-	{
-	            "GetByBatchNameInactive": {
-					"scenario":"Search Inactive Batch by Name",
-					"name":"APIBatchDannie",    
-					"statusCode":200,
-					"statusText": "HTTP/1.1 200 OK"
-					
-	            }
-	        },
-	{
-	            "GetByBatchNameInvalid": {
-					"scenario":"Search Batch by Invalid Name",
-					"name":"APIBatchRest_*",    
-					"statusCode":404,
-					"statusText": "HTTP/1.1 404 Not Found"
-					
-	            }
-	        },
-			{
-	            "GetByBatchNameInValidEP": {
-					"scenario":"Search Batch by Name Invalid Endpoint",
-					"name":"0",    
-					"statusCode":404,
-					"statusText": "HTTP/1.1 404 Not Found"
-					
-	            }
-	        },
-	        {
-	            "GetBatchByPrgmIDValid": {
-					"scenario":"Search Batch by Program ID",
-					"id": 0,  
-					"statusCode":200,
-					"statusText": "HTTP/1.1 200 OK"
-					
-	            }
-	        },
-			{
-	            "GetByProgramInactive": {
-					"scenario":"Search Batch by inactive Program ID",  
-					"id": 16359,  
-					"statusCode":200,
-					"statusText": "HTTP/1.1 200 OK"
-					
-	            }
-	        },
-			{
-			    "GetByProgramInvalid": {
-					"scenario":"Search Batch by invalid Program ID",    
-					"id": 1010,
-					"statusCode":404,
-					"statusText": "HTTP/1.1 404 Not Found"	
-			    }
-			},
-			{
-			    "GetByProgramIDInValidEP": {
-					"scenario":"Search Batch by Program ID Invalid endpoint",  
-					"id": 0,  
-					"statusCode":404,
-					"statusText": "HTTP/1.1 404 Not Found"
-			    }
-			},
-
-
-			{
-			    "PutInvalidBatchID": {
-					"scenario":"Update Batch with invalid batchid",  
-					"id": 1195900,  
-					"batchDescription": "TestBatches",
-					"batchName": "APIBatRest14",
-					"batchNoOfClasses": 10,
-					"batchStatus": "Active",
-					"programId": 16449,
-					"statusCode":404,
-					"statusText": "HTTP/1.1 404 Not Found"	
-			    }
-			},
-			{
-			    "PutBatchEmptyMandatory": {
-					"scenario":"Update Batch Valid",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "",
-					"batchNoOfClasses": 0,
-					"batchStatus": "",
-					"programId": 16449,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"
-			    }
-			},
-			{
-			    "PutBatchNameStrtWithNo": {
-					"scenario":"Update Batch with Name starting with Number",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "12APIBatRest14",
-					"batchNoOfClasses": 10,
-					"batchStatus": "Active",
-					"programId": 16449,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"	
-			    }
-			},
-			{
-			    "PutBatchInvalidEp": {
-					"scenario":"Update Batch Valid Invalid Endpoint",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "APIBattRest14",
-					"batchNoOfClasses": 10,
-					"batchStatus": "Active",
-					"programId": 16449,
-					"statusCode":404,
-					"statusText": "HTTP/1.1 404 Not Found"		
-			    }
-			},
-			{
-			    "PutBatchInactivePrgmID": {
-					"scenario":"Update Batch with inactive Program ID",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "APIBatRest14",
-					"batchNoOfClasses": 10,
-					"batchStatus": "Active",
-					"programId": 16359,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"	
-			    }
-			},
-			{
-			    "PutBatchwithInactiveID": {
-					"scenario":"Update inactive Batch ID",  
-					"id": 12016,  
-					"batchDescription": "TestBatches",
-					"batchName": "APIBaRestt14",
-					"batchNoOfClasses": 10,
-					"batchStatus": "Active",
-					"programId": 16449,
-					"statusCode":200,
-					"statusText": "HTTP/1.1 200 OK"		
-			    }
-			},
-			{
-			    "PutBatchExistingName": {
-					"scenario":"Update Batch with ExistingName",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "APIBatchDelphia",
-					"batchNoOfClasses": 10,
-					"batchStatus": "Active",
-					"programId": 16449,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"	
-			    }
-			},
-			{
-			    "PutBatchEmptyBatchName": {
-					"scenario":"Update Batch with Empty Batch Name",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "",
-					"batchNoOfClasses": 10,
-					"batchStatus": "Active",
-					"programId": 16449,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"	
-			    }
-			},
-			{
-			    "PutBatchEmptyStatus": {
-					"scenario":"Update Batch with Empty status",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "SdetAPIR1",
-					"batchNoOfClasses": 10,
-					"batchStatus": "",
-					"programId": 16449,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"	
-			    }
-			},
-			{
-			    "PutBatchEmptyPrgmID": {
-					"scenario":"Update Batch with Empty Program ID",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "APIBatRestt14",
-					"batchNoOfClasses": 10,
-					"batchStatus": "Active",
-					"programId": 0,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"	
-			    }
-			},
-			{
-			    "PutBatchEmptyNoOfClass": {
-					"scenario":"Update Batch with inactive Program ID",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "APIest14",
-					"batchNoOfClasses": "",
-					"batchStatus": "Active",
-					"programId": 16449,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"	
-			    }
-			},
-			{
-			    "PutBatchStatusSplChar": {
-					"scenario":"Update Batch status with special char",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "AtRest14",
-					"batchNoOfClasses": 10,
-					"batchStatus": "$Active",
-					"programId": 16449,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"	
-			    }
-			},
-			{
-			    "PutBatchNameStrsWithNo": {
-					"scenario":"Update Batch name starts with number",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "34APIBatRest",
-					"batchNoOfClasses": 10,
-					"batchStatus": "Active",
-					"programId": 16449,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"	
-			    }
-			},
-			{
-			    "PutBatchNoofClassAlpha": {
-					"scenario":"Update Batch No of class with Alphabet",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "APIBatRo14",
-					"batchNoOfClasses": "AB",
-					"batchStatus": "Active",
-					"programId": 16449,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"	
-			    }
-			},
-			{
-			    "PutBatchNoClassSplChar": {
-					"scenario":"Update Batch No of class with Special char",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "APINinjat14",
-					"batchNoOfClasses": "@1",
-					"batchStatus": "Active",
-					"programId": 16449,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"	
-			    }
-			},
-			{
-			    "PutBatchNoClassAlphaNum": {
-					"scenario":"Update Batch No of class with Alphanumeric",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "APIYour3",
-					"batchNoOfClasses": "A1",
-					"batchStatus": "Active",
-					"programId": 16449,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"	
-			    }
-			},
-			{
-			    "PutBatchNoofClassZero": {
-					"scenario":"Update Batch No of class with zero",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "APIBatRest14",
-					"batchNoOfClasses": 0,
-					"batchStatus": "Active",
-					"programId": 16449,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"	
-			    }
-			},
-			{
-			    "PutBatchNoClassThreeDgt": {
-					"scenario":"Update Batch No of class with more than 2 digits",  
-					"id": 0,  
-					"batchDescription": "TestBatches",
-					"batchName": "APIBatRest14",
-					"batchNoOfClasses": 123,
-					"batchStatus": "Active",
-					"programId": 16449,
-					"statusCode":400,
-					"statusText": "HTTP/1.1 400 Bad Request"	
-			    }
-			},			
+		},
+		{
+			"AddBatchExistingName": {
+				"scenario": "Add Batch with existing Batch Name",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "APIBatchRest1",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"AddBatchEmptyMandatory": {
+				"scenario": "Add Batch with Mandatory field empty",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "",
+				"batchNoOfClasses": 10,
+				"batchStatus": "",
+				"programId": 0,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"AddBatchNameStrtWithNo": {
+				"scenario": "Add Batch with Name Starts with number",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "3TestBatch",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"AddBatchStatusInactive": {
+				"scenario": "Add Batch with Inactive status",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "Norman03",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Inactive",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"AddBatchInvalidEp": {
+				"scenario": "Add Batch with Invalid endpoint",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "TestAPIBatth001",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"AddBatchEmptyBatchName": {
+				"scenario": "Add Batch Empty Batch Name",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"AddBatchEmptyBatchStatus": {
+				"scenario": "Add Batch Empty Batch Status",
+				"id": 0,
+				"batchDescription": "APIPowertest",
+				"batchName": "APIPowertest7",
+				"batchNoOfClasses": 10,
+				"batchStatus": "",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"AddBatchEmptyNoofClass": {
+				"scenario": "Add Batch Empty Batch Status",
+				"id": 0,
+				"batchDescription": "APIPowertest",
+				"batchName": "APIPowertest7",
+				"batchNoOfClasses": "",
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"AddBatchNonExistProgramID": {
+				"scenario": "Add Batch NonExist ProgramID",
+				"id": 1678909,
+				"batchDescription": "APIPowertest",
+				"batchName": "APIPowertest7",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"AddBatchStatusSpcChar": {
+				"scenario": "Add Batch Status - special char",
+				"id": 0,
+				"batchDescription": "APIPowertest",
+				"batchName": "APIPowertest7",
+				"batchNoOfClasses": 10,
+				"batchStatus": "*Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"AddBatchDescStartsWithNo": {
+				"scenario": "Add Batch Description starting with number",
+				"id": 0,
+				"batchDescription": "34APIPowertest",
+				"batchName": "Powerrangers",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"AddBatchNoofClassAlpha": {
+				"scenario": "Add Batch No of class starts with Alphabet",
+				"id": 0,
+				"batchDescription": "APIPowertest",
+				"batchName": "TestNorway6",
+				"batchNoOfClasses": "One",
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"AddBatchNoofClassSplChar": {
+				"scenario": "Add Batch No of class special char",
+				"id": 0,
+				"batchDescription": "APIPowertest",
+				"batchName": "PIPowertest7",
+				"batchNoOfClasses": "@",
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"AddBatchNoofClassAlphaNum": {
+				"scenario": "Add Batch No of Class with AlphaNumeric",
+				"id": 0,
+				"batchDescription": "APIPowertest",
+				"batchName": "wertest7",
+				"batchNoOfClasses": "A3",
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"AddBatchNoofClassZero": {
+				"scenario": "Add Batch No of Class zero",
+				"id": 0,
+				"batchDescription": "APIPowertest",
+				"batchName": "Jenkintest7",
+				"batchNoOfClasses": "0",
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"AddBatchNoClassThreeDigit": {
+				"scenario": "Add Batch No of Class more than two digit",
+				"id": 0,
+				"batchDescription": "APIcowertest",
+				"batchName": "Jenkintest7",
+				"batchNoOfClasses": "123",
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"GetAllBatchValid": {
+				"scenario": "Search All Batch",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetAllBatchSearchtxt": {
+				"scenario": "Search All Batch - Search text",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetAllBatchInValidEP": {
+				"scenario": "Search All Batch Invalid end point",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetByBatchIDValid": {
+				"scenario": "Search Batch by ID",
+				"id": 0,
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetByBatchIDInactive": {
+				"scenario": "Search Inactive Batch by ID",
+				"id": 11958,
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetByBatchIDInvalid": {
+				"scenario": "Search Invalid Batch by ID",
+				"id": 10101010,
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetByBatchIDInValidEP": {
+				"scenario": "Search Batch by ID Invalid EndPoint",
+				"id": 0,
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetByBatchNameValid": {
+				"scenario": "Search Batch by Name",
+				"name": "0",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetByBatchNameInactive": {
+				"scenario": "Search Inactive Batch by Name",
+				"name": "APIBatchDannie",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetByBatchNameInvalid": {
+				"scenario": "Search Batch by Invalid Name",
+				"name": "APIBatchRest_*",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetByBatchNameInValidEP": {
+				"scenario": "Search Batch by Name Invalid Endpoint",
+				"name": "0",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetBatchByPrgmIDValid": {
+				"scenario": "Search Batch by Program ID",
+				"id": 0,
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetByProgramInactive": {
+				"scenario": "Search Batch by inactive Program ID",
+				"id": 16359,
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetByProgramInvalid": {
+				"scenario": "Search Batch by invalid Program ID",
+				"id": 1010,
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetByProgramIDInValidEP": {
+				"scenario": "Search Batch by Program ID Invalid endpoint",
+				"id": 0,
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"PutInvalidBatchID": {
+				"scenario": "Update Batch with invalid batchid",
+				"id": 1195900,
+				"batchDescription": "TestBatches",
+				"batchName": "APIBatRest14",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"PutBatchEmptyMandatory": {
+				"scenario": "Update Batch Valid",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "",
+				"batchNoOfClasses": 0,
+				"batchStatus": "",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutBatchNameStrtWithNo": {
+				"scenario": "Update Batch with Name starting with Number",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "12APIBatRest14",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutBatchInvalidEp": {
+				"scenario": "Update Batch Valid Invalid Endpoint",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "APIBattRest14",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"PutBatchInactivePrgmID": {
+				"scenario": "Update Batch with inactive Program ID",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "APIBatRest14",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16359,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutBatchwithInactiveID": {
+				"scenario": "Update inactive Batch ID",
+				"id": 12016,
+				"batchDescription": "TestBatches",
+				"batchName": "APIBaRestt14",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"PutBatchExistingName": {
+				"scenario": "Update Batch with ExistingName",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "APIBatchDelphia",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutBatchEmptyBatchName": {
+				"scenario": "Update Batch with Empty Batch Name",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutBatchEmptyStatus": {
+				"scenario": "Update Batch with Empty status",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "SdetAPIR1",
+				"batchNoOfClasses": 10,
+				"batchStatus": "",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutBatchEmptyPrgmID": {
+				"scenario": "Update Batch with Empty Program ID",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "APIBatRestt14",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 0,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutBatchEmptyNoOfClass": {
+				"scenario": "Update Batch with inactive Program ID",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "APIest14",
+				"batchNoOfClasses": "",
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutBatchStatusSplChar": {
+				"scenario": "Update Batch status with special char",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "AtRest14",
+				"batchNoOfClasses": 10,
+				"batchStatus": "$Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutBatchNameStrsWithNo": {
+				"scenario": "Update Batch name starts with number",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "34APIBatRest",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutBatchNoofClassAlpha": {
+				"scenario": "Update Batch No of class with Alphabet",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "APIBatRo14",
+				"batchNoOfClasses": "AB",
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutBatchNoClassSplChar": {
+				"scenario": "Update Batch No of class with Special char",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "APINinjat14",
+				"batchNoOfClasses": "@1",
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutBatchNoClassAlphaNum": {
+				"scenario": "Update Batch No of class with Alphanumeric",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "APIYour3",
+				"batchNoOfClasses": "A1",
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutBatchNoofClassZero": {
+				"scenario": "Update Batch No of class with zero",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "APIBatRest14",
+				"batchNoOfClasses": 0,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutBatchNoClassThreeDgt": {
+				"scenario": "Update Batch No of class with more than 2 digits",
+				"id": 0,
+				"batchDescription": "TestBatches",
+				"batchName": "APIBatRest14",
+				"batchNoOfClasses": 123,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"UpdateUserByRPBStatus": {
+				"scenario": "Assign Update User Role Program Batch Status",
+				"type": "valid",
+				"statusCode": 200,
+				"statusText": "OK",
+				"programId": 16925,
+				"roleId": "R02",
+				"userId": "U2884",
+				"userRoleProgramBatches": [
 					{
-						    "UpdateUserByRPBStatus": {
-						        "scenario": "Assign Update User Role Program Batch Status",
-						        "type": "valid",
-						        "statusCode": 200,
-						        "statusText": "OK",
-						        "programId": 16925,
-						        "roleId": "R02",
-						        "userId": "U2884",
-						        "userRoleProgramBatches": [
-						            {
-						                "batchId": 9488,
-						                "userRoleProgramBatchStatus": "Active"
-						            }
-						        ]
-						    }
-						},
-			        {
-			            "CreateUserInValidPhNumber": {
-			                "scenario": "create a new user with valid endpoint and invalid - exisiting phone number",
-			                "statusCode": 400,
-			                "statusText": "Failed",
-			                "type": "invalid",
-			                "userComments": "teaktonuser5",
-			                "userEduPg": "mtech3",
-			                "userEduUg": "be3",
-			                "userFirstName": "teamfou",
-			                "userLastName": "hackatho",
-			                "userLinkedinUrl": "www.linkedin.com4/url",
-			                "userLocation": "texas",
-			                "userMiddleName": "middle",
-			                "userPhoneNumber": "+91 9419200000",
-			                "userRoleMaps": [
-			                    {
-			                        "roleId": "R02",
-			                        "userRoleStatus": "Active"
-			                    }
-			                ],
-			                "userTimeZone": "CST",
-			                "userVisaStatus": "H1B",
-			                "userLogin": {
-			                    "loginStatus": "Active",
-			                    "userLoginEmail": "great41@gmail.com",
-			                    "status": "Active"
-			                }
-			            }
-			        },			
+						"batchId": 9488,
+						"userRoleProgramBatchStatus": "Active"
+					}
+				]
+			}
+		},
+		{
+			"CreateUserValidR01": {
+				"scenario": "Add User with Bearer Token",
+				"statusCode": 201,
+				"statusText": "Created",
+				"type": "valid",
+				"userComments": "JenkinComments",
+				"userEduPg": "mgfte",
+				"userEduUg": "bedggd8",
+				"userFirstName": "JenkinMary",
+				"userLastName": "JenkinLame",
+				"userLinkedinUrl": "www.linkedin.com4/url",
+				"userLocation": "texas",
+				"userMiddleName": "middle",
+				"userPhoneNumber": "+91 6884275091",
+				"userRoleMaps": [
 					{
-						            "CreateUserInValidemailid": {
-						                "scenario": "create a new user with valid endpoint and invalid - exisiting phone number",
-						                "statusCode": 400,
-						                "statusText": "Failed",
-						                "type": "invalid",
-						                "userComments": "teamhacktonuser5",
-						                "userEduPg": "mtech3",
-						                "userEduUg": "be3",
-						                "userFirstName": "teamfou",
-						                "userLastName": "hackatho",
-						                "userLinkedinUrl": "www.linkedin.com4/url",
-						                "userLocation": "texas",
-						                "userMiddleName": "middle",
-						                "userPhoneNumber": "+91 9419200000",
-						                "userRoleMaps": [
-						                    {
-						                        "roleId": "R02",
-						                        "userRoleStatus": "Active"
-						                    }
-						                ],
-						                "userTimeZone": "CST",
-						                "userVisaStatus": "H1B",
-						                "userLogin": {
-						                    "loginStatus": "Active",
-						                    "userLoginEmail": "great41@gmail.com",
-						                    "status": "Active"
-						                }
-						            }
-						        },
-								{
-												    "GetUserWithFilter": {
-												        "scenario": "Get all User with Facets and Filter ",
-												        "type": "valid",
-												        "statusCode": 200,
-												        "statusText": "OK"
-												    }
-												},
-								{
-								    "GetUserWithFilterInvalid": {
-								        "scenario": "Get all User with Facets and Filter invalid ",
-								        "type": "invalid",
-								        "statusCode": 405,
-								        "statusText": "Bad Request"
-								    }
-								},
-								{
-								    "GetUserByRoleID": {
-								        "scenario": "Get use by roleid",
-								        "type": "valid",
-								        "statusCode": 200,
-								        "roleId": "R01",
-								        "statusText": "OK"
-								    }
-								},
-								{
-								    "GetUserByRoleID_Invalid": {
-								        "scenario": "Get user by roleid invalid",
-								        "type": "invalid",
-								        "statusCode": 400,
-								        "roleId": "R04",
-								        "statusText": "OK"
-								    }
-								},
-								{
-								    "GetUserByID": {
-								        "scenario": "Get user by id",
-								        "type": "valid",
-								        "statusCode": 200,
-								        "userId": "U212",
-								        "statusText": "OK"
-								    }
-								},
-								{
-								    "GetUserByID_invalid": {
-								        "scenario": "Get user by id invalid",
-								        "type": "invalid",
-								        "statusCode": 400,
-								        "userId": "U212t",
-								        "statusText": "OK"
-								    }
-								},
-								{
-								    "GetUserBatchID": {
-								        "scenario": "Get user batch id userid",
-								        "type": "valid",
-								        "statusCode": 200,
-								        "batchId": "U212",
-								        "statusText": "OK"
-								    }
-								},
-								{
-								    "GetUserBatchID_invalid": {
-								        "scenario": "Get user batch id from userid invalid",
-								        "type": "valid",
-								        "statusCode": 200,
-								        "batchId": "U212",
-								        "statusText": "OK"
-								    }
-								},
-								{
-								    "GetByProgramID": {
-								        "scenario": "Get user program id userid",
-								        "type": "valid",
-								        "statusCode": 200,
-								        "programId": "16925",
-								        "statusText": "OK"
-								    }
-								},
-								
-								{
-								    "GetByProgramID_invalid": {
-								        "scenario": "Get user program id userid invalid",
-								        "type": "invalid",
-								        "statusCode": 400,
-								        "programId": "16925",
-								        "statusText": "OK"
-								    }
-								},
-								{
-								    "GetByBatchID": {
-								        "scenario": "Get user batch id userid ",
-								        "type": "valid",
-								        "statusCode": 200,
-								        "batchId": "9488",
-								        "statusText": "OK"
-								    }
-								},
-								{
-								    "GetByBatchID_invalid": {
-								        "scenario": "Get user batch id userid invalid",
-								        "type": "invalid",
-								        "statusCode": 400,
-								        "batchId": "9488",
-								        "statusText": "OK"
-								    }
-								},
-{
-					"GetAllUsers":{
-				    "scenario": "Get all Users",
-				    "authType": "Bearer Token",
-				    "statusCode": 200,
-				    "statusText": "HTTP/1.1 200 OK"
+						"roleId": "R01",
+						"userRoleStatus": "Active"
 					}
-				},
-				 {
-					"GetAllUserInvalidEndpoint":{
-				    "scenario": "Get all Users with inValid",
-				    "authType": "Bearer Token",
-				    "statusCode": 404,
-				    "statusText": "HTTP/1.1 404 Not Found"
-					}
-				},
-				{
-					"GetAllActiveUsers":{
-				    "scenario": "Get all active Users",
-				    "authType": "Bearer Token",
-				    "statusCode": 200,
-				    "statusText": "HTTP/1.1 200 OK"
-					}
-				},
-				{
-					"GetAllActiveUsersInvalidEndpoint":{
-				    "scenario": "Get all active Users with inValid",
-				    "authType": "Bearer Token",
-				    "statusCode": 404,
-				    "statusText": "HTTP/1.1 404 Not Found"
-					}
-				},
-				{
-					"GetActiveEmailUsers":{
-				    "scenario": "Get all Active Users Email id",
-				    "authType": "Bearer Token",
-				    "statusCode": 200,
-				    "statusText": "HTTP/1.1 200 OK"
-					}
-				},
-				{
-					"GetActiveEmailUsersInvalidEndpoint":{
-				    "scenario": "Get all active Users Email id with inValid",
-				    "authType": "Bearer Token",
-				    "statusCode": 404,
-				    "statusText": "HTTP/1.1 404 Not Found"
-					}
-				},
-				{
-					"GetAllRoles":{
-				    "scenario": "Get all roles",
-				    "authType": "Bearer Token",
-				    "statusCode": 200,
-				    "statusText": "HTTP/1.1 200 OK"
-					}
-				},
-				{
-					"GetAllRolesInvalidEndpoint":{
-				    "scenario": "Get all roles with inValid",
-				    "authType": "Bearer Token",
-				    "statusCode": 404,
-				    "statusText": "HTTP/1.1 404 Not Found"
-					}
-				},
-				{
-					"GetAllUserwithRoles":{
-				    "scenario": "Get all users with roles",
-				    "authType": "Bearer Token",
-				    "statusCode": 200,
-				    "statusText": "HTTP/1.1 200 OK"
-					}
-				},
-				{
-					"GetAllUserwithRolesInvalidEndpoint":{
-				    "scenario": "Get all Users with roles with inValid",
-				    "authType": "Bearer Token",
-				    "statusCode": 404,
-				    "statusText": "HTTP/1.1 404 Not Found"
-					}
-				},
-				{
-					"GetAllUserStatusCount":{
-				    "scenario": "Get all User Status Count",
-				    "authType": "Bearer Token",
-				    "statusCode": 200,
-				    "statusText": "HTTP/1.1 200 OK"
-					}
-				},
-				{
-					"GetAllUserStatusCountInvalidEndpoint":{
-				    "scenario": "Get all Users status count with inValid",
-				    "authType": "Bearer Token",
-				    "statusCode": 404,
-				    "statusText": "HTTP/1.1 404 Not Found"
-					}
-				},
-				{
-					"GetUserbyUserId":{
-				    "scenario": "Get Users by UserId",
-				    "authType": "Bearer Token",
-				    "statusCode": 200,
-				    "statusText": "HTTP/1.1 200 OK"
-					}
-				},
-				{
-					"GetUserByUserIDInvalidEndpoint":{
-				    "scenario": "Get Users by UserId with inValid Endpoint",
-				    "authType": "Bearer Token",
-				    "statusCode": 404,
-				    "statusText": "HTTP/1.1 404 Not Found"
-					}
-				},
-				{
-					"GetUserByInvalidUserId":{
-				    "scenario": "Get Users by UserId with inValid Id",
-				    "authType": "Bearer Token",
-				    "statusCode": 404,
-				    "statusText": "HTTP/1.1 404 Not Found",
-				    "id": 9090909
-					}
-				},
+				],
+				"userTimeZone": "CST",
+				"userVisaStatus": "H1B",
+				"userLogin": {
+					"loginStatus": "Active",
+					"userLoginEmail": "Jenkinmary@gmail.com",
+					"status": "Active"
+				}
+			}
+		},
+		{
+			"CreateUserValidR03": {
+				"scenario": "Add User with Bearer Token",
+				"statusCode": 201,
+				"statusText": "Created",
+				"type": "valid",
+				"userComments": "JenkinComments",
+				"userEduPg": "mgfte",
+				"userEduUg": "bedggd8",
+				"userFirstName": "JenkinMary",
+				"userLastName": "JenkinLame",
+				"userLinkedinUrl": "www.linkedin.com4/url",
+				"userLocation": "texas",
+				"userMiddleName": "middle",
+				"userPhoneNumber": "+91 6884275091",
+				"userRoleMaps": [
 					{
-					"GetUserByInvalidSpecialCharacterUserId":{
-				    "scenario": "Get Users by UserId with inValid Special Character",
-				    "authType": "Bearer Token",
-				    "statusCode": 404,
-				    "statusText": "HTTP/1.1 404 Not Found",
-				    "id": "******"
+						"roleId": "R03",
+						"userRoleStatus": "Active"
 					}
-				},
+				],
+				"userTimeZone": "CST",
+				"userVisaStatus": "H1B",
+				"userLogin": {
+					"loginStatus": "Active",
+					"userLoginEmail": "Jenkinmary@gmail.com",
+					"status": "Active"
+				}
+			}
+		},
+		{
+			"CreateUserInValidPhNumber": {
+				"scenario": "create a new user with valid endpoint and invalid - exisiting phone number",
+				"statusCode": 400,
+				"statusText": "Failed",
+				"type": "invalid",
+				"userComments": "teaktonuser5",
+				"userEduPg": "mtech3",
+				"userEduUg": "be3",
+				"userFirstName": "teamfou",
+				"userLastName": "hackatho",
+				"userLinkedinUrl": "www.linkedin.com4/url",
+				"userLocation": "texas",
+				"userMiddleName": "middle",
+				"userPhoneNumber": "+91 9419200000",
+				"userRoleMaps": [
 					{
-					"PutUserRolebyUserId":{
-				    "scenario": "Update User roles by UserId",
-				    "roleId":"R02",
-				    "userRoleStatus" :"active",
-				    "authType": "Bearer Token",
-				    "statusCode": 200,
-				    "statusText": "HTTP/1.1 200 OK"
-					}},
+						"roleId": "R02",
+						"userRoleStatus": "Active"
+					}
+				],
+				"userTimeZone": "CST",
+				"userVisaStatus": "H1B",
+				"userLogin": {
+					"loginStatus": "Active",
+					"userLoginEmail": "great41@gmail.com",
+					"status": "Active"
+				}
+			}
+		},
+		{
+			"CreateUserInValidemailid": {
+				"scenario": "create a new user with valid endpoint and invalid - exisiting phone number",
+				"statusCode": 400,
+				"statusText": "Failed",
+				"type": "invalid",
+				"userComments": "teamhacktonuser5",
+				"userEduPg": "mtech3",
+				"userEduUg": "be3",
+				"userFirstName": "teamfou",
+				"userLastName": "hackatho",
+				"userLinkedinUrl": "www.linkedin.com4/url",
+				"userLocation": "texas",
+				"userMiddleName": "middle",
+				"userPhoneNumber": "+91 9419200000",
+				"userRoleMaps": [
 					{
-					"PutUserRolebyUserIdInvalidRoleID":{
-				    "scenario": "Update User roles invalid by UserId",
-				    "roleId":"R021",
-				    "userRoleStatus" :"active",
-				    "authType": "Bearer Token",
-				    "statusCode": 400,
-				    "statusText": "HTTP/1.1 400 Bad Request"
+						"roleId": "R02",
+						"userRoleStatus": "Active"
 					}
-					
-				},
-				{
-					"PutUserRolebyUserIdSpecialRoleID":{
-				    "scenario": "Update User roles invalid by UserId",
-				    "roleId":"(****",
-				    "userRoleStatus" :"active",
-				    "authType": "Bearer Token",
-				    "statusCode": 400,
-				    "statusText": "HTTP/1.1 400 Bad Request"
-					}
-					
-				},
-				{
-					"PutUserRolebyUserIdwithoutRoleID":{
-				    "scenario": "Update User roles invalid by UserId",
-				    "roleId":"",
-				    "userRoleStatus" :"active",
-				    "authType": "Bearer Token",
-				    "statusCode": 400,
-				    "statusText": "HTTP/1.1 400 Bad Request"
-					}
-					
-				},
-				{
-					"PutUserRolebyUserIdwithoutRolestatus":{
-				    "scenario": "Update User roles invalid by UserId",
-				    "roleId":"R02",
-				    "userRoleStatus" :"",
-				    "authType": "Bearer Token",
-				    "statusCode": 400,
-				    "statusText": "HTTP/1.1 400 Bad Request"
-					}
-					
-				},
-				{
-					"PutUserRolebyUserIdSpecialRolestatus":{
-				    "scenario": "Update User roles invalid by UserId",
-				    "roleId":"R02",
-				    "userRoleStatus" :"&&&&",
-				    "authType": "Bearer Token",
-				    "statusCode": 400,
-				    "statusText": "HTTP/1.1 400 Bad Request"
-					}
-					
-				},
-				{
-							    "GetAllClasses": {
-							        "scenario": "Get all class ",
-							        "authType": "Bearer Token",
-							        "statusCode": 200,
-							        "statusText": "OK"
-							    }
-							},			{
-							    "GetAllClassesInvalidEndpoint": {
-							        "scenario": "Get all invalid ",
-							        "authType": "Bearer Token",
-							        "statusCode": 404,
-							        "statusText": "Not Found"
-							    }
-							},
-							{
-							    "ChangeMethodInRequest": {
-							        "scenario": " change method in request",
-							        "authType": "Bearer Token",
-							        "statusCode": 405,
-							        "statusText": "Method not Allowed"
-							    }
-							},			{
-							    "GetClassByBatchId": {
-							        "scenario": "Get class by batchId",
-							        "authType": "Bearer Token",
-							        "statusCode": 200,
-							        "batchId": "8432",
-							        "statusText": "OK"
-							    }
-							},			{
-							    "GetClassByInvalidBatchId": {
-							        "scenario": "Get class by batchId",
-							        "authType": "Bearer Token",
-							        "statusCode": 404,
-							        "batchId": "***",
-							        "statusText": "HTTP/1.1 404 Not Found"
-							    }
-							},			{
-							    "GetClassByClassId": {
-							        "scenario": "Get class by classId",
-							        "authType": "Bearer Token",
-							        "statusCode": 200,
-							        "classId": "881",
-							        "statusText": "OK"
-							    }
-							},			{
-							    "GetClassByInvalidClassId": {
-							        "scenario": "Get class by invalid classId",
-							        "authType": "Bearer Token",
-							        "statusCode": 404,
-							        "classId": "91",
-							        "statusText": "HTTP/1.1 404 Not Found"
-							    }
-							},
-							{
-							    "GetClassBySpecialCharClassId": {
-							        "scenario": "Get class by invalid classId",
-							        "authType": "Bearer Token",
-							        "statusCode": 404,
-							        "classId": "**",
-							        "statusText": "HTTP/1.1 404 Not Found"
-							    }
-							},			{
-							    "GetValidClasstopic": {
-							        "scenario": "Get class by class topic",
-							        "authType": "Bearer Token",
-							        "statusCode": 200,
-							        "classTopic": "1234",
-							        "statusText": "OK"
-							    }
-							},			{
-							    "GetInvalidClasstopic": {
-							        "scenario": "Get class by invalid classId",
-							        "authType": "Bearer Token",
-							        "statusCode": 404,
-							        "classTopic": "91a",
-							        "statusText": "HTTP/1.1 404 Not Found"
-							    }
-							},
-							{
-							    "GetSpecialCharClasstopic": {
-							        "scenario": "Get class by invalid classId",
-							        "authType": "Bearer Token",
-							        "statusCode": 404,
-							        "classTopic": "**",
-							        "statusText": "HTTP/1.1 404 Not Found"
-							    }
-							},			{
-							    "GetClassrecordingValidBatchID": {
-							        "scenario": "Get class byclass recording batchId",
-							        "authType": "Bearer Token",
-							        "statusCode": 200,
-							        "classRecordingByBatchId": "9954",
-							        "statusText": "OK"
-							    }
-							},
-							{
-							    "GetClassrecordingInValidBatchID": {
-							        "scenario": "Get class byclass recording invalid batchId",
-							        "authType": "Bearer Token",
-							        "statusCode": 404,
-							        "classRecordingByBatchId": "9954a",
-							        "statusText": "HTTP/1.1 404 Not Found"
-							    }
-							},					{
-								    "GetClassrecordingValidClassID": {
-								        "scenario": "Get class byclass recording classId",
-								        "authType": "Bearer Token",
-								        "statusCode": 200,
-								        "classRecordingByClassId": "881",
-								        "statusText": "OK"
-								    }
-								},		{
-							    "GetClassrecordingInValidClassID": {
-							        "scenario": "Get class byclass recording catchId",
-							        "authType": "Bearer Token",
-							        "statusCode": 404,
-							        "classRecordingByClassId": "**12",
-							        "statusText": "HTTP/1.1 404 Not Found"
-							    }
-							},			{
-							    "GetAllClassRecording": {
-							        "scenario": "Get all recordings",
-							        "authType": "Bearer Token",
-							        "statusCode": 200,
-							        "statusText": "OK"
-							    }
-							},			{
-							    "GetAllClassRecordingInvalidEndpoint": {
-							        "scenario": "Get all recordings invalid endpoint",
-							        "authType": "Bearer Token",
-							        "statusCode": 404,
-							        "statusText": "HTTP/1.1 404 Not Found"
-							    }
-							},			{
-							    "GetAllClassesValidStaffId": {
-							        "scenario": "Get class valid StaffId",
-							        "authType": "Bearer Token",
-							        "statusCode": 200,
-							        "classByStaffId": "U34",
-							        "statusText": "OK"
-							    }
-							},			{
-							    "GetClassInvalidStaffId": {
-							        "scenario": "Get class invalid staffId",
-							        "authType": "Bearer Token",
-							        "statusCode": 404,
-							        "classByStaffId": "U3",
-							        "statusText": "HTTP/1.1 404 Not Found"
-							    }
-							},			{
-							    "DeleteClassValid": {
-							        "scenario": "Delete classId",
-							        "authType": "Bearer Token",
-							        "statusCode": 200,
-							        "DeleteClass": "801",
-							        "statusText": "OK"
-							    }
-							},			{
-							    "DeleteAlreadyRemovedClass": {
-							        "scenario": "Delete classId",
-							        "authType": "Bearer Token",
-							        "statusCode": 404,
-							        "DeleteClass": "801",
-							        "statusText": "HTTP/1.1 404 Not Found"
-							    }
-							},		
-												
-{
-            "NoAuthAddUser": {
-                "scenario": "Add User without Authentication",
-                "statusCode": 401,
-                "statusText": "HTTP/1.1 401 Unauthorized",
-                "authType": "No Auth",
-                "userComments": "teamhacktonuser8",
-                "userEduPg": "mtech8",
-                "userEduUg": "be8",
-                "userFirstName": "teamfiveeight",
-                "userLastName": "hackathonfiveeight",
-                "userLinkedinUrl": "www.linkedin.com4/url",
-                "userLocation": "texas",
-                "userMiddleName": "middle",
-                "userPhoneNumber": "+91 9442800000",
-               	"roleId":"R02",
-				"userRoleStatus" :"active",
-                "userTimeZone": "CST",
-                "userVisaStatus": "H1B",
-                "loginStatus": "Active",
-                "userLoginEmail": "great8Robaooing@gmail.com",
-                "status": "Active"
-                
-            }
-            
-        },
-        {
-			    "NoAuthAPIGetAllUser": {
-					"scenario":"Search All User No Auth",    
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"	
-			    }
-			},
-   			{
-			    "NoAuthAPIGetAllUserRoles": {
-					"scenario":"Search All User roles No Auth",    
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"	
-			    }
-			},
-			{
-			    "NoAuthAPIGetUserByStatus": {
-					"scenario":"Search All User by status No Auth",    
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"	
-			    }
-			},
-			{
-			    "NoAuthAPIGetActiveUser": {
-					"scenario":"Search All active User No Auth",    
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"	
-			    }
-			},
-			{
-			    "NoAuthAPIGetAllRoles": {
-					"scenario":"Search All roles No Auth",    
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"	
-			    }
-			},
-			{
-			    "NoAuthAPIGetAllUserEmail": {
-					"scenario":"Search All User email No Auth",    
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"	
-			    }
-			},
-			{
-			    "NoAuthAPIUpdateUserByID": {
-					"scenario":"Update all user roles by userid No Auth",    
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized",
-					"roleId":"R02",
-				    "userRoleStatus" :"active"
-						
-			    }
-			},
-			{
-			    "NoAuthAPIGetUserByID": {
-					"scenario":"Search All User by user id No Auth",    
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"	
-			    }
-			},
-{
-			    "NoAuthAddBatch": {
-					"scenario":"Add Batch valid No Auth",    
-	                "batchDescription": "TestBatches",
-	                "batchName": "APIBatchRest14",
-	                "batchNoOfClasses": 10,
-	                "batchStatus": "Active",
-	                "programId": 16449,
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"	
-			    }
-			},
-			{
-			    "NoAuthGetAllBatch": {
-					"scenario":"Search All Batch No Auth",    
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"	
-			    }
-			},
-			{
-			    "NoAuthGetBatchById": {
-					"scenario":"Search Batch by ID No Auth",    
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"
-			    }
-			},
-			{
-			    "NoAuthGetBatchByName": {
-					"scenario":"Search Batch by Name No Auth",
-					"name":"APIBatchRest13",    
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"
-			    }
-			},
-			{
-			    "NoAuthGetBatchByPrgmId": {
-					"scenario":"Search Batch by Program ID No Auth", 
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"
-			    }
-			},
-			{
-			    "NoAuthEditBatch": {
-					"scenario":"Update Batch Valid",    
-					"batchDescription": "TestBatches",
-					"batchName": "APIBatRest14",
-					"batchNoOfClasses": 10,
-					"batchStatus": "Active",
-					"programId": 16449,
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"	
-			    }
-			},
-			{
-			    "NoAuthDeleteBatch": {
-					"scenario":"Delete Batch by ID No Auth",   
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"
-			    }
-			},
-			{
-			    "NoAuthLogout": {
-					"scenario":"Logout No Auth",   
-					"statusCode":401,
-					"statusText": "HTTP/1.1 401 Unauthorized"
-			    }
-			},
-			{
-			    "DeleteBatchValid": {
-					"scenario":"Delete Batch by ID",   
-					"id":0,  
-					"statusCode":200,
-					"statusText": "HTTP/1.1 200 OK"	
-			    }
-			},
-			{
-			    "DeleteBatchInvalidEP": {
-					"scenario":"Delete Batch by Invalid Endpoint",   
-					"id":0,  
-					"statusCode":404,
-					"statusText": "HTTP/1.1 404 Not Found"
-			    }
-			},
-			{
-			    "DeleteBatchInvalidID": {
-					"scenario":"Delete Batch by Invalid ID",   
-					"id": 1195900,  
-					"statusCode":404,
-					"statusText": "HTTP/1.1 404 Not Found"
-			    }
-			},
-			{
-			    "DeleteAlreadyRemovedBatch": {
-					"scenario":"Delete Already removed Batch",   
-					"id": 11876,  
-					"statusCode":404,
-					"statusText": "HTTP/1.1 404 Not Found"
-			    }
-			},
-			{
-						    "DeleteUserValid": {
-								"scenario":"Delete User by ID", 
-								"id":"U236", 
-								"statusCode":200,
-								"statusText": "HTTP/1.1 200 OK"	
-						    }
-						},
-						{
-						    "DeleteUserInvalidEP": {
-								"scenario":"Delete User by Invalid Endpoint",   
-								"id":0,  
-								"statusCode":404,
-								"statusText": "HTTP/1.1 404 Not Found"
-						    }
-						},
-						{
-						    "DeleteUserInvalidID": {
-								"scenario":"Delete User by Invalid ID",   
-								"id": "*****",  
-								"statusCode":404,
-								"statusText": "HTTP/1.1 404 Not Found"
-						    }
-						},
-						{
-						    "DeleteAlreadyRemovedUser": {
-								"scenario":"Delete User by Invalid ID",   
-								"id": "U236",  
-								"statusCode":200,
-								"statusText": "HTTP/1.1 200 OK"
-						    }
-						},
-			{
-						    "NoAuthCreateProgram": {
-								"scenario":"NoAuthCreateProgramValid",    
-				                "programDescription": "TestProgramatches",
-				                "programName": "APIBatchRest14",
-				                "programStatus": "Active",
-								"statusCode":401,
-								"statusText": "HTTP/1.1 401 Unauthorized"	
-						    }
-						},
-						{
-						    "NoAuthGetAllProgram": {
-								"scenario":"Search All Program No Auth",    
-								"statusCode":401,
-								"statusText": "HTTP/1.1 401 Unauthorized"	
-						    }
-						},
-						{
-						    "NoAuthGetProgramById": {
-								"scenario":"Search Program by ID No Auth",    
-								"statusCode":401,
-								"statusText": "HTTP/1.1 401 Unauthorized"
-						    }
-						},
-				
-						{
-						    "NoAuthPUTProgramID": {
-								"scenario":"Update program Valid",    
-								"programDescription": "TestProgramatches",
-								"programName": "APIBatchRest14",
-								"programStatus": "Active",
-								"statusCode":401,
-								"statusText": "HTTP/1.1 401 Unauthorized"		
-						    }
-						},
-						{
-						    "NoAuthDeleteProgrambyId": {
-								"scenario":"Delete program by ID No Auth",   
-								"statusCode":401,
-								"statusText": "HTTP/1.1 401 Unauthorized"
-						    }
-						},
-			
-					
-			{
-	            "LogoutValid": {
-	                "scenario": "Logout Valid",
-					"statusCode":200,
-					"statusText": "HTTP/1.1 200 OK"
-	            }
-	        },
-	        {
-	            "LogoutInvalidEP": {
-	                "scenario": "Logout Invalid endpoint",
-					"statusCode":404,
-					"statusText": "HTTP/1.1 404 Not Found"
-	            }
-	        }
-    ]
+				],
+				"userTimeZone": "CST",
+				"userVisaStatus": "H1B",
+				"userLogin": {
+					"loginStatus": "Active",
+					"userLoginEmail": "great41@gmail.com",
+					"status": "Active"
+				}
+			}
+		},
+		{
+			"GetUserWithFilter": {
+				"scenario": "Get all User with Facets and Filter ",
+				"type": "valid",
+				"statusCode": 200,
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetUserWithFilterInvalid": {
+				"scenario": "Get all User with Facets and Filter invalid ",
+				"type": "invalid",
+				"statusCode": 405,
+				"statusText": "Bad Request"
+			}
+		},
+		{
+			"GetUserByRoleID": {
+				"scenario": "Get use by roleid",
+				"type": "valid",
+				"statusCode": 200,
+				"roleId": "R01",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetUserByRoleID_Invalid": {
+				"scenario": "Get user by roleid invalid",
+				"type": "invalid",
+				"statusCode": 400,
+				"roleId": "R04",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetUserByID": {
+				"scenario": "Get user by id",
+				"type": "valid",
+				"statusCode": 200,
+				"userId": "U212",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetUserByID_invalid": {
+				"scenario": "Get user by id invalid",
+				"type": "invalid",
+				"statusCode": 400,
+				"userId": "U212t",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetUserBatchID": {
+				"scenario": "Get user batch id userid",
+				"type": "valid",
+				"statusCode": 200,
+				"batchId": "U212",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetUserBatchID_invalid": {
+				"scenario": "Get user batch id from userid invalid",
+				"type": "valid",
+				"statusCode": 200,
+				"batchId": "U212",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetByProgramID": {
+				"scenario": "Get user program id userid",
+				"type": "valid",
+				"statusCode": 200,
+				"programId": "16925",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetByProgramID_invalid": {
+				"scenario": "Get user program id userid invalid",
+				"type": "invalid",
+				"statusCode": 400,
+				"programId": "16925",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetByBatchID": {
+				"scenario": "Get user batch id userid ",
+				"type": "valid",
+				"statusCode": 200,
+				"batchId": "9488",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetByBatchID_invalid": {
+				"scenario": "Get user batch id userid invalid",
+				"type": "invalid",
+				"statusCode": 400,
+				"batchId": "9488",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetAllUsers": {
+				"scenario": "Get all Users",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetAllUserInvalidEndpoint": {
+				"scenario": "Get all Users with inValid",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetAllActiveUsers": {
+				"scenario": "Get all active Users",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetAllActiveUsersInvalidEndpoint": {
+				"scenario": "Get all active Users with inValid",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetActiveEmailUsers": {
+				"scenario": "Get all Active Users Email id",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetActiveEmailUsersInvalidEndpoint": {
+				"scenario": "Get all active Users Email id with inValid",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetAllRoles": {
+				"scenario": "Get all roles",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetAllRolesInvalidEndpoint": {
+				"scenario": "Get all roles with inValid",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetAllUserwithRoles": {
+				"scenario": "Get all users with roles",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetAllUserwithRolesInvalidEndpoint": {
+				"scenario": "Get all Users with roles with inValid",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetAllUserStatusCount": {
+				"scenario": "Get all User Status Count",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetAllUserStatusCountInvalidEndpoint": {
+				"scenario": "Get all Users status count with inValid",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetUserbyUserId": {
+				"scenario": "Get Users by UserId",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"GetUserByUserIDInvalidEndpoint": {
+				"scenario": "Get Users by UserId with inValid Endpoint",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetUserByInvalidUserId": {
+				"scenario": "Get Users by UserId with inValid Id",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found",
+				"id": 9090909
+			}
+		},
+		{
+			"GetUserByInvalidSpecialCharacterUserId": {
+				"scenario": "Get Users by UserId with inValid Special Character",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found",
+				"id": "******"
+			}
+		},
+		{
+			"PutUserRolebyUserId": {
+				"scenario": "Update User roles by UserId",
+				"roleId": "R02",
+				"userRoleStatus": "active",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"PutUserRolebyUserIdInvalidRoleID": {
+				"scenario": "Update User roles invalid by UserId",
+				"roleId": "R021",
+				"userRoleStatus": "active",
+				"authType": "Bearer Token",
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutUserRolebyUserIdSpecialRoleID": {
+				"scenario": "Update User roles invalid by UserId",
+				"roleId": "(****",
+				"userRoleStatus": "active",
+				"authType": "Bearer Token",
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutUserRolebyUserIdwithoutRoleID": {
+				"scenario": "Update User roles invalid by UserId",
+				"roleId": "",
+				"userRoleStatus": "active",
+				"authType": "Bearer Token",
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutUserRolebyUserIdwithoutRolestatus": {
+				"scenario": "Update User roles invalid by UserId",
+				"roleId": "R02",
+				"userRoleStatus": "",
+				"authType": "Bearer Token",
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"PutUserRolebyUserIdSpecialRolestatus": {
+				"scenario": "Update User roles invalid by UserId",
+				"roleId": "R02",
+				"userRoleStatus": "&&&&",
+				"authType": "Bearer Token",
+				"statusCode": 400,
+				"statusText": "HTTP/1.1 400 Bad Request"
+			}
+		},
+		{
+			"GetAllClasses": {
+				"scenario": "Get all class ",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetAllClassesInvalidEndpoint": {
+				"scenario": "Get all invalid ",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"statusText": "Not Found"
+			}
+		},
+		{
+			"ChangeMethodInRequest": {
+				"scenario": " change method in request",
+				"authType": "Bearer Token",
+				"statusCode": 405,
+				"statusText": "Method not Allowed"
+			}
+		},
+		{
+			"GetClassByBatchId": {
+				"scenario": "Get class by batchId",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"batchId": "8432",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetClassByInvalidBatchId": {
+				"scenario": "Get class by batchId",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"batchId": "***",
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetClassByClassId": {
+				"scenario": "Get class by classId",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"classId": "881",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetClassByInvalidClassId": {
+				"scenario": "Get class by invalid classId",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"classId": "91",
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetClassBySpecialCharClassId": {
+				"scenario": "Get class by invalid classId",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"classId": "**",
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetValidClasstopic": {
+				"scenario": "Get class by class topic",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"classTopic": "1234",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetInvalidClasstopic": {
+				"scenario": "Get class by invalid classId",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"classTopic": "91a",
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetSpecialCharClasstopic": {
+				"scenario": "Get class by invalid classId",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"classTopic": "**",
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetClassrecordingValidBatchID": {
+				"scenario": "Get class byclass recording batchId",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"classRecordingByBatchId": "9954",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetClassrecordingInValidBatchID": {
+				"scenario": "Get class byclass recording invalid batchId",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"classRecordingByBatchId": "9954a",
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetClassrecordingValidClassID": {
+				"scenario": "Get class byclass recording classId",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"classRecordingByClassId": "881",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetClassrecordingInValidClassID": {
+				"scenario": "Get class byclass recording catchId",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"classRecordingByClassId": "**12",
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetAllClassRecording": {
+				"scenario": "Get all recordings",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetAllClassRecordingInvalidEndpoint": {
+				"scenario": "Get all recordings invalid endpoint",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"GetAllClassesValidStaffId": {
+				"scenario": "Get class valid StaffId",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"classByStaffId": "U34",
+				"statusText": "OK"
+			}
+		},
+		{
+			"GetClassInvalidStaffId": {
+				"scenario": "Get class invalid staffId",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"classByStaffId": "U3",
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"DeleteClassValid": {
+				"scenario": "Delete classId",
+				"authType": "Bearer Token",
+				"statusCode": 200,
+				"DeleteClass": "801",
+				"statusText": "OK"
+			}
+		},
+		{
+			"DeleteAlreadyRemovedClass": {
+				"scenario": "Delete classId",
+				"authType": "Bearer Token",
+				"statusCode": 404,
+				"DeleteClass": "801",
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"NoAuthAddUser": {
+				"scenario": "Add User without Authentication",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized",
+				"authType": "No Auth",
+				"userComments": "teamhacktonuser8",
+				"userEduPg": "mtech8",
+				"userEduUg": "be8",
+				"userFirstName": "teamfiveeight",
+				"userLastName": "hackathonfiveeight",
+				"userLinkedinUrl": "www.linkedin.com4/url",
+				"userLocation": "texas",
+				"userMiddleName": "middle",
+				"userPhoneNumber": "+91 9442800000",
+				"roleId": "R02",
+				"userRoleStatus": "active",
+				"userTimeZone": "CST",
+				"userVisaStatus": "H1B",
+				"loginStatus": "Active",
+				"userLoginEmail": "great8Robaooing@gmail.com",
+				"status": "Active"
+			}
+		},
+		{
+			"NoAuthAPIGetAllUser": {
+				"scenario": "Search All User No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthAPIGetAllUserRoles": {
+				"scenario": "Search All User roles No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthAPIGetUserByStatus": {
+				"scenario": "Search All User by status No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthAPIGetActiveUser": {
+				"scenario": "Search All active User No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthAPIGetAllRoles": {
+				"scenario": "Search All roles No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthAPIGetAllUserEmail": {
+				"scenario": "Search All User email No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthAPIUpdateUserByID": {
+				"scenario": "Update all user roles by userid No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized",
+				"roleId": "R02",
+				"userRoleStatus": "active"
+			}
+		},
+		{
+			"NoAuthAPIGetUserByID": {
+				"scenario": "Search All User by user id No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthAddBatch": {
+				"scenario": "Add Batch valid No Auth",
+				"batchDescription": "TestBatches",
+				"batchName": "APIBatchRest14",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthGetAllBatch": {
+				"scenario": "Search All Batch No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthGetBatchById": {
+				"scenario": "Search Batch by ID No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthGetBatchByName": {
+				"scenario": "Search Batch by Name No Auth",
+				"name": "APIBatchRest13",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthGetBatchByPrgmId": {
+				"scenario": "Search Batch by Program ID No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthEditBatch": {
+				"scenario": "Update Batch Valid",
+				"batchDescription": "TestBatches",
+				"batchName": "APIBatRest14",
+				"batchNoOfClasses": 10,
+				"batchStatus": "Active",
+				"programId": 16449,
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthDeleteBatch": {
+				"scenario": "Delete Batch by ID No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthLogout": {
+				"scenario": "Logout No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"DeleteBatchValid": {
+				"scenario": "Delete Batch by ID",
+				"id": 0,
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"DeleteBatchInvalidEP": {
+				"scenario": "Delete Batch by Invalid Endpoint",
+				"id": 0,
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"DeleteBatchInvalidID": {
+				"scenario": "Delete Batch by Invalid ID",
+				"id": 1195900,
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"DeleteAlreadyRemovedBatch": {
+				"scenario": "Delete Already removed Batch",
+				"id": 11876,
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"DeleteUserValid": {
+				"scenario": "Delete User by ID",
+				"id": "U236",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"DeleteUserInvalidEP": {
+				"scenario": "Delete User by Invalid Endpoint",
+				"id": 0,
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"DeleteUserInvalidID": {
+				"scenario": "Delete User by Invalid ID",
+				"id": "*****",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		},
+		{
+			"DeleteAlreadyRemovedUser": {
+				"scenario": "Delete User by Invalid ID",
+				"id": "U236",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"NoAuthCreateProgram": {
+				"scenario": "NoAuthCreateProgramValid",
+				"programDescription": "TestProgramatches",
+				"programName": "APIBatchRest14",
+				"programStatus": "Active",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthGetAllProgram": {
+				"scenario": "Search All Program No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthGetProgramById": {
+				"scenario": "Search Program by ID No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthPUTProgramID": {
+				"scenario": "Update program Valid",
+				"programDescription": "TestProgramatches",
+				"programName": "APIBatchRest14",
+				"programStatus": "Active",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"NoAuthDeleteProgrambyId": {
+				"scenario": "Delete program by ID No Auth",
+				"statusCode": 401,
+				"statusText": "HTTP/1.1 401 Unauthorized"
+			}
+		},
+		{
+			"LogoutValid": {
+				"scenario": "Logout Valid",
+				"statusCode": 200,
+				"statusText": "HTTP/1.1 200 OK"
+			}
+		},
+		{
+			"LogoutInvalidEP": {
+				"scenario": "Logout Invalid endpoint",
+				"statusCode": 404,
+				"statusText": "HTTP/1.1 404 Not Found"
+			}
+		}
+	]
 }

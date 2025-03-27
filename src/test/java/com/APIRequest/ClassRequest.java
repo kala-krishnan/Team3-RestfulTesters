@@ -68,18 +68,12 @@ public class ClassRequest extends SpecificationClass {
 			}
 		}
 
-		System.out.println(pojo.toString());
 		response = RestAssured.given().spec(requestHeadersWithToken())
 				.body(pojo).log().all()
 				.post(APIResources.valueOf("APIClassPost").getResources());       
 		context.set("classResponse", response); 
 		String classID  = response.jsonPath().getString("csId");
 		TextContext.setUserId(classID); // Setting userid for chaining 
-
-		System.out.println(response.prettyPrint());
-		System.out.println("Status Code: " + response.getStatusCode());
-		System.out.println("Response Headers: " + response.getHeaders());
-		System.out.println("Response Body: " + response.getBody().asString());
 		
 	}
 
@@ -105,7 +99,6 @@ public class ClassRequest extends SpecificationClass {
 		String endpoint_tmp = requestType;				
 		String endpoint =endpoint_tmp.substring(3)	;
 
-		System.out.println(pojo.toString());
 		response = RestAssured.given().spec(requestHeadersWithToken())
 				.body(pojo).log().all()
 				.put(APIResources.valueOf(endpoint).getResources());      
@@ -113,14 +106,9 @@ public class ClassRequest extends SpecificationClass {
 		String classID  = response.jsonPath().getString("csId");
 		TextContext.setUserId(classID); // Setting userid for chaining 
 
-		System.out.println(response.prettyPrint());
-		System.out.println("Status Code: " + response.getStatusCode());
-		System.out.println("Response Headers: " + response.getHeaders());
-		System.out.println("Response Body: " + response.getBody().asString());
 
 		// getting the batchid for chaining
 		int storedBatchID = TextContext.getBatchId();
-		System.out.println("Printing chaining batch ID in user module" + storedBatchID );
 	}
 
 	/****************** GET with parameter Request  *************************/
@@ -133,7 +121,6 @@ public class ClassRequest extends SpecificationClass {
 	}
 
 	public Response sendGetClassReqWithBody() {
-		System.out.println(APIResources.valueOf("APIGetAllClassesByBatchId").getResources()+ paramForGetEndpoint);
 		Response response = RestAssured.given().spec(requestHeadersWithToken())	
 				.pathParam("batchId",paramForGetEndpoint)
 				.get(APIResources.valueOf("APIGetAllClassesByBatchId").getResources());				
@@ -171,7 +158,6 @@ public JsonNode getClassRequest(String requestType) throws Exception
 public Response sendGetClassReqWithOutBody(String endpointValue,String status) {
 	Response response =null;
 	String endpoint = "API"+endpointValue;
-	System.out.println(endpoint);
 	if(!status.equalsIgnoreCase("405"))
 	{}
 	else
@@ -192,7 +178,6 @@ public Response sendGetClassReqWithBodyByClassId(String requestType,String param
 	if (requestType.equals("GetClassByClassId")) {
 		//paramForGetEndpoint=TextContext.getClassId().toString();
 	}
-	System.out.println(APIResources.valueOf("APIGetClassByID").getResources()+ paramForGetEndpoint);
 	Response response = RestAssured.given().spec(requestHeadersWithToken())	
 			.pathParam("classId",paramForGetEndpoint)
 			.get(APIResources.valueOf("APIGetClassByID").getResources());				
@@ -211,7 +196,6 @@ public Response sendGetClassReqWithBodyByClassTopic(String requestType,String pa
 	if (requestType.equals("GetClassByClassTopic")) {
 		//paramForGetEndpoint=TextContext.getClassId().toString();
 	}
-	System.out.println(APIResources.valueOf("APIGetAllClassesByClassTopic").getResources()+ paramForGetEndpoint);
 	Response response = RestAssured.given().spec(requestHeadersWithToken())	
 			.pathParam("classTopic",paramForGetEndpoint)
 			.get(APIResources.valueOf("APIGetAllClassesByClassTopic").getResources());				
@@ -221,7 +205,6 @@ public Response sendGetClassReqWithBodyByClassTopic(String requestType,String pa
 public JsonNode setGetClassRequestBodyByClassRecordingByBatchId(String requestType,String parameterValue) throws Exception
 {
 JsonNode getTestData = TestDataLoader.loadTestDatafor_Get(requestType);
-System.out.println("classmodule"+getTestData.get(parameterValue).asText());
 paramForGetEndpoint = getTestData.get(parameterValue).asText();
 return getTestData;
 }
@@ -229,8 +212,6 @@ public Response sendGetClassReqWithBodyByClassRecordingByBatchId(String requestT
 	if (requestType.equals("GetClassByBatchId")) {
 		//paramForGetEndpoint=TextContext.getClassId().toString();
 	}
-	System.out.println(""+paramValue);
-	System.out.println(APIResources.valueOf("APIGetClassByBatchId").getResources()+ paramForGetEndpoint);
 	Response response = RestAssured.given().spec(requestHeadersWithToken())	
 			.pathParam("batchId",paramForGetEndpoint)
 			.get(APIResources.valueOf("APIGetClassByBatchId").getResources());				
@@ -249,8 +230,6 @@ public Response sendGetClassReqWithBodyByClassRecordingByClassId(String requestT
 	if (requestType.equals("GetClassRecordingsByClassId")) {
 		//paramForGetEndpoint=TextContext.getClassId().toString();
 	}
-	System.out.println(""+paramValue);
-	System.out.println(APIResources.valueOf("APIGetClassRecordingsByClassId").getResources()+ paramForGetEndpoint);
 	Response response = RestAssured.given().spec(requestHeadersWithToken())	
 			.pathParam("classId",paramForGetEndpoint)
 			.get(APIResources.valueOf("APIGetClassRecordingsByClassId").getResources());				
@@ -263,7 +242,6 @@ public Response sendGetClassReqWithOutBodyClass(String reqType) {
 	{
 		Endpoints = APIResources.valueOf("APIGetAllRecordings").getResources()+"sss";
 	}
-	System.out.println(Endpoints);
 	Response response = RestAssured.given().spec(requestHeadersWithToken())				
 			.get(Endpoints);
 	
@@ -273,7 +251,6 @@ public Response sendGetClassReqWithOutBodyClass(String reqType) {
 public JsonNode setGetClassRequestBodyClassByStaffId(String requestType,String parameterValue) throws Exception
 {
 JsonNode getTestData = TestDataLoader.loadTestDatafor_Get(requestType);
-System.out.println("classmodule"+getTestData.get(parameterValue).asText());
 paramForGetEndpoint = getTestData.get(parameterValue).asText();
 return getTestData;
 }
@@ -281,8 +258,6 @@ public Response sendGetClassReqWithBodyClassByStaffId(String requestType,String 
 	if (requestType.equals("GetAllClassesByStaffId")) {
 		//paramForGetEndpoint=TextContext.getClassId().toString();
 	}
-	System.out.println(""+paramValue);
-	System.out.println(APIResources.valueOf("APIGetAllClassesByStaffId").getResources()+ paramForGetEndpoint);
 	Response response = RestAssured.given().spec(requestHeadersWithToken())	
 			.pathParam("staffId",paramForGetEndpoint)
 			.get(APIResources.valueOf("APIGetAllClassesByStaffId").getResources());				
@@ -294,7 +269,6 @@ public Response sendGetClassReqWithBodyClassByStaffId(String requestType,String 
 		return getTestData;
 	}
 	public Response sendGetClassIdReqWithBody() {
-		System.out.println(APIResources.valueOf("APIGetClassRecordingsByClassId").getResources()+ paramForGetEndpoint);
 		Response response = RestAssured.given().spec(requestHeadersWithToken())				
 				.get(APIResources.valueOf("APIGetClassRecordingsByClassId").getResources()+ paramForGetEndpoint);				
 		return response;
@@ -304,7 +278,6 @@ public Response sendGetClassReqWithBodyClassByStaffId(String requestType,String 
 	public JsonNode setGetClassRequestBodyDeleteClass(String requestType,String parameterValue) throws Exception
 	{
 	JsonNode getTestData = TestDataLoader.loadTestDatafor_Get(requestType);
-	System.out.println("classmodule"+getTestData.get(parameterValue).asText());
 	paramForGetEndpoint = getTestData.get(parameterValue).asText();
 	return getTestData;
 	}
@@ -312,8 +285,6 @@ public Response sendGetClassReqWithBodyClassByStaffId(String requestType,String 
 		if (requestType.equals("GetClassRecordingsByClassId")) {
 			//paramForGetEndpoint=TextContext.getClassId().toString();
 		}
-		System.out.println(""+paramValue);
-		System.out.println(APIResources.valueOf("APIDeleteClassByClassId").getResources()+ paramForGetEndpoint);
 		Response response = RestAssured.given().spec(requestHeadersWithToken())	
 				.pathParam("classId",paramForGetEndpoint)
 				.delete(APIResources.valueOf("APIDeleteClassByClassId").getResources());				
