@@ -286,24 +286,6 @@ public Response sendGetClassReqWithBodyClassByStaffId(String requestType,String 
 			.get(APIResources.valueOf("APIGetAllClassesByStaffId").getResources());				
 	return response;
 }
-
-
-
-//	/****************** GET with parameter Request  *************************/
-//
-//	public JsonNode setGetClassRequestBody(String requestType,String parameterValue) throws Exception
-//	{
-//		JsonNode getTestData = TestDataLoader.loadTestDatafor_Get(requestType);
-//		paramForGetEndpoint = getTestData.get(parameterValue).asText();
-//		return getTestData;
-//	}
-//
-//	public Response sendGetStaffidReqWithBody() {
-//		System.out.println(APIResources.valueOf("APIGetAllClassesByStaffId").getResources()+ paramForGetEndpoint);
-//		Response response = RestAssured.given().spec(requestHeadersWithToken())				
-//				.get(APIResources.valueOf("APIGetAllClassesByStaffId").getResources()+ paramForGetEndpoint);				
-//		return response;
-//	}
 	public JsonNode setGetClassidRequestBody(String requestType, String parameterValue)throws Exception {
 		JsonNode getTestData = TestDataLoader.loadTestDatafor_Get(requestType);
 		paramForGetEndpoint = getTestData.get(parameterValue).asText();
@@ -313,6 +295,26 @@ public Response sendGetClassReqWithBodyClassByStaffId(String requestType,String 
 		System.out.println(APIResources.valueOf("APIGetClassRecordingsByClassId").getResources()+ paramForGetEndpoint);
 		Response response = RestAssured.given().spec(requestHeadersWithToken())				
 				.get(APIResources.valueOf("APIGetClassRecordingsByClassId").getResources()+ paramForGetEndpoint);				
+		return response;
+	}
+	
+	/*********************DeleteClass********************/
+	public JsonNode setGetClassRequestBodyDeleteClass(String requestType,String parameterValue) throws Exception
+	{
+	JsonNode getTestData = TestDataLoader.loadTestDatafor_Get(requestType);
+	System.out.println("classmodule"+getTestData.get(parameterValue).asText());
+	paramForGetEndpoint = getTestData.get(parameterValue).asText();
+	return getTestData;
+	}
+	public Response sendGetClassReqWithBodyDeleteClass(String requestType,String paramValue) {
+		if (requestType.equals("GetClassRecordingsByClassId")) {
+			//paramForGetEndpoint=TextContext.getClassId().toString();
+		}
+		System.out.println(""+paramValue);
+		System.out.println(APIResources.valueOf("APIDeleteClassByClassId").getResources()+ paramForGetEndpoint);
+		Response response = RestAssured.given().spec(requestHeadersWithToken())	
+				.pathParam("classId",paramForGetEndpoint)
+				.delete(APIResources.valueOf("APIDeleteClassByClassId").getResources());				
 		return response;
 	}
 	}
