@@ -1,5 +1,6 @@
 package com.pojoclass;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -7,8 +8,11 @@ public class UserRole {
 	private String roleId;
     private String userRoleStatus;
     
+    @JsonIgnore
     private int statusCode;
+    @JsonIgnore
     private String statusText;
+    @JsonIgnore
     private String id;
 
     public String getId() {

@@ -15,6 +15,7 @@ import com.commonUtils.TestDataLoader;
 import com.context.ScenarioContext;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.pojoclass.UserPojo;
 
 import io.cucumber.java.en.*;
 import io.restassured.response.Response;
@@ -58,9 +59,10 @@ public void admin_calls_post_https_method_with_valid_endpoint_for_lms_user_modul
 
 @Then("Admin receive created  status for LMS User Module")
 public void admin_receive_created_status_for_lms_user_module() {
+	 UserPojo userRequest = context.get("UserPojo", UserPojo.class);
 	userResponse = context.get("userResponse", Response.class);
 	int actualStatusCode = userResponse.getStatusCode();
-	int expectedStatusCode =userRequest.getUserStatusCode();
+	int expectedStatusCode =userRequest.getStatusCode();
 	softAssert =new SoftAssert();
 	
 	//Status code Validation
@@ -79,20 +81,57 @@ public void user_set_authentication_token_for_authorisation() {
 	
 }
 
-/***********************get all request using Filters *********************************/
+/***********************get all request  *********************************/
 
-@Given("Admin creates GET Request {string} for LMS User Module")
-public void admin_creates_get_request_for_lms_user_module(String requestType) throws Exception  {
-	 getTestData_Get= userRequest.setGetUserRequest(requestType);
+
+//
+//@When("Admin sends GET Request {string} with v2 endpoint for LMS User Module")
+//public void admin_sends_get_request_with_v2_endpoint_for_lms_user_module(String string) {
+//	 getUserFilterResponse=userRequest.sendGetUserReqWithOutBody(string);
+//}
+
+
+@Given("Admin creates GET Request {string} {string}  for LMS User Module") 
+public void admin_creates_get_request_for_lms_user_module(String requestType, String status)  throws Exception {
+	 getTestData_Get= userRequest.getUserRequest(requestType, status);
 }
 
-@When("Admin sends GET Request with v2 endpoint for LMS User Module")
-public void admin_sends_get_request_with_endpoint_for_lms_user_module() {
-	 getUserFilterResponse=userRequest.sendGetUserReqWithOutBody();
+@When("Admin sends GET Request {string}  with v2 endpoint for LMS User Module {string}")
+public void admin_sends_get_request_with_v2_endpoint_for_lms_user_module(String requestType, String status) {
+	getUserFilterResponse=userRequest.sendGetUserReqWithOutBody(requestType,status);
+	 context.set("userGetResponse", getUserFilterResponse);
 }
 
-@Then("Admin gets the list of active users with filters")
-public void Admin_gets_the_list_of_active_users() {
+@Then("Admin gets the list of active users with filters {string}")
+public void admin_gets_the_list_of_active_users_with_filters(String status) {
+	int actualStatusCode = getUserFilterResponse.getStatusCode();
+	int expectedStatusCode =getTestData_Get.get("statusCode").asInt();
+	softAssert =new SoftAssert();
+	
+	//Status code Validation
+	System.out.println("Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
+	softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
+	softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
+	softAssert.assertAll();
+}
+
+
+/***********************get request based on parameter  *********************************/
+
+/* for user id and role id get only valid*/
+@Given("Admin creates GET Request {string} and {string} for LMS User Module")
+public void admin_creates_get_request_and_for_lms_user_module(String requestType, String paramValue) throws Exception {
+	
+	 getTestData_Get=userRequest.setGetUserRequestBody(requestType,paramValue);
+}
+
+@When("Admin sends GET Request with endpoint and {string} {string}for LMS User Module")
+public void admin_sends_get_request_with_endpoint_and_for_lms_user_module(String endpointValue, String param) {
+	getUserFilterResponse=userRequest.sendGetUserReqWithBody(endpointValue,param);
+}
+
+@Then("Admin gets the users details")
+public void admin_gets_the_users_details() {
 	int actualStatusCode = getUserFilterResponse.getStatusCode();
 	int expectedStatusCode =getTestData_Get.get("statusCode").asInt();
 	softAssert =new SoftAssert();
@@ -103,21 +142,23 @@ public void Admin_gets_the_list_of_active_users() {
 	softAssert.assertAll();
 }
 
-/***********************get request based on parameter  *********************************/
-
-@Given("Admin creates GET Request {string} and {string} for LMS User Module")
-public void admin_creates_get_request_and_for_lms_user_module(String requestType, String paramValue) throws Exception {
-	 getTestData_Get=userRequest.setGetUserRequestBody(requestType,paramValue);
+/* for program id abd batch id get only valid*/
+@Given("Admin creates GET Request {string} and {string} for LMS User Module for prm batch")
+public void admin_creates_get_request_and_for_lms_user_module_for_prm_batch(String string, String string2) throws Exception {
+	getTestData_Get=userRequest.setGetUserReqBody(string,string2);
 }
 
-@When("Admin sends GET Request with endpoint and {string} for LMS User Module")
-public void admin_sends_get_request_with_endpoint_and_for_lms_user_module(String endpointValue) {
-	getUserFilterResponse=userRequest.sendGetUserReqWithBody(endpointValue);
+//@When("Admin sends GET Request with endpoint and {string} and {string} for LMS User Module for prm batch")
+//public void admin_sends_get_request_with_endpoint_and_for_lms_user_module_for_prm_batch(String requestType, String param) {
+//	getUserFilterResponse=userRequest.sendGetUserReqWithIntBody(requestType,param);
+//}
+
+@When("Admin sends GET Request with endpoint and {string}  and {string} for LMS User Module for prm batch")
+public void admin_sends_get_request_with_endpoint_and_and_for_lms_user_module_for_prm_batch(String string, String string2) {
+	getUserFilterResponse=userRequest.sendGetUserReqWithIntBody(string,string2);
 }
-
-
-@Then("Admin gets the users details")
-public void admin_gets_the_users_details() {
+@Then("Admin gets the users detailsfor prm batch")
+public void admin_gets_the_users_detailsfor_prm_batch() {
 	int actualStatusCode = getUserFilterResponse.getStatusCode();
 	int expectedStatusCode =getTestData_Get.get("statusCode").asInt();
 	softAssert =new SoftAssert();
@@ -282,6 +323,23 @@ public void user_received_proper_status_code_with_updated_role_details_for_the_u
 	Assert.assertEquals(userRequest.responseCode(), string);
 }
 //**********************************************PUT Request Ends***********************************************************
+
+// put batch, program , user
+
+@Given("User creates PUT Request User Role Program Batch Status {string} for LMS User Module")
+public void user_creates_put_request_user_role_program_batch_status_for_lms_user_module(String string) throws Exception {
+	userRequest.updateUserProgramBatchRequest(string);
+}
+
+@When("User calls PUT Https method for the requesttype {string} to Update User Role Program Batch Status LMS User Module")
+public void user_calls_put_https_method_for_the_requesttype_to_update_user_role_program_batch_status_lms_user_module(String string) throws Exception {
+	userRequest.updateProgramBatchuserRequest(string);
+}
+
+@Then("User received proper status code {string} with updated Update User Role Program Batch Status")
+public void user_received_proper_status_code_with_updated_update_user_role_program_batch_status(String string) {
+	Assert.assertEquals(userRequest.responseCode(), string);
+}
 
 
 }

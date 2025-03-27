@@ -21,12 +21,14 @@ public class UserPojo {
     private UserLogin userLogin;
     
     //mandatory in all pojo
+    
     @JsonIgnore 
     private int statusCode;
     @JsonIgnore 
     private String scenario;
     @JsonIgnore 
 	private String statusText;
+    
     public String getStatusText() {
 		return statusText;
 	}
@@ -35,27 +37,37 @@ public class UserPojo {
 		this.statusText = statusText;
 	}
 
-	public String getAuthType() {
-		return authType;
-	}
+//	public String getAuthType() {
+//		return type;
+//	}
+//
+//	public void setAuthType(String authType) {
+//		this.type = authType;
+//	}
 
-	public void setAuthType(String authType) {
-		this.authType = authType;
-	}
-
-	public String getContentType() {
-		return contentType;
-	}
-
-	public void setContentType(String contentType) {
-		this.contentType = contentType;
-	}
+//	public String getContentType() {
+//		return contentType;
+//	}
+//
+//	public void setContentType(String contentType) {
+//		this.contentType = contentType;
+//	}
+	
 	@JsonIgnore 
-    private String authType;
-    @JsonIgnore 
-    private String contentType;
+    private String type;
+	
+//    @JsonIgnore 
+//    private String contentType;
 
-    public int getStatusCode() {
+    public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public int getStatusCode() {
 		return statusCode;
 	}
 

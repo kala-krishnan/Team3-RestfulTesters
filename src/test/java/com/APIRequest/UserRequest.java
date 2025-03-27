@@ -4,7 +4,9 @@ import static io.restassured.RestAssured.given;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.APIResponse.UserModuleResponseValidation;
 import com.EnumClass.APIResources;
@@ -14,6 +16,8 @@ import com.context.ScenarioContext;
 import com.context.TextContext;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.payload.UserPayloadPut;
+import com.payload.UserRoleProgramBatch;
 import com.pojoclass.UserPojo;
 import com.pojoclass.UserRole;
 import com.pojoclass.UserRoleWrapperClass;
@@ -26,12 +30,14 @@ public class UserRequest extends SpecificationClass{
 	Response response;
 	ScenarioContext context =ScenarioContext.getInstance();
 	String paramForGetEndpoint;
+	Integer paramForGetIntEndpoint;
 	JsonNode getTestData;
 	RequestSpecification resquest;
 	String requestType;
 	UserModuleResponseValidation resValidation;
 	int responseCode;
 	String Endpoints;
+	JsonNode getTestData_get ;
 	public UserRequest() throws FileNotFoundException
 	{
 		resValidation = new UserModuleResponseValidation();
@@ -59,28 +65,42 @@ public class UserRequest extends SpecificationClass{
 				.body(user).log().all()
 				.post(APIResources.valueOf("APICreateUserWithRole").getResources());       
 		context.set("userResponse", response); 
-		String userID  = response.jsonPath().getString("userId");
-		TextContext.setUserId(userID); // Setting userid for chaining 
-
+		
+		System.out.println("chaining userid from text context"+ TextContext.getUserId());
 		System.out.println(response.prettyPrint());
 		System.out.println("Status Code: " + response.getStatusCode());
 		System.out.println("Response Headers: " + response.getHeaders());
 		System.out.println("Response Body: " + response.getBody().asString());
-
+		String userID  = response.jsonPath().getString("user.userId");
+		System.out.println("chaining userid"+ userID );
+		TextContext.setUserId(userID); // Setting userid for chaining 
 	}
 
 
 	/****************** GET without parameter Request *************************/
 
-	public JsonNode setGetUserRequest_Vidhya(String requestType) throws Exception 
-	{
-		JsonNode getTestData = TestDataLoader.loadTestDatafor_Get(requestType);
-		return getTestData;
+	public JsonNode getUserRequest(String requestType,String status) throws Exception 
+	{		
+		getTestData_get = TestDataLoader.loadTestDatafor_Get(requestType);
+
+		return getTestData_get;
 	}
 
-	public Response sendGetUserReqWithOutBody() {
-		Response response = RestAssured.given().spec(requestHeadersWithToken())				
-				.get(APIResources.valueOf("APIGetUserWithFilter").getResources());				
+	public Response sendGetUserReqWithOutBody(String endpointValue,String status) {
+		Response response =null;
+		String endpoint = "API"+endpointValue;
+		System.out.println(endpoint);
+		if(!status.equalsIgnoreCase("405"))
+		{
+			
+			response = RestAssured.given().spec(requestHeadersWithToken())				
+					.get(APIResources.valueOf(endpoint).getResources());	
+		}
+		else
+		{
+			response = RestAssured.given().spec(requestHeadersWithToken())				
+					.post(APIResources.valueOf(endpoint).getResources());
+		}
 		return response;
 	}
 
@@ -89,16 +109,96 @@ public class UserRequest extends SpecificationClass{
 
 	public JsonNode setGetUserRequestBody(String requestType,String parameterValue) throws Exception
 	{
-		JsonNode getTestData = TestDataLoader.loadTestDatafor_Get(requestType);
-		paramForGetEndpoint = getTestData.get(parameterValue).asText();
-		return getTestData;
+		System.out.println("vidhya "+TextContext.getUserId());
+		TextContext.setBatchId(9488);
+		//TextContext.setUserId("U212");
+		TextContext.setProgramId(16925);
+		TextContext.setRoleId("R02");
+		getTestData_get = TestDataLoader.loadTestDatafor_Get(requestType);
+	    String type = getTestData_get.get("type").asText();
+
+	    if (type.equalsIgnoreCase("valid")) { 
+	        switch (parameterValue.toLowerCase()) {
+	            case "roleid":
+	                paramForGetEndpoint = TextContext.getRoleId();
+	                break;
+	            case "userid":
+	                paramForGetEndpoint = TextContext.getUserId();
+	                System.out.println("paramForGetEndpoint"+paramForGetEndpoint);
+	                break;
+	            case "programid":
+	                paramForGetEndpoint = (TextContext.getProgramId() != null) 
+	                        ? String.valueOf(TextContext.getProgramId()) 
+	                        : "0";  
+	                break;
+	            case "batchid":
+	            	paramForGetEndpoint = (TextContext.getBatchId() != null) 
+	                        ? String.valueOf(TextContext.getBatchId()) 
+	                        : "0";  
+	                break;
+	            default:
+	                throw new IllegalArgumentException("Invalid parameter value: " + parameterValue);
+	        }
+	    } else {
+	    	System.out.println(parameterValue);
+	    	paramForGetEndpoint = getTestData_get.get(parameterValue).asText();
+	    }	
+		return getTestData_get;
 	}
 
-	public Response sendGetUserReqWithBody(String endpointValue) {
+	public JsonNode setGetUserReqBody(String requestType,String parameterValue) throws Exception
+	{
+		TextContext.setBatchId(9488);
+		//TextContext.setUserId("U212");
+		TextContext.setProgramId(16925);
+		getTestData_get = TestDataLoader.loadTestDatafor_Get(requestType);
+	    String type = getTestData_get.get("type").asText();
+
+	    if (type.equalsIgnoreCase("valid")) { 
+	        switch (parameterValue.toLowerCase()) {
+	            case "programid":
+	            	paramForGetIntEndpoint = (TextContext.getProgramId() != null) 
+	                        ? (TextContext.getProgramId()) 
+	                        : 0;  
+	                break;
+	            case "batchid":
+	            	paramForGetIntEndpoint = (TextContext.getBatchId() != null) 
+	                        ? TextContext.getBatchId() 
+	                        : 0;  
+	                break;
+	            default:
+	                throw new IllegalArgumentException("Invalid parameter value: " + parameterValue);
+	        }
+	    } else {
+	    	System.out.println(parameterValue);
+	    	paramForGetIntEndpoint = getTestData_get.get(parameterValue).asInt();
+	    }	
+		return getTestData_get;
+	}
+	public Response sendGetUserReqWithBody(String endpointValue,String param) {
+		String endpoint = "API"+endpointValue;
+		System.out.println("vidhya post before  "+ paramForGetEndpoint);
+		Response response = RestAssured.given().spec(requestHeadersWithToken())
+				.pathParam(param, paramForGetEndpoint)
+				.log().all()					
+				.get(APIResources.valueOf(endpoint).getResources());	
+		System.out.println(response.prettyPrint());
+		System.out.println("Status Code: " + response.getStatusCode());
+		System.out.println("Response Headers: " + response.getHeaders());
+		System.out.println("Response Body: " + response.getBody().asString());
+		return response;
+	}
+	public Response sendGetUserReqWithIntBody(String endpointValue,String param) {
 		String endpoint = "API"+endpointValue;
 		System.out.println(endpoint);
-		Response response = RestAssured.given().spec(requestHeadersWithToken())				
-				.get(APIResources.valueOf(endpoint).getResources()+ paramForGetEndpoint);				
+		Response response = RestAssured.given().spec(requestHeadersWithToken())
+				.pathParam(param, paramForGetIntEndpoint)
+				.log().all()				
+				.get(APIResources.valueOf(endpoint).getResources());	
+		System.out.println(response.prettyPrint());
+		System.out.println("Status Code: " + response.getStatusCode());
+		System.out.println("Response Headers: " + response.getHeaders());
+		System.out.println("Response Body: " + response.getBody().asString());
 		return response;
 	}
 
@@ -147,6 +247,7 @@ public class UserRequest extends SpecificationClass{
 
 		responseCode = response.getStatusCode();
 		System.out.println("responseCode "+responseCode);
+		resValidation.assertAll();
 
 	}
 	public void getAllActiveUsers(String reqType)
@@ -175,7 +276,7 @@ public class UserRequest extends SpecificationClass{
 		}
 		responseCode = response.getStatusCode();
 		System.out.println("responseCode "+responseCode);
-
+		resValidation.assertAll();
 	}
 	public void getAllFetchEMailUsers(String reqType)
 	{
@@ -207,7 +308,7 @@ public class UserRequest extends SpecificationClass{
 
 		responseCode = response.getStatusCode();
 		System.out.println("responseCode "+responseCode);
-
+		resValidation.assertAll();
 	}
 
 	public void getAllRoles(String reqType)
@@ -239,7 +340,7 @@ public class UserRequest extends SpecificationClass{
 
 		responseCode = response.getStatusCode();
 		System.out.println("responseCode "+responseCode);
-
+		resValidation.assertAll();
 	}
 	public void getAllUserwithRoles(String reqType)
 	{
@@ -270,6 +371,7 @@ public class UserRequest extends SpecificationClass{
 
 		responseCode = response.getStatusCode();
 		System.out.println("responseCode "+responseCode);
+		resValidation.assertAll();
 
 	}
 
@@ -302,6 +404,7 @@ public class UserRequest extends SpecificationClass{
 
 		responseCode = response.getStatusCode();
 		System.out.println("responseCode "+responseCode);
+		resValidation.assertAll();
 
 	}
 
@@ -338,6 +441,7 @@ public class UserRequest extends SpecificationClass{
 
 
 		responseCode = response.getStatusCode();
+		resValidation.assertAll();
 	}
 
 	public void updateUserRequest(String requestType) throws Exception 
@@ -373,6 +477,47 @@ public class UserRequest extends SpecificationClass{
 			resValidation.validateContentType(response);
 		}
 		resValidation.validateStatusLine(response,userrole.getStatusText() );
+		resValidation.assertAll();
 	}
+	
+	///////////***************** update program batch user **************/
+	
+	public void updateUserProgramBatchRequest(String requestType) throws Exception 
+	{
+		TextContext.setBatchId(9488);
+		//TextContext.setUserId("U212");
+		TextContext.setProgramId(16925);
+		UserPayloadPut userPut = TestDataLoader.loadTestDatafor_Post_Put(requestType, UserPayloadPut.class);
+		userPut.setUserId(TextContext.getUserId());
+		userPut.setProgramId(TextContext.getProgramId());
+		userPut.setRoleId("R02");
+		
+		UserRoleProgramBatch newBatch = new UserRoleProgramBatch();
+		newBatch.setBatchId(TextContext.getBatchId());
+		newBatch.setUserRoleProgramBatchStatus("Active");
+		
+		List<UserRoleProgramBatch> batchList = new ArrayList<>();
+		batchList.add(newBatch);
+		
+		userPut.setUserRoleProgramBatches(batchList);
+		context.set("userPut", userPut);
+		
+		resquest=given().spec(requestHeadersWithToken());
+		this.requestType= requestType;
+	}
+	public void updateProgramBatchuserRequest(String endpoint)
+	{
+		UserPayloadPut user = context.get("userPut", UserPayloadPut.class);
+		System.out.println(user.toString());
+		response = RestAssured.given().spec(requestHeadersWithToken())
+				.body(user).log().all()
+				.put(APIResources.valueOf("APIUpdateUserByRPBStatus").getResources()+TextContext.getUserId());     
+		context.set("userPutAllResponse", response); 	
 
+		System.out.println(response.prettyPrint());
+		System.out.println("Status Code: " + response.getStatusCode());
+		System.out.println("Response Headers: " + response.getHeaders());
+		System.out.println("Response Body: " + response.getBody().asString());
+
+	}
 }
