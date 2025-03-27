@@ -225,4 +225,26 @@ public void admin_sends_https_get_request_with_classtopic_and(String requestType
 		softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
 		softAssert.assertAll();
 	}
+	//GetAllClassesByStaffId
+	@Given("Admin creates GET request {string} and {string} in class module by staffId")
+	public void admin_creates_get_request_and_in_class_module_by_staff_id(String requestType, String paramValue) throws Exception {
+		getTestData_Get=classRequest.setGetClassRequestBodyClassByStaffId(requestType,paramValue);
+	}
+
+	@When("Admin sends HTTPS Get request with class by staffId {string} and {string}")
+	public void admin_sends_https_get_request_with_class_by_staff_id_and(String requestType, String paramValue) {
+		classResponse=classRequest.sendGetClassReqWithBodyByClassRecordingByClassId(requestType,paramValue);
+	}
+
+	@Then("Admin receives with response body in get class by staffId")
+	public void admin_receives_with_response_body_in_get_class_by_staff_id() {
+		int actualStatusCode = classResponse.getStatusCode();
+		int expectedStatusCode =getTestData_Get.get("statusCode").asInt();
+		softAssert =new SoftAssert();
+		
+		//Status code Validation
+		System.out.println("Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
+		softAssert.assertEquals(actualStatusCode, expectedStatusCode, "Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
+		softAssert.assertAll();
+	}
 }

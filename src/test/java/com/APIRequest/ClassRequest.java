@@ -267,6 +267,25 @@ public Response sendGetClassReqWithOutBodyClass(String reqType) {
 	
 	return response;
 }
+/******************************GetAllClassesStaffId**********************/
+public JsonNode setGetClassRequestBodyClassByStaffId(String requestType,String parameterValue) throws Exception
+{
+JsonNode getTestData = TestDataLoader.loadTestDatafor_Get(requestType);
+System.out.println("classmodule"+getTestData.get(parameterValue).asText());
+paramForGetEndpoint = getTestData.get(parameterValue).asText();
+return getTestData;
+}
+public Response sendGetClassReqWithBodyClassByStaffId(String requestType,String paramValue) {
+	if (requestType.equals("GetAllClassesByStaffId")) {
+		//paramForGetEndpoint=TextContext.getClassId().toString();
+	}
+	System.out.println(""+paramValue);
+	System.out.println(APIResources.valueOf("APIGetAllClassesByStaffId").getResources()+ paramForGetEndpoint);
+	Response response = RestAssured.given().spec(requestHeadersWithToken())	
+			.pathParam("staffId",paramForGetEndpoint)
+			.get(APIResources.valueOf("APIGetAllClassesByStaffId").getResources());				
+	return response;
+}
 
 
 
@@ -298,32 +317,4 @@ public Response sendGetClassReqWithOutBodyClass(String reqType) {
 	}
 	}
 
-//
-//
-//
-//
-//
-//	/****************** GET without parameter Request *************************/
-//
-//	public JsonNode setGetClassRequest(String requestType) throws Exception 
-//	{
-//		JsonNode getTestData = TestDataLoader.loadTestDatafor_Get(requestType);
-//		return getTestData;
-//	}
-//
-//	public Response sendGetClassReqWithOutBody() {
-//		Response response = RestAssured.given().spec(requestHeadersWithToken())				
-//				.get(APIResources.valueOf("APIGetAllRecordings").getResources());				
-//		return response;
-//	}
-//
-//	public Response setNewGetClass(String requestType) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//}
-//
-//
-//
-//
-//
+
