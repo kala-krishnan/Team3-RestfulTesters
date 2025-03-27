@@ -3,7 +3,7 @@
         {
 			"CreateProgramValid": {
 			  "scenario": "Add Program with Bearer Token",
-			  "programName": "RestfulFreeseAPI",
+			  "programName": "RestfullJuiciesAPI",
 			  "programDescription": "hackathon test three",
 			  "programStatus": "active",
 			  "statusCode": 201,
@@ -13,7 +13,7 @@
 		  {
 			"CreateProgramEmptyNonMandatory": {
 			  "scenario": "Add Program with empty non-mandatory fields",
-			  "programName": "RestfulFreesePrg",
+			  "programName": "RestfullJuiciesPrg",
 			  "programDescription": "",
 			  "programStatus": "active",
 			  "statusCode": 201,
@@ -23,7 +23,7 @@
 		  {
 			"CreateProgramStatusInactive": {
 			  "scenario": "Add Program with inactive status",
-			  "programName": "RestfulFreeseProgram",
+			  "programName": "RestfullJuiciesProgram",
 			  "programDescription": "inactive test",
 			  "programStatus": "Inactive",
 			  "statusCode": 201,
@@ -35,7 +35,7 @@
 			  "scenario": "Update Batch Valid",
 			  "programId": 19192,
 			  "statusCode": 200,
-			  "programName": "RestfulFreeseEditPrg",
+			  "programName": "RestfullJuiciesEditPrg",
 			  "programStatus": "Active",
 			  "statusText": "HTTP/1.1 200 OK"
 			}
@@ -45,7 +45,7 @@
 			  "scenario": "Update Batch Valid",
 			  "programId": 19192,
 			  "statusCode": 200,
-			  "programName": "RestfulFreeseEditPrgg",
+			  "programName": "RestfullJuiciesEditPrgg",
 			  "programStatus": "Active",
 			  "statusText": "HTTP/1.1 200 OK"
 			}
@@ -56,7 +56,7 @@
 				"scenario":"*********Add Batch valid", 
 				"id": 0,   
 				"batchDescription": "TestBatches",
-				"batchName": "RestfulFreeseBatch",
+				"batchName": "RestfullJuiciesBatch",
 				"batchNoOfClasses": 10,
 				"batchStatus": "Active",
 				"programId": 16449,
@@ -69,7 +69,7 @@
 				"scenario":"*******8Add Batch with Non Mandatory field empty", 
 				"id": 0,    
 				"batchDescription": "",
-				"batchName": "RestfulFreeseBatche",
+				"batchName": "RestfullJuiciesBatche",
 				"batchNoOfClasses": 10,
 				"batchStatus": "Active",
 				"programId": 16449,
@@ -82,7 +82,7 @@
 				"scenario":"********Update Batch Valid",  
 				"id": 0,  
 				"batchDescription": "TestBatches",
-				"batchName": "RestfulFreeseBatchs",
+				"batchName": "RestfullJuiciesBatchs",
 				"batchNoOfClasses": 11,
 				"batchStatus": "Active",
 				"programId": 16449,
@@ -96,11 +96,11 @@
 		                "statusCode": 201,
 		                "statusText": "Created",
 		                "type": "valid",
-		                "userComments": "FreeseComments",
+		                "userComments": "JuiciesComments",
 		                "userEduPg": "mgfte",
 		                "userEduUg": "bedggd8",
-		                "userFirstName": "FreeseMary",
-		                "userLastName": "FreeseLame",
+		                "userFirstName": "JuiciesMary",
+		                "userLastName": "JuiciesLame",
 		                "userLinkedinUrl": "www.linkedin.com4/url",
 		                "userLocation": "texas",
 		                "userMiddleName": "middle",
@@ -115,7 +115,7 @@
 		                "userVisaStatus": "H1B",
 		                "userLogin": {
 		                    "loginStatus": "Active",
-		                    "userLoginEmail": "Freesemary@gmail.com",
+		                    "userLoginEmail": "Juiciesmary@gmail.com",
 		                    "status": "Active"
 		                }
 		            }
@@ -130,7 +130,7 @@
 				        "batchId": 11959,
 				        "classNo": 1,
 				        "classDate": "2025-04-01",
-				        "classTopic": "FreeseTopic",
+				        "classTopic": "JuiciesTopic",
 				        "classStatus": "Active",
 				        "classStaffId": "U34",
 				        "classDescription": "tes",
@@ -157,7 +157,7 @@
                 "userLoginEmailId": "Stepapi01@gmail.com",
                 "password": "phase@2",
 				"statusCode":404,
-				"statusText": "HTTP/1.1 401 Not Found"
+				"statusText": "HTTP/1.1 401 Unauthozied"
             }
         },
 		{
@@ -765,7 +765,7 @@
 			{
 			    "GetByProgramInvalid": {
 					"scenario":"Search Batch by invalid Program ID",    
-					"id": 10101010,
+					"id": 1010,
 					"statusCode":404,
 					"statusText": "HTTP/1.1 404 Not Found"	
 			    }

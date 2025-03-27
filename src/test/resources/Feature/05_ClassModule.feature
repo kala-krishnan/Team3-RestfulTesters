@@ -1,4 +1,4 @@
-@ClassModule @LMS
+@ClassModule @LMS1
 Feature: LMS Class Module
 
   Background: 
