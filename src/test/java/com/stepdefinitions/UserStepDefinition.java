@@ -320,7 +320,7 @@ public void user_calls_put_https_method_for_the_requesttype_to_update_role_id_by
 
 @Then("User received proper status code {string} with updated role details for the user as response")
 public void user_received_proper_status_code_with_updated_role_details_for_the_user_as_response(String string) {
-	Assert.assertEquals(userRequest.responseCode(), string);
+	Assert.assertEquals(userRequest.responseCode(), userRequest.getUserRoleStatusCode());
 }
 //**********************************************PUT Request Ends***********************************************************
 
@@ -340,7 +340,22 @@ public void user_calls_put_https_method_for_the_requesttype_to_update_user_role_
 public void user_received_proper_status_code_with_updated_update_user_role_program_batch_status(String string) {
 	Assert.assertEquals(userRequest.responseCode(), string);
 }
+//**********************************************Delete Request Ends***********************************************************
 
+@Given("Admin creates Delete Request for User {string}")
+public void admin_creates_delete_request_for_user(String string) throws Exception {
+	getTestData_Get=userRequest.setGetUserRequest(string);
+    
+}
 
+@When("Admin sends DELETE HTTPS Request User {string}")
+public void admin_sends_delete_https_request_user(String string) {
+	userRequest.DeleteBatchRequest(string);
+}
+
+@Then("Admin receives User Delete {string}")
+public void admin_receives_user_delete(String string) {
+	Assert.assertEquals(userRequest.responseCode(), getTestData_Get.get("statusCode").asInt());
+}
 }
 
