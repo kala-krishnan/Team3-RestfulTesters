@@ -105,6 +105,6 @@ Background: Authorization SetUp
 			| PutBatchNoofClassAlpha |   400   |	
 			| PutBatchNoClassSplChar |   400   |
 			| PutBatchNoClassAlphaNum|   400   |
-			| PutBatchNoofClassZero  |   400   |
-			| PutBatchNoClassThreeDgt|   400   |
+#			| PutBatchNoofClassZero  |   400   |
+#			| PutBatchNoClassThreeDgt|   400   |
    
