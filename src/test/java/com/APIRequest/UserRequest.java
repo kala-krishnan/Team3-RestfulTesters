@@ -57,6 +57,7 @@ public class UserRequest extends SpecificationClass{
 		System.out.println("user sttaucode"+user.getStatusCode());
 		context.set("UserPojo", user);
 	}
+	
 
 	public void PostNewUserRequest()
 	{
@@ -67,16 +68,34 @@ public class UserRequest extends SpecificationClass{
 				.post(APIResources.valueOf("APICreateUserWithRole").getResources());       
 		context.set("userResponse", response); 
 		
-		System.out.println("chaining userid from text context"+ TextContext.getUserId());
 		System.out.println(response.prettyPrint());
 		System.out.println("Status Code: " + response.getStatusCode());
 		System.out.println("Response Headers: " + response.getHeaders());
-		System.out.println("Response Body: " + response.getBody().asString());
+		//System.out.println("Response Body: " + response.getBody().asString());
 		String userID  = response.jsonPath().getString("user.userId");
 		System.out.println("chaining userid"+ userID );
 		TextContext.setUserId(userID); // Setting userid for chaining 
+		String roleID = response.jsonPath().getString("roles[0].roleId");
+		TextContext.setRoleId(roleID);
+		int respCode=response.getStatusCode();
+		if(respCode==200)
+		{
+		context.set("createUservalid", response);
+		}
+		
 	}
-
+	public void PostNewUserRequestInvalid()
+	{
+		UserPojo user = context.get("UserPojo", UserPojo.class);
+		System.out.println(user.toString());
+		Response response_invalid = RestAssured.given().spec(requestHeadersWithToken())
+				.body(user).log().all()
+				.post(APIResources.valueOf("APICreateUserWithRole").getResources());       
+		//System.out.println("Status Code: " + response.getStatusCode());
+		//System.out.println("Response Headers: " + response.getHeaders());
+		//System.out.println("Response Body: " + response.getBody().asString());
+		context.set("createUserinvalid", response_invalid);
+	}
 
 	/****************** GET without parameter Request *************************/
 
@@ -110,7 +129,6 @@ public class UserRequest extends SpecificationClass{
 
 	public JsonNode setGetUserRequestBody(String requestType,String parameterValue) throws Exception
 	{
-		System.out.println("vidhya "+TextContext.getUserId());
 		//TextContext.setBatchId(9488);
 		//TextContext.setUserId("U212");
 		//TextContext.setProgramId(16925);
@@ -462,6 +480,8 @@ public class UserRequest extends SpecificationClass{
 		UserRoleWrapperClass userWrapper = new UserRoleWrapperClass();
 	//	TextContext.setUserId("U1767");
 		UserRole userrole = context.get("UserRole", UserRole.class);
+		userrole.setRoleId(TextContext.getRoleId());
+		
 		userWrapper.setUserRoleList(Arrays.asList(userrole));
 
 		response =resquest.pathParam("userId", TextContext.getUserId())
@@ -491,6 +511,7 @@ public class UserRequest extends SpecificationClass{
 		//TextContext.setBatchId(9488);
 		//TextContext.setUserId("U212");
 		//TextContext.setProgramId(16925);
+		String roleid = TextContext.getRoleId();
 		UserPayloadPut userPut = TestDataLoader.loadTestDatafor_Post_Put(requestType, UserPayloadPut.class);
 		userPut.setUserId(TextContext.getUserId());
 		userPut.setProgramId(TextContext.getProgramId());
