@@ -1,3 +1,4 @@
+
 /target/
 *.log
 *.class
@@ -8,4 +9,3 @@
 test-output/
 logs/
 allure-results/
-RESTApiLog/

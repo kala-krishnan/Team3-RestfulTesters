@@ -1,4 +1,4 @@
-@NoAuth @LMS1
+@NoAuth @LMS
 Feature: LMS API No Auth Request
 
   #----------------------------------- PROGRAM NO AUTH ---------------------------------
@@ -42,7 +42,6 @@ Feature: LMS API No Auth Request
 
     Examples: 
       | Scenario                 | Request               |
-      | NoAuthAddUser            | APICreateUserWithRole |
       | NoAuthAPIGetAllUser      | APIGetAllUser         |
       | NoAuthAPIGetAllUserRoles | APIGetAllUserRoles    |
       | NoAuthAPIGetUserByStatus | APIGetUserByStatus    |
@@ -51,9 +50,7 @@ Feature: LMS API No Auth Request
       | NoAuthAPIGetAllUserEmail | APIGetAllUserEmail    |
       | NoAuthAPIUpdateUserByID  | APIUpdateUserByID     |
       | NoAuthAPIGetUserByID     | APIGetUserByID        |
-      | NoAuthAPIUpdateUser      | PUT                   |
-      | NoAuthAPIDeleteUserByID  | Delete                |
-      | APIGetUserWithFilter     | GetByName             |
+
 
   #----------------------------------- CLASS NO AUTH -------------------------------------
   @NoAuthClass

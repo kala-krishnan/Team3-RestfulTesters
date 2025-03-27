@@ -203,6 +203,8 @@ public JsonNode setGetClassRequestBodyByClassTopic(String requestType,String par
 {
 JsonNode getTestData = TestDataLoader.loadTestDatafor_Get(requestType);
 paramForGetEndpoint = getTestData.get(parameterValue).asText();
+
+
 return getTestData;
 }
 public Response sendGetClassReqWithBodyByClassTopic(String requestType,String paramValue) {
