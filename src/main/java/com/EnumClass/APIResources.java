@@ -27,7 +27,7 @@ public enum APIResources {
 	//User Endpoints
 	
 	APIUpdateUser("/users/"),
-	APIDeleteUserByID("/users/"),
+	APIDeleteUserByID("/users/{userId}"),
 	APIUpdateUserStatus("/users/userLogin/"),
 	APIUpdateUserByRPBStatus("/users/roleProgramBatchStatus/"),
 	APIUpdateUserByID("/users/roleId/{userId}"),

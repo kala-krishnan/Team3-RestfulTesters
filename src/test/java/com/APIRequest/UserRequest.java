@@ -18,6 +18,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.payload.UserPayloadPut;
 import com.payload.UserRoleProgramBatch;
+import com.pojoclass.BatchPojo;
 import com.pojoclass.UserPojo;
 import com.pojoclass.UserRole;
 import com.pojoclass.UserRoleWrapperClass;
@@ -415,8 +416,9 @@ public class UserRequest extends SpecificationClass{
 	public void GetUserByUserId(String reqType)
 	{
 		Endpoints = APIResources.valueOf("APIGetUserByID").getResources();
-		TextContext.setUserId("U37");
-
+		TextContext.setUserId("U1767");
+		if (requestType.equals("GetUserByUserIDInvalidEndpoint")) 
+			Endpoints = APIResources.valueOf("APIGetUserByID").getResources() + "Invalid";
 		if(reqType.equals("GetUserByInvalidUserId") || reqType.equals("GetUserByInvalidSpecialCharacterUserId"))
 		{
 			TextContext.setUserId(getTestData.get("id").toString());
@@ -443,7 +445,10 @@ public class UserRequest extends SpecificationClass{
 		responseCode = response.getStatusCode();
 		resValidation.assertAll();
 	}
-
+	public int getUserRoleStatusCode() {
+		UserRole sCode=(UserRole) context.get("UserRole");
+		return sCode.getStatusCode();
+	}
 	public void updateUserRequest(String requestType) throws Exception 
 	{
 		UserRole user = TestDataLoader.loadTestDatafor_Post_Put(requestType, UserRole.class);
@@ -455,8 +460,7 @@ public class UserRequest extends SpecificationClass{
 	{
 		Endpoints = APIResources.valueOf("APIUpdateUserByID").getResources();
 		UserRoleWrapperClass userWrapper = new UserRoleWrapperClass();
-		TextContext.setUserId("U2668");
-
+		TextContext.setUserId("U1767");
 		UserRole userrole = context.get("UserRole", UserRole.class);
 		userWrapper.setUserRoleList(Arrays.asList(userrole));
 
@@ -520,4 +524,23 @@ public class UserRequest extends SpecificationClass{
 		System.out.println("Response Body: " + response.getBody().asString());
 
 	}
+	public void DeleteBatchRequest(String Scenario)
+	{
+		 TextContext.setUserId("U1767");
+		 if(Scenario.equals("DeleteUserInvalidID") || Scenario.equals("DeleteAlreadyRemovedUser"))
+			{
+				TextContext.setUserId(getTestData.get("id").toString());
+			}
+		
+		String EndPoint = APIResources.valueOf("APIDeleteUserByID").getResources();
+//		if (Scenario.equals("DeleteUserInvalidEP")) 
+//			EndPoint = APIResources.valueOf("APIDeleteUserByID").getResources() + "Invalid";
+		System.out.println("*************************************"+EndPoint);
+		response =  given().spec(requestHeadersWithToken())
+				.pathParam("userId",TextContext.getUserId()) //TextContext.getUserId() update it later
+				.delete(EndPoint);       
+		context.set("batchResponse", response); 
+		responseCode = response.getStatusCode();
+	}
+		
 }
